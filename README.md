@@ -1,4 +1,4 @@
-# Stardew-Valley-Remake
+# Life of Squirrels
 
 We are CTRL-ALT-ELITE. The members of this team are Erin O’Connor, Dan Paddock, Charlie Hannum, Jack Maloy, and Nishant Chintala. 
 
