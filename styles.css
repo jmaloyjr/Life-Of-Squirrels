@@ -1,0 +1,29 @@
+#infoBar{
+    height: 15vh;
+    
+}
+
+#infoBar div {
+    margin: 5px;
+    border: solid black 3px;
+}
+
+#game {
+    height:85vh;
+}
+
+#tree {
+    background-color: brown;
+}
+
+#playerScore { 
+    background-color: aquamarine;
+}
+
+#playerHealth {
+    background-color: red;
+}
+
+#gameTimer {
+    background-color: green;
+}
