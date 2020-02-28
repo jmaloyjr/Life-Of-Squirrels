@@ -27,3 +27,16 @@
 #gameTimer {
     background-color: green;
 }
+
+.title {
+    font-family: 'Luckiest Guy', sans-serif;
+    font-size:3rem;
+}
+.start-game{
+    margin-bottom: 50px;
+    margin-top: 300px;
+    font-family: 'Luckiest Guy', sans-serif;
+}
+.how-to-play{
+    font-family: 'Luckiest Guy', sans-serif;
+}
