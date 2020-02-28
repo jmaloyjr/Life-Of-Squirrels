@@ -5,17 +5,46 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>Our Game</title>
-    <script src="index.js"></script>
+    <script src="scripts/index.js"></script>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
         crossorigin="anonymous">
     <script src="http://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
         crossorigin="anonymous"></script>
-</head>
+    <link rel="stylesheet" href="/styles.css">
 
-<body style="background-color: black;"> 
-    <canvas id="canvas1" style="border: 1px solid black;"></canvas> 
- </body> 
+</head>
+<body>
+    <div class="container">
+        <!-- Screen where game will be played -->
+        <div id="gameScreen">
+
+            <!-- Info bar that will hold health, score and a timer -->
+            <div class="row" id="infoBar">
+                <div class="col" id="playerScore">
+                    Score
+                </div>
+                <div class="col-6" id="playerHealth">
+                    Health
+                </div>
+                <div class="col" id="gameTimer">
+                    Timer
+                </div>
+            </div>
+
+            <!-- Row that will visualize the squirrel and it's movement -->
+            <div class="row" id="game">
+                <div class="col" id="tree">
+                    Left Tree
+                </div>
+                <div class="col-6" id="bg">
+                    <img src="images/squirrel.gif" class="squirrel">
+                </div>
+                <div class="col" id="tree">
+                    Right Tree
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
 
 </html>
-  
-<script src="main.js"></script> 
