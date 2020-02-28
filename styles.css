@@ -27,16 +27,23 @@
 #gameTimer {
     background-color: green;
 }
-
-.title {
+.jumbotron{
+    background: rgba(204,204,204,0.5);
+}
+.title-text{
     font-family: 'Luckiest Guy', sans-serif;
-    font-size:3rem;
+    font-size:3.5rem;
 }
 .start-game{
     margin-bottom: 50px;
-    margin-top: 300px;
+    margin-top: 350px;
     font-family: 'Luckiest Guy', sans-serif;
 }
 .how-to-play{
     font-family: 'Luckiest Guy', sans-serif;
+}
+
+#start-page{
+    background-image: url('images/UDMemHall.jpg');
+    background-repeat:round;
 }
