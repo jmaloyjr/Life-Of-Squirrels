@@ -8,12 +8,54 @@
     border: solid black 3px;
 }
 
-#game {
-    height:85vh;
+#game 
+{
+    height:85vh
+}
+
+#bg
+{
+    position: relative;
+    background: #00fdff url(images/clouds.jpg);
+    height: 85vh;
+    background-size: cover;
+    background-position: 0 0;
+    background-repeat: repeat-y;
+    animation: animate 15s linear infinite;
+}
+.squirrel
+{
+    position: absolute;
+    bottom: 10px;
+}
+@keyframes animate
+{
+    from{
+        background-position: 0 100%;
+    }
+    to{
+        background-position: 0 0;
+    }
 }
 
 #tree {
     background-color: brown;
+    position: relative;
+    background: #00fdff url(images/bark.png);
+    height: 85vh;
+    background-size: cover;
+    background-position: 0 0;
+    background-repeat: repeat-y;
+    animation: animate 4s linear infinite;
+}
+@keyframes animate
+{
+    from{
+        background-position: 0 100%;
+    }
+    to{
+        background-position: 0 0;
+    }
 }
 
 #playerScore { 
@@ -29,16 +71,22 @@
     text-align: center;
     padding: 15px 0;
 }
-
-.title {
+.jumbotron{
+    background-color:#e9ecef8c !important;
+}
+.title-text{
     font-family: 'Luckiest Guy', sans-serif;
-    font-size:3rem;
+    font-size:3.5rem;
 }
 .start-game{
     margin-bottom: 50px;
-    margin-top: 300px;
+    margin-top: 350px;
     font-family: 'Luckiest Guy', sans-serif;
 }
 .how-to-play{
     font-family: 'Luckiest Guy', sans-serif;
+}
+#start-page{
+    background-image: url('images/UDMemHall.jpg');
+    background-repeat:round;
 }
