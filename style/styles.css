@@ -86,6 +86,10 @@
 .how-to-play{
     font-family: 'Luckiest Guy', sans-serif;
 }
+.directions-page{
+    font-family: 'Abel';font-size: 22px;
+    text-align: center;
+}
 #start-page{
     background-image: url('images/UDMemHall.jpg');
     background-repeat:round;
