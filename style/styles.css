@@ -27,10 +27,6 @@
     transform: translate(-50%, -50%);
 }
 
-
-##timerContainer {
-}
-
 #timer{
     position: absolute;
     left: 50%;
@@ -48,4 +44,20 @@
     height: auto;
     max-width: 20vw;
     max-height: 10vh;
+}
+#gameTimer {
+    background-color: green;
+}
+
+.title {
+    font-family: 'Luckiest Guy', sans-serif;
+    font-size:3rem;
+}
+.start-game{
+    margin-bottom: 50px;
+    margin-top: 300px;
+    font-family: 'Luckiest Guy', sans-serif;
+}
+.how-to-play{
+    font-family: 'Luckiest Guy', sans-serif;
 }
