@@ -1,4 +1,4 @@
-var h2, start, stop, clear;
+var h2, start, stop, clear, t;
 var seconds = 0;
 var minutes = 0;
 var hours = 0;
@@ -31,7 +31,6 @@ function gameTimer() {
     t = setTimeout(add, 1000);
 }
 
-
 // Used to remove a heart when the squirrel touches an object
 function removeHeart(){
 
@@ -60,6 +59,7 @@ function startGame(){
     directionsPage.style.display="none";
     var newPage = document.getElementById("gameScreen");
     newPage.className="";
+    onLoad();
 }
 function howToPlay(){
     var page = document.getElementById("start-page");
