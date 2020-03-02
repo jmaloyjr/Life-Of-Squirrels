@@ -21,14 +21,24 @@
 
             <!-- Info bar that will hold health, score and a timer -->
             <div class="row" id="infoBar">
-                <div class="col" id="playerScore">
-                    Score
+                <div class="col" id="scoreContainer">
+                    <div id="playerScore">100000000</div>
                 </div>
                 <div class="col-6" id="playerHealth">
-                    Health
+                    <div class="row">
+                        <div class="col" id="heart">
+                            <img src='./images/heart.png'>
+                        </div>
+                        <div class="col" id="heart">
+                            <img src='./images/heart.png'>
+                        </div>
+                        <div class="col" id="heart">
+                            <img src='./images/heart.png'>
+                        </div>
+                    </div>
                 </div>
-                <div class="col" id="gameTimer">
-                    Timer
+                <div class="col" id="timerContainer">
+                    <div id="timer">60</div>
                 </div>
             </div>
 

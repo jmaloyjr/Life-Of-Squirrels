@@ -3,7 +3,7 @@
     
 }
 
-#infoBar div {
+#infoBar > div {
     margin: 5px;
     border: solid black 3px;
 }
@@ -16,14 +16,36 @@
     background-color: brown;
 }
 
-#playerScore { 
-    background-color: aquamarine;
+#scoreContainer{
 }
 
-#playerHealth {
-    background-color: red;
+#playerScore {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 }
 
-#gameTimer {
-    background-color: green;
+
+##timerContainer {
+}
+
+#timer{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+#heart {
+    display: inline-block;
+}
+
+#heart img {
+    width: auto;
+    height: auto;
+    max-width: 20vw;
+    max-height: 10vh;
 }
