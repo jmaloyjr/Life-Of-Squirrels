@@ -30,6 +30,14 @@ function gameTimer() {
 function startGame(){
     var page = document.getElementById("start-page");
     page.style.display="none";
+    var directionsPage=document.getElementById("directions-page");
+    directionsPage.style.display="none";
     var newPage = document.getElementById("gameScreen");
+    newPage.className="";
+}
+function howToPlay(){
+    var page = document.getElementById("start-page");
+    page.style.display="none";
+    var newPage = document.getElementById("directions-page");
     newPage.className="";
 }
