@@ -28,7 +28,7 @@
     background-color: green;
 }
 .jumbotron{
-    background: rgba(204,204,204,0.5);
+    background-color:#e9ecef8c !important;
 }
 .title-text{
     font-family: 'Luckiest Guy', sans-serif;
@@ -42,8 +42,7 @@
 .how-to-play{
     font-family: 'Luckiest Guy', sans-serif;
 }
-
 #start-page{
-    background-image: url('images/UDMemHall.jpg');
+    background-image: url('../images/UDMemHall.jpg');
     background-repeat:round;
 }
