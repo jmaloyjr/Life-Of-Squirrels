@@ -20,7 +20,7 @@
         <h1 class = "jumbotron text-center title-text">Life of Squirrels</h1>
         <div class = "start-page-body"></div>
             <div class = "text-center start-game">
-                <button type = "button" class = "btn btn-info btn-lg">Start Game</button>
+                <button onclick="startGame()" type = "button" class = "btn btn-info btn-lg">Start Game</button>
             </div>
             <div class = "text-center how-to-play">
                 <button type = "button" class = "btn btn-dark btn-lg" id = "how-to-play">How to Play</button>
@@ -29,7 +29,7 @@
             <br/>
         </div>
     </div>
-    <div class = "container" id = "directions-page">
+    <div class = "container hidden" id = "directions-page">
         <center><h1>How To Play</h1>
         <p>In this game, you are a squirrel traveling up trees, trying to avoid obstacles.</p>
         <p>To do this, you will switch between trees by pressing either the left or right arrow keys.</p>
@@ -45,7 +45,7 @@
     </div>
     <div class="container">
         <!-- Screen where game will be played -->
-        <div id="gameScreen">
+        <div class="hidden" id="gameScreen">
 
             <!-- Info bar that will hold health, score and a timer -->
             <div class="row" id="infoBar">

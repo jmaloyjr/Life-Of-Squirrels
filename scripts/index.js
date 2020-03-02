@@ -27,3 +27,9 @@ function add() {
 function gameTimer() {
     t = setTimeout(add, 1000);
 }
+function startGame(){
+    var page = document.getElementById("start-page");
+    page.style.display="none";
+    var newPage = document.getElementById("gameScreen");
+    newPage.className="";
+}
