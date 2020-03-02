@@ -1,6 +1,8 @@
-var h2, start, stop, clear
-    seconds = 0, minutes = 0, hours = 0,
-    t;
+var h2, start, stop, clear;
+var seconds = 0;
+var minutes = 0;
+var hours = 0;
+
 
 function onLoad(){
     h2 = document.getElementsByTagName('h2')[0];
@@ -8,6 +10,7 @@ function onLoad(){
     stop = document.getElementById('stop');
     clear = document.getElementById('clear');
     gameTimer();
+    
 }
 function add() {
     seconds++;
@@ -27,3 +30,25 @@ function add() {
 function gameTimer() {
     t = setTimeout(add, 1000);
 }
+
+
+// Used to remove a heart when the squirrel touches an object
+function removeHeart(){
+
+    // Grab all the heart images from the hmtl page 
+    var heart1 = $("#heart1");
+    var heart2 = $("#heart2");
+    var heart3 = $("#heart3");
+
+    if(heart1.hasClass('removed') && heart2.hasClass('removed')){
+        // This means that all hearts will be gone so endgame
+        heart3.addClass("removed");
+        //endGame()
+    } else if( heart1.hasClass('removed')) {
+        heart2.addClass('removed');
+    } else {
+        heart1.addClass('removed');
+    }  
+
+    console.log('Heart Removed');
+} 
