@@ -77,6 +77,14 @@
     transform: translate(-50%, -50%);
 }
 
+.hidden{
+    display:none;
+}
+
+#playerHealth {
+    background-color: red;
+}
+
 #heart {
     display: inline-block;
 }
@@ -116,6 +124,11 @@
 
 #healthHolder {
     height: 100%;
+}
+
+.directions-page{
+    font-family: 'Abel';font-size: 22px;
+    text-align: center;
 }
 #start-page{
     background-image: url('images/UDMemHall.jpg');

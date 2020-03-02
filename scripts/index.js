@@ -52,3 +52,10 @@ function removeHeart(){
 
     console.log('Heart Removed');
 } 
+
+function startGame(){
+    var page = document.getElementById("start-page");
+    page.style.display="none";
+    var newPage = document.getElementById("gameScreen");
+    newPage.className="";
+}
