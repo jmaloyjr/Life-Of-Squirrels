@@ -8,12 +8,54 @@
     border: solid black 3px;
 }
 
-#game {
-    height:85vh;
+#game 
+{
+    height:85vh
+}
+
+#bg
+{
+    position: relative;
+    background: #00fdff url(images/clouds.jpg);
+    height: 85vh;
+    background-size: cover;
+    background-position: 0 0;
+    background-repeat: repeat-y;
+    animation: animate 15s linear infinite;
+}
+.squirrel
+{
+    position: absolute;
+    bottom: 10px;
+}
+@keyframes animate
+{
+    from{
+        background-position: 0 100%;
+    }
+    to{
+        background-position: 0 0;
+    }
 }
 
 #tree {
     background-color: brown;
+    position: relative;
+    background: #00fdff url(images/bark.png);
+    height: 85vh;
+    background-size: cover;
+    background-position: 0 0;
+    background-repeat: repeat-y;
+    animation: animate 4s linear infinite;
+}
+@keyframes animate
+{
+    from{
+        background-position: 0 100%;
+    }
+    to{
+        background-position: 0 0;
+    }
 }
 
 #playerScore { 
