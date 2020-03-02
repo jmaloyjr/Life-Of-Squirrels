@@ -26,6 +26,8 @@
 
 #gameTimer {
     background-color: green;
+    text-align: center;
+    padding: 15px 0;
 }
 
 .title {
