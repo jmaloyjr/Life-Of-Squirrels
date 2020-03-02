@@ -85,6 +85,6 @@
     font-family: 'Luckiest Guy', sans-serif;
 }
 #start-page{
-    background-image: url('../images/UDMemHall.jpg');
+    background-image: url('images/UDMemHall.jpg');
     background-repeat:round;
 }
