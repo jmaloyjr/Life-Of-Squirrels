@@ -23,10 +23,13 @@
     background-repeat: repeat-y;
     animation: animate 15s linear infinite;
 }
-.squirrel
-{
+#squirrel {
     position: absolute;
-    bottom: 10px;
+    width: auto;
+    height: auto; 
+    z-index: 10;
+    left: 1200px;
+    top: 200px;
 }
 @keyframes animate
 {
