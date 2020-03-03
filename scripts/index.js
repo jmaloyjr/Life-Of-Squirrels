@@ -11,9 +11,7 @@ function onLoad(){
         else if(event.which == rightKey){
             squirrel.moveRight();
         }
-    });
-    
-    
+    });    
 }
 
 var squirrel=function(xPos,leftX,rightX){
@@ -77,7 +75,4 @@ var squirrel=function(xPos,leftX,rightX){
     }
 }
 
-function moveSquirel(direction){
-    
-}
 
