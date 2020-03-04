@@ -3,6 +3,8 @@ var seconds = 0;
 var minutes = 0;
 var hours = 0;
 var leftKey = 37, rightKey = 39;
+var squirrelLeftTree = 200;
+var squirrelRightTree = 1200;
 
 function onLoad(){
     h2 = document.getElementsByTagName('h2')[0];
@@ -10,7 +12,7 @@ function onLoad(){
     stop = document.getElementById('stop');
     clear = document.getElementById('clear');
 
-    squirrel = new squirrel(1200, 200, 1200);
+    squirrel = new squirrel(squirrelRightTree, squirrelLeftTree, squirrelRightTree);
 
     $('body').keydown(function(event){
         if(event.which == leftKey){
@@ -89,6 +91,7 @@ var squirrel=function(xPos,leftX,rightX){
     this.changePosInterval;
     this.checkEndMovementInterval;
     this.frames = 10;
+    this.movePixels = 10;
     this.initialize=function()
     {
     };
@@ -108,14 +111,14 @@ var squirrel=function(xPos,leftX,rightX){
 
     this.moveLeft=function(){
         this.doneMovement = false;
-        self.changePosInterval = setInterval(function(){self.changePosition(-10);}, self.frames);
-        self.checkEndMovementInterval = setInterval(function(){self.atEndLoc(200);}, self.frames);
+        self.changePosInterval = setInterval(function(){self.changePosition(-1 * self.movePixels);}, self.frames);
+        self.checkEndMovementInterval = setInterval(function(){self.atEndLoc(self.leftX);}, self.frames);
     };
 
     this.moveRight=function(){
         this.doneMovement = false;
-        self.changePosInterval = setInterval(function(){self.changePosition(10);}, self.frames);
-        self.checkEndMovementInterval = setInterval(function(){self.atEndLoc(875);}, self.frames);
+        self.changePosInterval = setInterval(function(){self.changePosition(self.movePixels);}, self.frames);
+        self.checkEndMovementInterval = setInterval(function(){self.atEndLoc(self.rightX);}, self.frames);
     };
 
     this.atEndLoc=function(endPos){
