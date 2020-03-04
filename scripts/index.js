@@ -15,11 +15,13 @@ function onLoad(){
     squirrel = new squirrel(squirrelRightTree, squirrelLeftTree, squirrelRightTree);
 
     $('body').keydown(function(event){
-        if(event.which == leftKey){
-            squirrel.moveLeft();
-        }
-        else if(event.which == rightKey){
-            squirrel.moveRight();
+        if(!squirrel.inMotion){
+            if(event.which == leftKey){
+                squirrel.moveLeft();
+            }
+            else if(event.which == rightKey){
+                squirrel.moveRight();
+            }
         }
     });    
 
@@ -92,6 +94,8 @@ var squirrel=function(xPos,leftX,rightX){
     this.checkEndMovementInterval;
     this.frames = 10;
     this.movePixels = 10;
+    this.inMotion = false;
+
     this.initialize=function()
     {
     };
@@ -110,20 +114,22 @@ var squirrel=function(xPos,leftX,rightX){
     };
 
     this.moveLeft=function(){
-        this.doneMovement = false;
+        self.inMotion = true;
+        self.doneMovement = false;
         self.changePosInterval = setInterval(function(){self.changePosition(-1 * self.movePixels);}, self.frames);
         self.checkEndMovementInterval = setInterval(function(){self.atEndLoc(self.leftX);}, self.frames);
     };
 
     this.moveRight=function(){
-        this.doneMovement = false;
+        self.inMotion = true;
+        self.doneMovement = false;
         self.changePosInterval = setInterval(function(){self.changePosition(self.movePixels);}, self.frames);
         self.checkEndMovementInterval = setInterval(function(){self.atEndLoc(self.rightX);}, self.frames);
     };
 
     this.atEndLoc=function(endPos){
-        if(endPos == this.Position){
-            this.doneMovement = true;
+        if(endPos == self.Position){
+            self.doneMovement = true;
         }
     };
     
@@ -136,11 +142,15 @@ var squirrel=function(xPos,leftX,rightX){
             self.stopMovement();
         }
     };
-    this.initialize();
 
     this.stopMovement=function(){
         clearInterval(self.changePosInterval);
         clearInterval(self.checkEndMovementInterval);
+        self.inMotion = false;
     }
+
+    this.initialize();
+
+    
 }
 
