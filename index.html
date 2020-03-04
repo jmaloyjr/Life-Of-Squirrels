@@ -16,41 +16,43 @@
 </head>
 
 <body>
-    <div class = "container-fluid" id = "start-page">
-        <h1 class = "jumbotron text-center title-text">Life of Squirrels</h1>
-        <div class = "start-page-body"></div>
-            <div class = "text-center start-game">
-                <button onclick="startGame()" type = "button" class = "btn btn-info btn-lg">Start Game</button>
-            </div>
-            <div class = "text-center how-to-play">
-                <button onclick="howToPlay()" type = "button" class = "btn btn-dark btn-lg" id = "how-to-play">How to Play</button>
-            </div>
-            <br/>
-            <br/>
+    <div class="container-fluid" id="start-page">
+        <h1 class="jumbotron text-center title-text">Life of Squirrels</h1>
+        <div class="start-page-body"></div>
+        <div class="text-center start-game">
+            <button onclick="startGame()" type="button" class="btn btn-info btn-lg">Start Game</button>
+        </div>
+        <div class="text-center how-to-play">
+            <button onclick="howToPlay()" type="button" class="btn btn-dark btn-lg" id="how-to-play">How to Play</button>
+        </div>
+        <br />
+        <br />
+    </div>
+    </div>
+    <div class="container hidden" id="directions-page">
+        <center>
+            <h1>How To Play</h1>
+            <p>In this game, you are a squirrel traveling up trees, trying to avoid obstacles.</p>
+            <p>To do this, you will switch between trees by pressing either the left or right arrow keys.</p>
+            <p>You will start the game with 3 hearts (hitting branches or construction cones will deduct
+                one heart, while hitting a hawk will instantly end the game).</p>
+            <p>The more acorns you get, the more points you will collect in the game. These points can
+                be exchanged for customizable skins. If you happen to collect a Golden Chick-Fil-A Sandwich <small>TM</small>,
+                one heart will be regenerated.</p>
+            <p>To begin playing, press the <b>"Start Game"</b> button.</p>
+        </center>
+        <div class="text-center start-game">
+            <button onclick="startGame()" type="button" class="btn btn-success btn-lg">Start Game</button>
         </div>
     </div>
-    <div class = "container hidden" id = "directions-page">
-        <center><h1>How To Play</h1>
-        <p>In this game, you are a squirrel traveling up trees, trying to avoid obstacles.</p>
-        <p>To do this, you will switch between trees by pressing either the left or right arrow keys.</p>
-        <p>You will start the game with 3 hearts (hitting branches or construction cones will deduct 
-            one heart, while hitting a hawk will instantly end the game).</p>
-        <p>The more acorns you get, the more points you will collect in the game. These points can 
-            be exchanged for customizable skins. If you happen to collect a Golden Chick-Fil-A Sandwich <small>TM</small>, 
-            one heart will be regenerated.</p>
-        <p>To begin playing, press the <b>"Start Game"</b> button.</p></center>
-        <div class = "text-center start-game">
-            <button onclick="startGame()" type = "button" class = "btn btn-success btn-lg">Start Game</button>
-        </div>
-    </div>
-    <div class="container">
+    <div class="container-fluid">
         <!-- Screen where game will be played -->
         <div class="hidden" id="gameScreen">
 
             <!-- Info bar that will hold health, score and a timer -->
             <div class="row" id="infoBar">
                 <div class="col" id="scoreContainer">
-                    <div id="playerScore">100000000</div>
+                    <div id="playerScore"></div>
                 </div>
                 <div class="col-6" id="playerHealth">
                     <div class="row" id="healthHolder">
@@ -62,7 +64,7 @@
                         </div>
                         <div class="col" id="heart">
                             <img src='./images/heart.png' id="heart1">
-                         </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col" id="gameTimer">
@@ -73,16 +75,27 @@
             <!-- Row that will visualize the squirrel and it's movement -->
             <div class="row" id="game">
                 <div class="col" id="tree">
-                    Left Tree
                 </div>
                 <div class="col-6" id="bg">
                     <img src="style/images/squirrel-left.gif" class="squirrel" onclick="removeHeart()">
                 </div>
                 <div class="col" id="tree">
-                    Right Tree
                 </div>
             </div>
         </div>
     </div>
+    <!-- End Game Screen -->
+    <div class="container hidden" id="endGameScreen">
+        <div class="jumbotron">
+            <h1 class="display-4">Game Over!</h1>
+            <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention
+                to featured content or information.</p>
+            <hr class="my-4">
+            <p class="lead">
+                <a class="btn btn-primary btn-lg" href="#" role="button" onclick="startGame()">Start Game</a>
+            </p>
+        </div>
+    </div>
 </body>
+
 </html>
