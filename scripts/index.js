@@ -1,4 +1,4 @@
-var h2, start, stop, clear, t;
+var h2, start, stop, clear, t, squirrelDiv;
 var seconds = 0;
 var minutes = 0;
 var hours = 0;
@@ -11,8 +11,9 @@ function onLoad(){
     start = document.getElementById('start');
     stop = document.getElementById('stop');
     clear = document.getElementById('clear');
+    squirrelImg = document.getElementById('squirrelImg');
 
-    squirrel = new squirrel(squirrelRightTree, squirrelLeftTree, squirrelRightTree);
+    squirrel = new squirrel(squirrelRightTree, squirrelLeftTree, squirrelRightTree, squirrelImg);
 
     $('body').keydown(function(event){
         if(!squirrel.inMotion){
@@ -84,7 +85,7 @@ function howToPlay(){
     newPage.className="";
 }
 
-var squirrel=function(xPos,leftX,rightX){
+var squirrel=function(xPos,leftX,rightX,squirrelImg){
     var self=this;
     this.Position=xPos;
     this.leftX=leftX;
@@ -95,6 +96,7 @@ var squirrel=function(xPos,leftX,rightX){
     this.frames = 10;
     this.movePixels = 10;
     this.inMotion = false;
+    this.squirrelImg = squirrelImg;
 
     this.initialize=function()
     {
@@ -130,6 +132,12 @@ var squirrel=function(xPos,leftX,rightX){
     this.atEndLoc=function(endPos){
         if(endPos == self.Position){
             self.doneMovement = true;
+            if(endPos == rightX){
+                self.squirrelImg.src="../style/images/squirrel-right.gif";
+            }
+            else{
+                self.squirrelImg.src="../style/images/squirrel-left.gif";
+            }
         }
     };
     
