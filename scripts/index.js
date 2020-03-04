@@ -3,8 +3,8 @@ var seconds = 0;
 var minutes = 0;
 var hours = 0;
 var leftKey = 37, rightKey = 39;
-var squirrelLeftTree = 200;
-var squirrelRightTree = 1200;
+var squirrelLeftTree = 400;
+var squirrelRightTree = 1100;
 
 function onLoad(){
     h2 = document.getElementsByTagName('h2')[0];
@@ -120,6 +120,7 @@ var squirrel=function(xPos,leftX,rightX,squirrelImg){
         self.doneMovement = false;
         self.changePosInterval = setInterval(function(){self.changePosition(-1 * self.movePixels);}, self.frames);
         self.checkEndMovementInterval = setInterval(function(){self.atEndLoc(self.leftX);}, self.frames);
+        self.squirrelImg.src="../style/images/squirrel-left-jump.gif";
     };
 
     this.moveRight=function(){
@@ -127,6 +128,7 @@ var squirrel=function(xPos,leftX,rightX,squirrelImg){
         self.doneMovement = false;
         self.changePosInterval = setInterval(function(){self.changePosition(self.movePixels);}, self.frames);
         self.checkEndMovementInterval = setInterval(function(){self.atEndLoc(self.rightX);}, self.frames);
+        self.squirrelImg.src="../style/images/squirrel-right-jump.gif";
     };
 
     this.atEndLoc=function(endPos){
