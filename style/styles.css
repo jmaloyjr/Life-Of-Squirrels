@@ -28,6 +28,18 @@
     position: absolute;
     bottom: 10px;
 }
+.single-column {
+    height: 30%;
+    width: 30%;
+    background-position: bottom;
+	animation: var(--animation, none) 16s infinite linear;
+}
+@keyframes slide {
+    to {
+      -webkit-transform: translateY(var(--direction, 25%));
+              transform: translateY(var(--direction, 25%));
+    }
+  }
 @keyframes animate
 {
     from{
