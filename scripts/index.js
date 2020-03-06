@@ -1,4 +1,33 @@
+var h2, start, stop, clear, t, squirrelDiv;
+var seconds = 0;
+var minutes = 0;
+var hours = 0;
+var leftKey = 37, rightKey = 39;
+var squirrelLeftTree = 400;
+var squirrelRightTree = 1100;
 
+function onLoad(){
+    h2 = document.getElementsByTagName('h2')[0];
+    start = document.getElementById('start');
+    stop = document.getElementById('stop');
+    clear = document.getElementById('clear');
+    squirrelImg = document.getElementById('squirrelImg');
+
+    squirrel = new squirrel(squirrelRightTree, squirrelLeftTree, squirrelRightTree, squirrelImg);
+
+    $('body').keydown(function(event){
+        if(!squirrel.inMotion){
+            if(event.which == leftKey){
+                squirrel.moveLeft();
+            }
+            else if(event.which == rightKey){
+                squirrel.moveRight();
+            }
+        }
+    });  
+    
+    gameTimer();
+}
 function add() {
     seconds++;
     if (seconds >= 60) {
@@ -88,31 +117,7 @@ var leftKey = 37, rightKey = 39;
 var squirrelLeftTree = 200;
 var squirrelRightTree = 1200;
 
-function onLoad(){
-    seconds = 0;
-    minutes = 0;
-    hours = 0;
-    h2 = document.getElementsByTagName('h2')[0];
-    start = document.getElementById('start');
-    stop = document.getElementById('stop');
-    clear = document.getElementById('clear');
-
-    squirrel = new squirrel(squirrelRightTree, squirrelLeftTree, squirrelRightTree);
-
-    $('body').keydown(function(event){
-        if(event.which == leftKey){
-            squirrel.moveLeft();
-        }
-        else if(event.which == rightKey){
-            squirrel.moveRight();
-        }
-    });    
-
-    gameTimer();
-    
-}
-
-var squirrel=function(xPos,leftX,rightX){
+var squirrel=function(xPos,leftX,rightX,squirrelImg){
     var self=this;
     this.Position=xPos;
     this.leftX=leftX;
@@ -122,6 +127,9 @@ var squirrel=function(xPos,leftX,rightX){
     this.checkEndMovementInterval;
     this.frames = 10;
     this.movePixels = 10;
+    this.inMotion = false;
+    this.squirrelImg = squirrelImg;
+
     this.initialize=function()
     {
     };
@@ -140,20 +148,30 @@ var squirrel=function(xPos,leftX,rightX){
     };
 
     this.moveLeft=function(){
-        this.doneMovement = false;
+        self.inMotion = true;
+        self.doneMovement = false;
         self.changePosInterval = setInterval(function(){self.changePosition(-1 * self.movePixels);}, self.frames);
         self.checkEndMovementInterval = setInterval(function(){self.atEndLoc(self.leftX);}, self.frames);
+        self.squirrelImg.src="../style/images/squirrel-left-jump.gif";
     };
 
     this.moveRight=function(){
-        this.doneMovement = false;
+        self.inMotion = true;
+        self.doneMovement = false;
         self.changePosInterval = setInterval(function(){self.changePosition(self.movePixels);}, self.frames);
         self.checkEndMovementInterval = setInterval(function(){self.atEndLoc(self.rightX);}, self.frames);
+        self.squirrelImg.src="../style/images/squirrel-right-jump.gif";
     };
 
     this.atEndLoc=function(endPos){
-        if(endPos == this.Position){
-            this.doneMovement = true;
+        if(endPos == self.Position){
+            self.doneMovement = true;
+            if(endPos == rightX){
+                self.squirrelImg.src="../style/images/squirrel-right.gif";
+            }
+            else{
+                self.squirrelImg.src="../style/images/squirrel-left.gif";
+            }
         }
     };
     
@@ -166,11 +184,15 @@ var squirrel=function(xPos,leftX,rightX){
             self.stopMovement();
         }
     };
-    this.initialize();
 
     this.stopMovement=function(){
         clearInterval(self.changePosInterval);
         clearInterval(self.checkEndMovementInterval);
+        self.inMotion = false;
     }
+
+    this.initialize();
+
+    
 }
 
