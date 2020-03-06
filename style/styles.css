@@ -129,9 +129,10 @@
     height: 100%;
 }
 
-.directions-page{
-    font-family: 'Abel';font-size: 22px;
-    text-align: center;
+#directions-page{
+    background-image: url('images/UDGreen.jpg');
+    background-repeat:round;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
 }
 #start-page{
     background-image: url('images/UDMemHall.jpg');
