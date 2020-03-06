@@ -50,6 +50,13 @@ function addHeart() {
     }
 }
 
+function titleScreen(){
+    $('#gameScreen').addClass('hidden');
+    $('#directions-page').addClass('hidden');
+    $('#endGameScreen').addClass('hidden');
+    $('#start-page').removeClass('hidden');
+}
+
 function startGame() {
     $('#start-page').addClass('hidden');
     $('#directions-page').addClass('hidden');
@@ -82,6 +89,8 @@ var squirrelLeftTree = 200;
 var squirrelRightTree = 1200;
 
 function onLoad(){
+    seconds = 0;
+    minutes = 0;
     h2 = document.getElementsByTagName('h2')[0];
     start = document.getElementById('start');
     stop = document.getElementById('stop');
