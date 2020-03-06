@@ -136,6 +136,7 @@
 #start-page{
     background-image: url('images/UDMemHall.jpg');
     background-repeat:round;
+    background-size: 100%;
 }
 
 .removed {
