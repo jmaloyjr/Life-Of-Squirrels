@@ -10,7 +10,7 @@
 
 #game {
     height:85vh;
-    
+    position: relative;
 }
 
 #tree {
@@ -27,4 +27,12 @@
 
 #gameTimer {
     background-color: green;
+}
+#squirrel {
+    position: absolute;
+    width: auto;
+    height: auto; 
+    z-index: 10;
+    left: 875px;
+    top: 200px;
 }

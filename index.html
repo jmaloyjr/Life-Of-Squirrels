@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width">
     <title>Our Game</title>
     <link rel="stylesheet" href="style/styles.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
     <script type="text/javascript" src="scripts/index.js"></script>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
         crossorigin="anonymous">
@@ -14,52 +16,78 @@
     <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy&display=swap" rel="stylesheet">
 
 </head>
+
 <body>
-    <div class = "container" id = "start-page">
+
+
+    <div class = "container-fluid" id = "start-page">
         <h1 class = "jumbotron text-center title-text">Life of Squirrels</h1>
         <div class = "start-page-body"></div>
             <div class = "text-center start-game">
-                <button type = "button" class = "btn btn-info btn-lg">Start Game</button>
+                <button onclick="startGame()" type = "button" class = "btn btn-info btn-lg">Start Game</button>
             </div>
             <div class = "text-center how-to-play">
-                <button type = "button" class = "btn btn-dark btn-lg" id = "how-to-play">How to Play</button>
+                <button onclick="howToPlay()" type = "button" class = "btn btn-dark btn-lg" id = "how-to-play">How to Play</button>
             </div>
             <br/>
             <br/>
         </div>
     </div>
-
+    <div class = "container hidden" id = "directions-page">
+        <center><h1>How To Play</h1>
+        <p>In this game, you are a squirrel traveling up trees, trying to avoid obstacles.</p>
+        <p>To do this, you will switch between trees by pressing either the left or right arrow keys.</p>
+        <p>You will start the game with 3 hearts (hitting branches or construction cones will deduct 
+            one heart, while hitting a hawk will instantly end the game).</p>
+        <p>The more acorns you get, the more points you will collect in the game. These points can 
+            be exchanged for customizable skins. If you happen to collect a Golden Chick-Fil-A Sandwich <small>TM</small>, 
+            one heart will be regenerated.</p>
+        <p>To begin playing, press the <b>"Start Game"</b> button.</p></center>
+        <div class = "text-center start-game">
+            <button onclick="startGame()" type = "button" class = "btn btn-success btn-lg">Start Game</button>
+        </div>
+    </div>
     <div class="container">
         <!-- Screen where game will be played -->
-        <div id="gameScreen">
+        <div class="hidden" id="gameScreen">
 
             <!-- Info bar that will hold health, score and a timer -->
             <div class="row" id="infoBar">
-                <div class="col" id="playerScore">
-                    Score
+                <div class="col" id="scoreContainer">
+                    <div id="playerScore">100000000</div>
                 </div>
                 <div class="col-6" id="playerHealth">
-                    Health
+                    <div class="row" id="healthHolder">
+                        <div class="col" id="heart">
+                            <img src='./images/heart.png' id="heart3">
+                        </div>
+                        <div class="col" id="heart">
+                            <img src='./images/heart.png' id="heart2">
+                        </div>
+                        <div class="col" id="heart">
+                            <img src='./images/heart.png' id="heart1">
+                         </div>
+                    </div>
                 </div>
                 <div class="col" id="gameTimer">
-                    <h1><time>00:00:00</time></h1>
+                    <h2><time>00:00:00</time></h2>
                 </div>
             </div>
 
             <!-- Row that will visualize the squirrel and it's movement -->
             <div class="row" id="game">
+                <div id="squirrel">
+                    <img src="style/images/squirrel-right.gif" onclick="removeHeart()">
+                </div>
                 <div class="col" id="tree">
                     Left Tree
                 </div>
                 <div class="col-6" id="bg">
-                    <img src="style/images/squirrel.gif" class="squirrel">
-                    <div class="single-column">
-                        <a href="#"><img src="style/images/branch.png" alt="image" style="height:5%;"></a>
-                        <a href="#"><img src="style/images/branch.png" alt="image" style="height:5%;"></a>
-                        <a href="#"><img src="style/images/branch.png" alt="image" style="height:5%;"></a>
-                        <a href="#"><img src="style/images/branch.png" alt="image" style="height:5%;"></a>
+                    <div class='branch1'>
+                        <img src="style/images/branch_left.png" style="height:20%;">
                     </div>
-                    <script  src="scripts/scroll.js"></script>
+                    <div class='branch2'></div>
+                    <div class='branch3'></div>
                 </div>
                 <div class="col" id="tree">
                     Right Tree
@@ -67,4 +95,5 @@
             </div>
         </div>
     </div>
+</body>
 </html>
