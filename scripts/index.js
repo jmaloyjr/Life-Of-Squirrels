@@ -1,4 +1,4 @@
-var h2, start, stop, clear, t, squirrelDiv;
+var h2, start, stop, clear, t, squirrelDiv, flag;
 var seconds = 0;
 var minutes = 0;
 var hours = 0;
@@ -12,7 +12,7 @@ function onLoad(){
     stop = document.getElementById('stop');
     clear = document.getElementById('clear');
     squirrelImg = document.getElementById('squirrelImg');
-
+    restartTimer();
     squirrel = new squirrel(squirrelRightTree, squirrelLeftTree, squirrelRightTree, squirrelImg);
 
     $('body').keydown(function(event){
@@ -96,17 +96,25 @@ function startGame() {
 function howToPlay() {
     $('#start-page').addClass('hidden');
     $('#directions-page').removeClass('hidden');
+    clearTimeout(t);
 }
 
+function restartTimer() {
+    if(flag == 1){
+        h2.textContent = "00:00:00";
+        seconds = 0; minutes = 0; hours = 0;
+        flag = 0;
+    }
+}
 // Function used to end the game and change screen
 function endGame() {
-
     // Close down game screen, also set hearts back and open endgame
     $('#gameScreen').addClass('hidden');
     $('#heart1').removeClass('removed');
     $('#heart2').removeClass('removed');
     $('#heart3').removeClass('removed');
     $('#endGameScreen').removeClass('hidden');
+    flag = 1;
 
 }
 var h2, start, stop, clear, t;
