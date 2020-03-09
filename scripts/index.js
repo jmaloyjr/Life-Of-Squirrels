@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-var h2, start, stop, clear, t, squirrelDiv;
-=======
 var h2, start, stop, clear, t, squirrelDiv, flag;
->>>>>>> timerBranch
 var seconds = 0;
 var minutes = 0;
 var hours = 0;
@@ -28,15 +24,10 @@ function onLoad(){
                 squirrel.moveRight();
             }
         }
-<<<<<<< HEAD
-    });    
-
-=======
     });  
     
     gameTimer();
 }
->>>>>>> timerBranch
 function add() {
     seconds++;
     if (seconds >= 60) {
