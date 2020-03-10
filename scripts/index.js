@@ -1,10 +1,3 @@
-$(document).ready(function() {
-    animateDiv($('.branch1'));
-    animateDiv($('.branch2'));
-    animateDiv($('.branch3'));
-
-});
-
 var h2, start, stop, clear, t;
 var seconds = 0;
 var minutes = 0;
@@ -18,6 +11,8 @@ function onLoad(){
     clear = document.getElementById('clear');
 
     squirrel = new squirrel(1200, 200, 1200);
+    branch_left = new branch_left(0, 0);
+    branch_right = new branch_right(0,0);
 
     $('body').keydown(function(event){
         if(event.which == leftKey){
@@ -87,44 +82,64 @@ function howToPlay(){
     newPage.className="";
 }
 
-function makeNewPosition($bg, $target) {
-    // Get viewport dimensions (remove the dimension of the div)
-    var nh = $bg.height() - $target.height();
-    var nw = $bg.width() - $target.width();
+function branch_left(x, y) {
+    var self = this;
+    this.x = x;
+    this.y = y;
+    this.speedX = 0;
+    this.speedY = 0.5;
+    this.gravity = 0.05;
+    this.frames = 10;
 
-    //var nh = Math.floor(Math.random() * h);
-    //var nw = Math.floor(Math.random() * w);
+    this.update = function() {
+        $('.branch_left').css("top",this.y+'px');
+    }
 
-    return [nh, nw];
+    this.hitBottom = function() {
+        var rockbottom = 1000; // Change this value
+        if (this.y > rockbottom) {
+          this.y = rockbottom;
+        }
+    }
+
+    this.changePosInterval = setInterval(function(){self.newPos();}, this.frames);
+
+    this.newPos = function() {
+        this.x += this.speedX;
+        this.y += this.speedY + this.gravity;
+        this.hitBottom();
+        this.update();
+    };
 }
 
-function animateDiv($target) {
-   // if($target.yPos + $target.height() > $target.parent().yPos + $target.parent().height()){
-        var newq = makeNewPosition($target.parent(), $target);
-        var oldq = $target.offset();
-        var speed = calcSpeed([oldq.top, oldq.left], newq);
+function branch_right(x, y) {
+    var self = this;
+    this.x = x;
+    this.y = y;
+    this.speedX = 0;
+    this.speedY = 0.5;
+    this.gravity = 0.05;
+    this.frames = 10;
 
-        $target.animate({
-            top: newq[0],
-            left: newq[1]
-        }, speed, function() {
-            animateDiv($target);
-        });
-   // }
-}
+    this.update = function() {
+        $('.branch_right').css("top",this.y+'px');
+    }
 
-function calcSpeed(prev, next) {
-    var x = Math.abs(prev[1] - next[1]);
-    var y = Math.abs(prev[0] - next[0]);
+    this.hitBottom = function() {
+        var rockbottom = 1000; // Change this value
+        if (this.y > rockbottom) {
+          this.y = rockbottom;
+        }
+    }
 
-    var greatest = x > y ? x : y;
+    this.changePosInterval = setInterval(function(){self.newPos();}, this.frames);
 
-    var speedModifier = 0.1;
-
-    //var speed = greatest;
-    var speed = Math.ceil(greatest / speedModifier);
-
-    return speed;
+    this.newPos = function() {
+        this.x += this.speedX;
+        this.y += this.speedY + this.gravity;
+        this.hitBottom();
+        this.update();
+    };
 }
 
 var squirrel=function(xPos,leftX,rightX){
@@ -174,7 +189,7 @@ var squirrel=function(xPos,leftX,rightX){
     this.changePosition=function(amount){
         if(!self.doneMovement){
             self.setPosition(self.Position+amount);
-            $('#squirrel').css("left",self.Position+'px');
+            $('.squirrel').css("left",self.Position+'px');
         }
         else{
             self.stopMovement();

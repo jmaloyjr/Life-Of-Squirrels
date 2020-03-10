@@ -23,18 +23,22 @@ div#bg
     background-repeat: repeat-y;
     animation: animate 15s linear infinite;
 }
-.branch1 {
-    position:absolute;
-    height: 50%;
+.branch_left {
+    position: absolute;
     width: 50%;
-    }
-.branch2 {
-    position:absolute;
-    
-    }
-.branch3 {
-    position:absolute;
-    }
+    height: 50%; 
+    left: 0px;
+    top: 0px;
+    z-index: 9;
+}
+.branch_right {
+    position: absolute;
+    width: 50%;
+    height: 50%; 
+    left: 500px;
+    top: 0px;
+    z-index: 9;
+ }
 #squirrel {
     position: absolute;
     width: auto;
