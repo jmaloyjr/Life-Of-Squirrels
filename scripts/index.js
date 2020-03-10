@@ -3,8 +3,8 @@ var seconds = 0;
 var minutes = 0;
 var hours = 0;
 var leftKey = 37, rightKey = 39;
-var squirrelLeftTree = 400;
-var squirrelRightTree = 1100;
+var squirrelLeftTree = 200;
+var squirrelRightTree = 1200;
 
 function onLoad(){
     h2 = document.getElementsByTagName('h2')[0];
@@ -117,13 +117,6 @@ function endGame() {
     flag = 1;
 
 }
-var h2, start, stop, clear, t;
-var seconds = 0;
-var minutes = 0;
-var hours = 0;
-var leftKey = 37, rightKey = 39;
-var squirrelLeftTree = 200;
-var squirrelRightTree = 1200;
 
 var squirrel=function(xPos,leftX,rightX,squirrelImg){
     var self=this;
