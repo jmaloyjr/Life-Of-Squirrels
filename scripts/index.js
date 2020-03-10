@@ -3,8 +3,8 @@ var seconds = 0;
 var minutes = 0;
 var hours = 0;
 var leftKey = 37, rightKey = 39;
-var squirrelLeftTree = 400;
-var squirrelRightTree = 1100;
+var squirrelLeftTree = 200;
+var squirrelRightTree = 1200;
 
 function onLoad() {
     h2 = document.getElementsByTagName('h2')[0];
@@ -13,6 +13,7 @@ function onLoad() {
     clear = document.getElementById('clear');
     squirrelImg = document.getElementById('squirrelImg');
     restartTimer();
+<<<<<<< HEAD
     squirrel = new squirrel(squirrelRightTree, squirrelLeftTree, squirrelRightTree, squirrelImg);
 
     $('body').keydown(function (event) {
@@ -22,6 +23,16 @@ function onLoad() {
             }
             else if (event.which == rightKey) {
                 squirrel.moveRight();
+=======
+    asquirrel = new squirrel(squirrelRightTree, squirrelLeftTree, squirrelRightTree, squirrelImg);
+    $('body').keydown(function(event){
+        if(!asquirrel.inMotion){
+            if(event.which == leftKey){
+                asquirrel.moveLeft();
+            }
+            else if(event.which == rightKey){
+                asquirrel.moveRight();
+>>>>>>> dev
             }
         }
     });
@@ -123,11 +134,19 @@ function endGame() {
 
 }
 
+<<<<<<< HEAD
 var squirrel = function (xPos, leftX, rightX, squirrelImg) {
     var self = this;
     this.Position = xPos;
     this.leftX = leftX;
     this.rightX = rightX;
+=======
+var squirrel=function(xPos,leftX,rightX,squirrelImg){
+    var self=this;
+    this.Position=xPos;
+    this.leftX=leftX;
+    this.rightX=rightX;
+>>>>>>> dev
     this.doneMovement = false;
     this.changePosInterval;
     this.checkEndMovementInterval;
@@ -136,7 +155,14 @@ var squirrel = function (xPos, leftX, rightX, squirrelImg) {
     this.inMotion = false;
     this.squirrelImg = squirrelImg;
 
+<<<<<<< HEAD
     this.initialize = function () {
+=======
+    this.initialize=function()
+    {
+        $('#squirrel').css("left",self.Position+'px');
+        self.squirrelImg.src="../style/images/squirrel-right.gif";
+>>>>>>> dev
     };
     this.setPosition = function (xPos) {
         if (xPos < self.leftX) {
