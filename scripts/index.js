@@ -113,6 +113,7 @@ function endGame() {
     $('#heart1').removeClass('removed');
     $('#heart2').removeClass('removed');
     $('#heart3').removeClass('removed');
+    $('#endGameText').append($('#playerScore').text());
     $('#endGameScreen').removeClass('hidden');
     flag = 1;
 

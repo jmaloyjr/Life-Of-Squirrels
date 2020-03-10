@@ -23,35 +23,46 @@
             <button onclick="startGame()" type="button" class="btn btn-info btn-lg">Start Game</button>
         </div>
         <div class="text-center how-to-play">
-            <button onclick="howToPlay()" type="button" class="btn btn-dark btn-lg" id="how-to-play">How to Play</button>
+            <button type="button" class="btn btn-dark btn-lg" id="how-to-play" data-toggle="modal" data-target="#exampleModalCenter">How
+                to Play</button>
+            <div class="modal fade" id="exampleModalCenter" tabindex="100" role="dialog" aria-labelledby="exampleModalCenterTitle"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Instructions</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <h1 class="text-center title-text">How To Play:</h1>
+                            <p>In this game, you are a squirrel traveling up trees, trying to avoid obstacles.</p>
+                            <p>To do this, you will switch between trees by pressing either the left or right arrow
+                                keys.</p>
+                            <p>You will start the game with 3 hearts (hitting branches or construction cones will
+                                deduct
+                                one heart, while hitting a hawk will instantly end the game).</p>
+                            <p>The more acorns you get, the more points you will collect in the game. These points can
+                                be exchanged for customizable skins. If you happen to collect a Golden Chick-Fil-A
+                                Sandwich <small>TM</small>,
+                                one heart will be regenerated.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <br />
         <br />
     </div>
-    </div>
-    <div class="container hidden" id="directions-page">
-        <center>
-            <h1 class ="text-center title-text">How To Play:</h1>
-            <p>In this game, you are a squirrel traveling up trees, trying to avoid obstacles.</p>
-            <p>To do this, you will switch between trees by pressing either the left or right arrow keys.</p>
-            <p>You will start the game with 3 hearts (hitting branches or construction cones will deduct
-                one heart, while hitting a hawk will instantly end the game).</p>
-            <p>The more acorns you get, the more points you will collect in the game. These points can
-                be exchanged for customizable skins. If you happen to collect a Golden Chick-Fil-A Sandwich <small>TM</small>,
-                one heart will be regenerated.</p>
-            <p>To begin playing, press the <b>"Start Game"</b> button.</p>
-        </center>
-        <div class="text-center start-game">
-            <button onclick="startGame()" type="button" class="btn btn-success btn-lg">Start Game</button>
-        </div>
-    </div>
+
     <div class="container-fluid">
         <!-- Screen where game will be played -->
         <div class="hidden" id="gameScreen">
             <!-- Info bar that will hold health, score and a timer -->
             <div class="row" id="infoBar">
                 <div class="col" id="scoreContainer">
-                    <div id="playerScore"></div>
+                    <div id="playerScore">1000</div>
                 </div>
                 <div class="col-6" id="playerHealth">
                     <div class="row" id="healthHolder">
@@ -78,7 +89,7 @@
                 </div>
                 <div class="col" id="tree">
                 </div>
-                <div class="col-6" id="bg">       
+                <div class="col-6" id="bg">
                 </div>
                 <div class="col" id="tree">
                 </div>
@@ -87,15 +98,24 @@
     </div>
     <!-- End Game Screen -->
     <div class="container hidden" id="endGameScreen">
-        <div class="jumbotron">
+        <div class="jumbotron" id="endGameJumbo">
             <h1 class="display-4">Game Over!</h1>
-            <p class="lead">Your score was [insert score].</p>
+            <p class="lead" id="endGameText">Your score was: </p>
             <hr class="my-4">
             <p class="lead">
-                <a class="btn btn-primary btn-lg" href="#" role="button" onclick="titleScreen()">Try Again</a>
+                <a class="btn btn-primary btn-lg" href="#" role="button" onclick="titleScreen()" id="restartButton">Try
+                    Again</a>
             </p>
         </div>
     </div>
+
+    <!-- Bootstrap javascript libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>

@@ -143,3 +143,20 @@
 .removed {
     filter: grayscale();
 }
+
+#endGameJumbo {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+#endGameText {
+    display: inline-block;
+}
+
+#restartButton {
+    display: inline-block;
+}
