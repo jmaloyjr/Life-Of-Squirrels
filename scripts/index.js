@@ -13,15 +13,14 @@ function onLoad(){
     clear = document.getElementById('clear');
     squirrelImg = document.getElementById('squirrelImg');
     restartTimer();
-    squirrel = new squirrel(squirrelRightTree, squirrelLeftTree, squirrelRightTree, squirrelImg);
-
+    asquirrel = new squirrel(squirrelRightTree, squirrelLeftTree, squirrelRightTree, squirrelImg);
     $('body').keydown(function(event){
-        if(!squirrel.inMotion){
+        if(!asquirrel.inMotion){
             if(event.which == leftKey){
-                squirrel.moveLeft();
+                asquirrel.moveLeft();
             }
             else if(event.which == rightKey){
-                squirrel.moveRight();
+                asquirrel.moveRight();
             }
         }
     });  
@@ -133,6 +132,8 @@ var squirrel=function(xPos,leftX,rightX,squirrelImg){
 
     this.initialize=function()
     {
+        $('#squirrel').css("left",self.Position+'px');
+        self.squirrelImg.src="../style/images/squirrel-right.gif";
     };
     this.setPosition=function(xPos){
         if (xPos<self.leftX)
