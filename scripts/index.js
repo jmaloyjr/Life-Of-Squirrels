@@ -100,7 +100,6 @@ function startGame() {
     $('#gameScreen').removeClass('hidden');
     $('#playerScore').text(0);
 
-    onLoad();
     firstLoad();
     restartTimer();
 }
@@ -122,6 +121,7 @@ function endGame() {
     $('#endGameText').text("Your score was: "  + $('#playerScore').text());
     $('#endGameScreen').removeClass('hidden');
     flag = 1;
+    seconds = 0; minutes = 0; hours = 0;
 }
 
 var squirrel = function (xPos, leftX, rightX, squirrelImg) {
