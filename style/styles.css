@@ -35,6 +35,12 @@ html, body{
     left: 1200px;
     top: 600px;
 }
+#playerScore {
+    font-family: 'Luckiest Guy', sans-serif;
+    padding: 15px 0;
+    font-size: 25px;
+    position: relative;
+}
 @keyframes animate
 {
     from{
