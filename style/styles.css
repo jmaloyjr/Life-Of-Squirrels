@@ -1,3 +1,7 @@
+html, body{
+    height: 100%;
+}
+
 #infoBar{
     height: 15vh;
     
@@ -148,7 +152,13 @@
 #start-page{
     background-image: url('images/UDMemHall.jpg');
     background-repeat:round;
-    background-size: 100%;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    min-height: 100%;
+    height:auto !important;
+    height: 100%; 
 }
 
 .removed {
