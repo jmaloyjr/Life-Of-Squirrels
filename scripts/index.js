@@ -79,24 +79,20 @@ function addHeart() {
     }
 }
 
-function titleScreen(){
+function titleScreen() {
     $('#gameScreen').addClass('hidden');
     $('#directions-page').addClass('hidden');
     $('#endGameScreen').addClass('hidden');
     $('#start-page').removeClass('hidden');
+    flag = 1;
 }
-
 function startGame() {
     $('#start-page').addClass('hidden');
     $('#directions-page').addClass('hidden');
     $('#endGameScreen').addClass('hidden');
     $('#gameScreen').removeClass('hidden');
     onLoad();
-}
-function howToPlay() {
-    $('#start-page').addClass('hidden');
-    $('#directions-page').removeClass('hidden');
-    clearTimeout(t);
+    restartTimer();
 }
 
 function restartTimer() {
