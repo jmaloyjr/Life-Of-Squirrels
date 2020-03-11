@@ -6,7 +6,7 @@ var leftKey = 37, rightKey = 39;
 var squirrelLeftTree = 400;
 var squirrelRightTree = 1100;
 
-function onLoad(){
+function onLoad() {
     h2 = document.getElementsByTagName('h2')[0];
     start = document.getElementById('start');
     stop = document.getElementById('stop');
@@ -15,17 +15,17 @@ function onLoad(){
     restartTimer();
     squirrel = new squirrel(squirrelRightTree, squirrelLeftTree, squirrelRightTree, squirrelImg);
 
-    $('body').keydown(function(event){
-        if(!squirrel.inMotion){
-            if(event.which == leftKey){
+    $('body').keydown(function (event) {
+        if (!squirrel.inMotion) {
+            if (event.which == leftKey) {
                 squirrel.moveLeft();
             }
-            else if(event.which == rightKey){
+            else if (event.which == rightKey) {
                 squirrel.moveRight();
             }
         }
-    });  
-    
+    });
+
     gameTimer();
 }
 function add() {
@@ -109,23 +109,21 @@ function endGame() {
     $('#heart1').removeClass('removed');
     $('#heart2').removeClass('removed');
     $('#heart3').removeClass('removed');
+    $('#endGameText').append($('#playerScore').text());
     $('#endGameScreen').removeClass('hidden');
     flag = 1;
 
-}
-var h2, start, stop, clear, t;
-var seconds = 0;
-var minutes = 0;
-var hours = 0;
-var leftKey = 37, rightKey = 39;
-var squirrelLeftTree = 200;
-var squirrelRightTree = 1200;
+    var seconds = 0;
+    var minutes = 0;
+    var hours = 0;
 
-var squirrel=function(xPos,leftX,rightX,squirrelImg){
-    var self=this;
-    this.Position=xPos;
-    this.leftX=leftX;
-    this.rightX=rightX;
+}
+
+var squirrel = function (xPos, leftX, rightX, squirrelImg) {
+    var self = this;
+    this.Position = xPos;
+    this.leftX = leftX;
+    this.rightX = rightX;
     this.doneMovement = false;
     this.changePosInterval;
     this.checkEndMovementInterval;
@@ -134,62 +132,59 @@ var squirrel=function(xPos,leftX,rightX,squirrelImg){
     this.inMotion = false;
     this.squirrelImg = squirrelImg;
 
-    this.initialize=function()
-    {
+    this.initialize = function () {
     };
-    this.setPosition=function(xPos){
-        if (xPos<self.leftX)
-        {
-            self.Position=self.leftX;
+    this.setPosition = function (xPos) {
+        if (xPos < self.leftX) {
+            self.Position = self.leftX;
         }
-        else if (xPos>self.rightX){
-            self.Position=self.rightX;  
+        else if (xPos > self.rightX) {
+            self.Position = self.rightX;
         }
-        else
-        {
-            self.Position=xPos;
+        else {
+            self.Position = xPos;
         }
     };
 
-    this.moveLeft=function(){
+    this.moveLeft = function () {
         self.inMotion = true;
         self.doneMovement = false;
-        self.changePosInterval = setInterval(function(){self.changePosition(-1 * self.movePixels);}, self.frames);
-        self.checkEndMovementInterval = setInterval(function(){self.atEndLoc(self.leftX);}, self.frames);
-        self.squirrelImg.src="../style/images/squirrel-left-jump.gif";
+        self.changePosInterval = setInterval(function () { self.changePosition(-1 * self.movePixels); }, self.frames);
+        self.checkEndMovementInterval = setInterval(function () { self.atEndLoc(self.leftX); }, self.frames);
+        self.squirrelImg.src = "../style/images/squirrel-left-jump.gif";
     };
 
-    this.moveRight=function(){
+    this.moveRight = function () {
         self.inMotion = true;
         self.doneMovement = false;
-        self.changePosInterval = setInterval(function(){self.changePosition(self.movePixels);}, self.frames);
-        self.checkEndMovementInterval = setInterval(function(){self.atEndLoc(self.rightX);}, self.frames);
-        self.squirrelImg.src="../style/images/squirrel-right-jump.gif";
+        self.changePosInterval = setInterval(function () { self.changePosition(self.movePixels); }, self.frames);
+        self.checkEndMovementInterval = setInterval(function () { self.atEndLoc(self.rightX); }, self.frames);
+        self.squirrelImg.src = "../style/images/squirrel-right-jump.gif";
     };
 
-    this.atEndLoc=function(endPos){
-        if(endPos == self.Position){
+    this.atEndLoc = function (endPos) {
+        if (endPos == self.Position) {
             self.doneMovement = true;
-            if(endPos == rightX){
-                self.squirrelImg.src="../style/images/squirrel-right.gif";
+            if (endPos == rightX) {
+                self.squirrelImg.src = "../style/images/squirrel-right.gif";
             }
-            else{
-                self.squirrelImg.src="../style/images/squirrel-left.gif";
+            else {
+                self.squirrelImg.src = "../style/images/squirrel-left.gif";
             }
         }
     };
-    
-    this.changePosition=function(amount){
-        if(!self.doneMovement){
-            self.setPosition(self.Position+amount);
-            $('#squirrel').css("left",self.Position+'px');
+
+    this.changePosition = function (amount) {
+        if (!self.doneMovement) {
+            self.setPosition(self.Position + amount);
+            $('#squirrel').css("left", self.Position + 'px');
         }
-        else{
+        else {
             self.stopMovement();
         }
     };
 
-    this.stopMovement=function(){
+    this.stopMovement = function () {
         clearInterval(self.changePosInterval);
         clearInterval(self.checkEndMovementInterval);
         self.inMotion = false;
@@ -197,6 +192,6 @@ var squirrel=function(xPos,leftX,rightX,squirrelImg){
 
     this.initialize();
 
-    
+
 }
 

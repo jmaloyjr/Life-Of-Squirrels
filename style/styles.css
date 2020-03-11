@@ -130,6 +130,12 @@
     position: absolute;
 }
 
+.back-button{
+    font-family: 'Luckiest Guy', sans-serif;
+    padding: 15px 0;
+    position: absolute;
+}
+
 #healthHolder {
     height: 100%;
 }
@@ -147,4 +153,21 @@
 
 .removed {
     filter: grayscale();
+}
+
+#endGameJumbo {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+#endGameText {
+    display: inline-block;
+}
+
+#restartButton {
+    display: inline-block;
 }
