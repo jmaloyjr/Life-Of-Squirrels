@@ -93,11 +93,7 @@ function startGame() {
     onLoad();
     restartTimer();
 }
-function howToPlay() {
-    $('#start-page').addClass('hidden');
-    $('#directions-page').removeClass('hidden');
-    clearTimeout(t);
-}
+
 function restartTimer() {
     if(flag == 1){
         h2.textContent = "00:00:00";
