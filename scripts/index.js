@@ -12,6 +12,7 @@ function onLoad() {
     stop = document.getElementById('stop');
     clear = document.getElementById('clear');
     squirrelImg = document.getElementById('squirrelImg');
+    
     restartTimer();
     asquirrel = new squirrel(squirrelRightTree, squirrelLeftTree, squirrelRightTree, squirrelImg);
     $('body').keydown(function(event){
@@ -121,7 +122,23 @@ function endGame() {
     var hours = 0;
 
 }
-
+var chickfila = function(yPos, top, bottom) {
+    var self = this;
+    this.Position = yPos;
+    this.doneMovement = false;
+    
+    this.initialize=function()
+    {
+        //generate random number, 1 or 2. 1 = left tree, 2 = right tree
+        var rand = Math.floor((Math.random()*2) + 1);
+        if(rand==1){
+            $('#chickfila').css("left",squirrelLeftTree+'px');
+        }
+        else{
+            $('#chickfila').css("left", squirrelRightTree+'px');
+        }
+    }
+}
 var squirrel = function (xPos, leftX, rightX, squirrelImg) {
     var self = this;
     this.Position = xPos;
