@@ -125,6 +125,12 @@
     font-family: 'Luckiest Guy', sans-serif;
 }
 
+.back-button{
+    font-family: 'Luckiest Guy', sans-serif;
+    padding: 15px 0;
+    position: absolute;
+}
+
 #healthHolder {
     height: 100%;
 }

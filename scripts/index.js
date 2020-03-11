@@ -84,21 +84,21 @@ function titleScreen() {
     $('#directions-page').addClass('hidden');
     $('#endGameScreen').addClass('hidden');
     $('#start-page').removeClass('hidden');
+    flag = 1;
 }
-
 function startGame() {
     $('#start-page').addClass('hidden');
     $('#directions-page').addClass('hidden');
     $('#endGameScreen').addClass('hidden');
     $('#gameScreen').removeClass('hidden');
     onLoad();
+    restartTimer();
 }
 function howToPlay() {
     $('#start-page').addClass('hidden');
     $('#directions-page').removeClass('hidden');
     clearTimeout(t);
 }
-
 function restartTimer() {
     if(flag == 1){
         h2.textContent = "00:00:00";
