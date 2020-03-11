@@ -122,11 +122,11 @@ function endGame() {
 
 }
 
-var squirrel=function(xPos,leftX,rightX,squirrelImg){
-    var self=this;
-    this.Position=xPos;
-    this.leftX=leftX;
-    this.rightX=rightX;
+var squirrel = function (xPos, leftX, rightX, squirrelImg) {
+    var self = this;
+    this.Position = xPos;
+    this.leftX = leftX;
+    this.rightX = rightX;
     this.doneMovement = false;
     this.changePosInterval;
     this.checkEndMovementInterval;
