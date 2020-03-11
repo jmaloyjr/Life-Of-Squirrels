@@ -91,6 +91,8 @@ function startGame() {
     $('#directions-page').addClass('hidden');
     $('#endGameScreen').addClass('hidden');
     $('#gameScreen').removeClass('hidden');
+    $('#playerScore').text(0);
+
     onLoad();
 }
 function howToPlay() {
@@ -113,14 +115,9 @@ function endGame() {
     $('#heart1').removeClass('removed');
     $('#heart2').removeClass('removed');
     $('#heart3').removeClass('removed');
-    $('#endGameText').append($('#playerScore').text());
+    $('#endGameText').text("Your score was: "  + $('#playerScore').text());
     $('#endGameScreen').removeClass('hidden');
     flag = 1;
-
-    var seconds = 0;
-    var minutes = 0;
-    var hours = 0;
-
 }
 
 var squirrel = function (xPos, leftX, rightX, squirrelImg) {

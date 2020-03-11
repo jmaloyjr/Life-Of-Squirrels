@@ -4,7 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>Our Game</title>
+    <title>Life of Squirrels</title>
+    <link rel="icon" href="style/images/squirrel.png">
     <link rel="stylesheet" href="style/styles.css">
     <script type="text/javascript" src="scripts/index.js"></script>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
@@ -36,7 +37,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <h1 class="text-center title-text">How To Play:</h1>
+                            <h1 class="text-center title-text">How To Play</h1>
                             <p>In this game, you are a squirrel traveling up trees, trying to avoid obstacles.</p>
                             <p>To do this, you will switch between trees by pressing either the left or right arrow
                                 keys.</p>
@@ -67,13 +68,13 @@
                 <div class="col-6" id="playerHealth">
                     <div class="row" id="healthHolder">
                         <div class="col" id="heart">
-                            <img src='./images/heart.png' id="heart3">
+                            <img src='style/images/heart.png' id="heart3">
                         </div>
                         <div class="col" id="heart">
-                            <img src='./images/heart.png' id="heart2">
+                            <img src='style/images/heart.png' id="heart2">
                         </div>
                         <div class="col" id="heart">
-                            <img src='./images/heart.png' id="heart1">
+                            <img src='style/images/heart.png' id="heart1">
                         </div>
                     </div>
                 </div>
@@ -100,7 +101,7 @@
     <div class="container hidden" id="endGameScreen">
         <div class="jumbotron" id="endGameJumbo">
             <h1 class="display-4">Game Over!</h1>
-            <p class="lead" id="endGameText">Your score was: </p>
+            <p class="lead" id="endGameText"></p>
             <hr class="my-4">
             <p class="lead">
                 <a class="btn btn-primary btn-lg" href="#" role="button" onclick="titleScreen()" id="restartButton">Try
