@@ -3,8 +3,8 @@ var seconds = 0;
 var minutes = 0;
 var hours = 0;
 var leftKey = 37, rightKey = 39;
-var squirrelLeftTree = 400;
-var squirrelRightTree = 1100;
+var squirrelLeftTree = 200;
+var squirrelRightTree = 1200;
 
 function onLoad() {
     h2 = document.getElementsByTagName('h2')[0];
@@ -13,15 +13,14 @@ function onLoad() {
     clear = document.getElementById('clear');
     squirrelImg = document.getElementById('squirrelImg');
     restartTimer();
-    squirrel = new squirrel(squirrelRightTree, squirrelLeftTree, squirrelRightTree, squirrelImg);
-
-    $('body').keydown(function (event) {
-        if (!squirrel.inMotion) {
-            if (event.which == leftKey) {
-                squirrel.moveLeft();
+    asquirrel = new squirrel(squirrelRightTree, squirrelLeftTree, squirrelRightTree, squirrelImg);
+    $('body').keydown(function(event){
+        if(!asquirrel.inMotion){
+            if(event.which == leftKey){
+                asquirrel.moveLeft();
             }
-            else if (event.which == rightKey) {
-                squirrel.moveRight();
+            else if(event.which == rightKey){
+                asquirrel.moveRight();
             }
         }
     });
@@ -84,8 +83,8 @@ function titleScreen() {
     $('#directions-page').addClass('hidden');
     $('#endGameScreen').addClass('hidden');
     $('#start-page').removeClass('hidden');
+    flag = 1;
 }
-
 function startGame() {
     $('#start-page').addClass('hidden');
     $('#directions-page').addClass('hidden');
@@ -94,13 +93,13 @@ function startGame() {
     $('#playerScore').text(0);
 
     onLoad();
+    restartTimer();
 }
 function howToPlay() {
     $('#start-page').addClass('hidden');
     $('#directions-page').removeClass('hidden');
     clearTimeout(t);
 }
-
 function restartTimer() {
     if(flag == 1){
         h2.textContent = "00:00:00";
@@ -133,7 +132,10 @@ var squirrel = function (xPos, leftX, rightX, squirrelImg) {
     this.inMotion = false;
     this.squirrelImg = squirrelImg;
 
-    this.initialize = function () {
+    this.initialize=function()
+    {
+        $('#squirrel').css("left",self.Position+'px');
+        self.squirrelImg.src="../style/images/squirrel-right.gif";
     };
     this.setPosition = function (xPos) {
         if (xPos < self.leftX) {

@@ -28,7 +28,7 @@
     width: auto;
     height: auto; 
     z-index: 10;
-    left: 1100px;
+    left: 1200px;
     top: 600px;
 }
 @keyframes animate
@@ -123,6 +123,12 @@
 }
 .how-to-play{
     font-family: 'Luckiest Guy', sans-serif;
+}
+
+.back-button{
+    font-family: 'Luckiest Guy', sans-serif;
+    padding: 15px 0;
+    position: absolute;
 }
 
 #healthHolder {
