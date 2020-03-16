@@ -5,6 +5,7 @@ var hours = 0;
 var leftKey = 37, rightKey = 39;
 var squirrelLeftTree = 200;
 var squirrelRightTree = 1200;
+var loading = 1;
 
 function onLoad() {
     h2 = document.getElementsByTagName('h2')[0];
@@ -45,6 +46,13 @@ function add() {
 }
 function gameTimer() {
     t = setTimeout(add, 1000);
+}
+
+function firstLoad(){
+    if(loading == 1){
+        onLoad();
+        loading++;
+    }
 }
 
 // Used to remove a heart when the squirrel touches an object
@@ -91,14 +99,12 @@ function startGame() {
     $('#directions-page').addClass('hidden');
     $('#endGameScreen').addClass('hidden');
     $('#gameScreen').removeClass('hidden');
-    onLoad();
+    $('#playerScore').text(0);
+
+    firstLoad();
     restartTimer();
 }
-function howToPlay() {
-    $('#start-page').addClass('hidden');
-    $('#directions-page').removeClass('hidden');
-    clearTimeout(t);
-}
+
 function restartTimer() {
     if(flag == 1){
         h2.textContent = "00:00:00";
@@ -113,14 +119,10 @@ function endGame() {
     $('#heart1').removeClass('removed');
     $('#heart2').removeClass('removed');
     $('#heart3').removeClass('removed');
-    $('#endGameText').append($('#playerScore').text());
+    $('#endGameText').text("Your score was: "  + $('#playerScore').text());
     $('#endGameScreen').removeClass('hidden');
     flag = 1;
-
-    var seconds = 0;
-    var minutes = 0;
-    var hours = 0;
-
+    seconds = 0; minutes = 0; hours = 0;
 }
 var chickfila = function(yPos, top, bottom) {
     var self = this;
