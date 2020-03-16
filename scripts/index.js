@@ -13,9 +13,11 @@ function onLoad() {
     stop = document.getElementById('stop');
     clear = document.getElementById('clear');
     squirrelImg = document.getElementById('squirrelImg');
-    
+    chickfilaImg = document.getElementById('chickfilaImg');
+
     restartTimer();
     asquirrel = new squirrel(squirrelRightTree, squirrelLeftTree, squirrelRightTree, squirrelImg);
+    achickfila = new chickfila(squirrelRightTree, 0, 1000, squirrelImg);
     $('body').keydown(function(event){
         if(!asquirrel.inMotion){
             if(event.which == leftKey){
@@ -24,6 +26,9 @@ function onLoad() {
             else if(event.which == rightKey){
                 asquirrel.moveRight();
             }
+        }
+        if(!achickfila.inMotion){
+            achickfila.moveDown();
         }
     });
 
@@ -124,10 +129,18 @@ function endGame() {
     flag = 1;
     seconds = 0; minutes = 0; hours = 0;
 }
-var chickfila = function(yPos, top, bottom) {
+var chickfila = function(xPos, yPos, top, bottom, chickfilaImg) {
     var self = this;
-    this.Position = yPos;
+    this.XPosition = xPos;
+    this.YPosition = yPos;
+    this.topY = top;
+    this.bottomY = bottom;
     this.doneMovement = false;
+    this.chickfilaImg = chickfilaImg;
+    this.frames = 10;
+    this.movePixels = 10;
+    this.changePosInterval;
+    this.checkEndMovementInterval;
     
     this.initialize=function()
     {
@@ -140,6 +153,19 @@ var chickfila = function(yPos, top, bottom) {
             $('#chickfila').css("left", squirrelRightTree+'px');
         }
     }
+
+    this.moveDown = function(){
+        self.doneMovement=false;
+        self.changePosInterval = setInterval(function() { self.changePosition(-1*self.movePixels); }, self.frames);
+        self.checkEndMovementInterval=setInterval(function () { self.atEndLoc(self.bottomY); }, self.frames);
+    }
+
+    this.atEndLoc = function (endPos) {
+        if (endPos == self.Position) {
+            self.doneMovement = true;
+            self.addClass('hidden');
+        }
+    };
 }
 var squirrel = function (xPos, leftX, rightX, squirrelImg) {
     var self = this;
