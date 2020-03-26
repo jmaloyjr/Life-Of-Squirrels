@@ -1,5 +1,6 @@
 #infoBar{
     height: 15vh;
+    background-color: rgb(150, 97, 0);
     
 }
 
@@ -10,7 +11,8 @@
 
 #game 
 {
-    height:85vh
+    height:85vh;
+    overflow: hidden;
 }
 
 #squirrel {
