@@ -32,7 +32,7 @@ html, body{
     position: relative;
     background: #00fdff url(images/clouds.jpg);
     background-repeat: repeat-y;
-    height: 500%;
+    height: 1000%;
     background-position: center center;
     animation: animate-sky 15s linear infinite;
     z-index: -1;
@@ -41,17 +41,17 @@ html, body{
 }
 .branch_left {
     position: absolute;
-    width: 10%;
-    height: 10%; 
-    left: 0px;
+    width: 40%;
+    height: 40%; 
+    left: 335px;
     top: 0px;
     z-index: 9;
 }
 .branch_right {
     position: absolute;
-    width: 10%;
-    height: 10%; 
-    left: 500px;
+    width: 40%;
+    height: 40%; 
+    left: 960px;
     top: 0px;
     z-index: 9;
  }
