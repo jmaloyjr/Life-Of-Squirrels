@@ -3,6 +3,7 @@ var seconds = 0;
 var minutes = 0;
 var hours = 0;
 var leftKey = 37, rightKey = 39;
+var obstacles = [];
 
 function onLoad(){
     h2 = document.getElementsByTagName('h2')[0];
@@ -11,8 +12,9 @@ function onLoad(){
     clear = document.getElementById('clear');
 
     squirrel = new squirrel(1200, 200, 1200);
-    branch_left = new branch_left(0, 0);
-    branch_right = new branch_right(0,0);
+    obstacles.push(new right_branches());
+    obstacles.push(new left_branches());
+    this.on_tick = setInterval(on_tick, 1);
 
     $('body').keydown(function(event){
         if(event.which == leftKey){
@@ -43,6 +45,19 @@ function add() {
 }
 function gameTimer() {
     t = setTimeout(add, 1000);
+}
+
+function on_tick() {
+    r = Math.floor((Math.random() * 500) + 1);
+    if(r == 1){
+        //obstacles.push(new left_branches());
+    } else if(r == 2){
+        //obstacles.push(new right_branches());
+    }
+    if(obstacles.length > 0)
+    {
+        obstacles.forEach(branch => branch.newPos());
+    }
 }
 
 // Used to remove a heart when the squirrel touches an object
@@ -80,66 +95,6 @@ function howToPlay(){
     page.style.display="none";
     var newPage = document.getElementById("directions-page");
     newPage.className="";
-}
-
-function branch_left(x, y) {
-    var self = this;
-    this.x = x;
-    this.y = y;
-    this.speedX = 0;
-    this.speedY = 0.5;
-    this.gravity = 0.05;
-    this.frames = 10;
-
-    this.update = function() {
-        $('.branch_left').css("top",this.y+'px');
-    }
-
-    this.hitBottom = function() {
-        var rockbottom = 1000; // Change this value
-        if (this.y > rockbottom) {
-          this.y = rockbottom;
-        }
-    }
-
-    this.changePosInterval = setInterval(function(){self.newPos();}, this.frames);
-
-    this.newPos = function() {
-        this.x += this.speedX;
-        this.y += this.speedY + this.gravity;
-        this.hitBottom();
-        this.update();
-    };
-}
-
-function branch_right(x, y) {
-    var self = this;
-    this.x = x;
-    this.y = y;
-    this.speedX = 0;
-    this.speedY = 0.5;
-    this.gravity = 0.05;
-    this.frames = 10;
-
-    this.update = function() {
-        $('.branch_right').css("top",this.y+'px');
-    }
-
-    this.hitBottom = function() {
-        var rockbottom = 1000; // Change this value
-        if (this.y > rockbottom) {
-          this.y = rockbottom;
-        }
-    }
-
-    this.changePosInterval = setInterval(function(){self.newPos();}, this.frames);
-
-    this.newPos = function() {
-        this.x += this.speedX;
-        this.y += this.speedY + this.gravity;
-        this.hitBottom();
-        this.update();
-    };
 }
 
 var squirrel=function(xPos,leftX,rightX){
@@ -200,6 +155,64 @@ var squirrel=function(xPos,leftX,rightX){
     this.stopMovement=function(){
         clearInterval(self.changePosInterval);
         clearInterval(self.checkEndMovementInterval);
+    }
+}
+
+class right_branches {
+    constructor() {
+        this.x = 0; //x_start;
+        this.y = 0; //y_start;
+        this.speedX = 0;
+        this.speedY = 0.5;
+        this.gravity = 0.05;
+        this.frames = 10;
+    }
+
+    update() {
+        $('.branch_right').css("top",this.y+'px');
+    }
+
+    hitBottom() {
+        var rockbottom = 600; // Change this value
+        if (this.y > rockbottom) {
+          this.y = 0;
+        }
+    }
+
+    newPos() {
+        this.x += this.speedX;
+        this.y += this.speedY + this.gravity;
+        this.hitBottom();
+        this.update();
+    }
+}
+
+class left_branches {
+    constructor() {
+        this.x = 0; //x_start;
+        this.y = 0; //y_start;
+        this.speedX = 0;
+        this.speedY = 0.5;
+        this.gravity = 0.05;
+        this.frames = 10;
+    }
+
+    update() {
+        $('.branch_left').css("top",this.y+'px');
+    }
+
+    hitBottom() {
+        var rockbottom = 600; // Change this value
+        if (this.y > rockbottom) {
+          this.y = 0;
+        }
+    }
+
+    newPos() {
+        this.x += this.speedX;
+        this.y += this.speedY + this.gravity;
+        this.hitBottom();
+        this.update();
     }
 }
 
