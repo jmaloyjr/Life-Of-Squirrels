@@ -238,7 +238,7 @@ class right_branches {
     }
 
     hitBottom() {
-        var rockbottom = 600; // Change this value
+        var rockbottom = 800; // Change this value
         if (this.y > rockbottom) {
           this.y = 0;
         }
@@ -267,7 +267,7 @@ class left_branches {
     }
 
     hitBottom() {
-        var rockbottom = 600; // Change this value
+        var rockbottom = 800; // Change this value
         if (this.y > rockbottom) {
           this.y = 0;
         }

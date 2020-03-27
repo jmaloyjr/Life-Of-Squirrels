@@ -27,7 +27,6 @@ html, body{
     left: 1200px;
     top: 600px;
 }
-
 #bg
 {
     position: relative;
@@ -42,16 +41,16 @@ html, body{
 }
 .branch_left {
     position: absolute;
-    width: 50%;
-    height: 50%; 
+    width: 10%;
+    height: 10%; 
     left: 0px;
     top: 0px;
     z-index: 9;
 }
 .branch_right {
     position: absolute;
-    width: 50%;
-    height: 50%; 
+    width: 10%;
+    height: 10%; 
     left: 500px;
     top: 0px;
     z-index: 9;
