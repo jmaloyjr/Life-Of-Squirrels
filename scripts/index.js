@@ -6,6 +6,7 @@ var leftKey = 37, rightKey = 39;
 var squirrelLeftTree = 200;
 var squirrelRightTree = 1200;
 var loading = 1;
+var obstacles = [];
 
 function onLoad() {
     h2 = document.getElementsByTagName('h2')[0];
@@ -15,6 +16,11 @@ function onLoad() {
     squirrelImg = document.getElementById('squirrelImg');
     restartTimer();
     asquirrel = new squirrel(squirrelRightTree, squirrelLeftTree, squirrelRightTree, squirrelImg);
+
+    obstacles.push(new right_branches());
+    obstacles.push(new left_branches());
+    this.on_tick = setInterval(on_tick, 1);
+
     $('body').keydown(function(event){
         if(!asquirrel.inMotion){
             if(event.which == leftKey){
@@ -28,6 +34,8 @@ function onLoad() {
 
     gameTimer();
 }
+
+
 function add() {
     seconds++;
     if (seconds >= 60) {
@@ -46,6 +54,20 @@ function add() {
 function gameTimer() {
     t = setTimeout(add, 1000);
 }
+
+function on_tick() {
+    r = Math.floor((Math.random() * 500) + 1);
+    if(r == 1){
+        //obstacles.push(new left_branches());
+    } else if(r == 2){
+        //obstacles.push(new right_branches());
+    }
+    if(obstacles.length > 0)
+    {
+        obstacles.forEach(branch => branch.newPos());
+    }
+}
+
 
 function firstLoad(){
     if(loading == 1){
@@ -199,7 +221,63 @@ var squirrel = function (xPos, leftX, rightX, squirrelImg) {
     }
 
     this.initialize();
+}
 
+class right_branches {
+    constructor() {
+        this.x = 0; //x_start;
+        this.y = 0; //y_start;
+        this.speedX = 0;
+        this.speedY = 0.5;
+        this.gravity = 0.05;
+        this.frames = 10;
+    }
 
+    update() {
+        $('.branch_right').css("top",this.y+'px');
+    }
+
+    hitBottom() {
+        var rockbottom = 600; // Change this value
+        if (this.y > rockbottom) {
+          this.y = 0;
+        }
+    }
+
+    newPos() {
+        this.x += this.speedX;
+        this.y += this.speedY + this.gravity;
+        this.hitBottom();
+        this.update();
+    }
+}
+
+class left_branches {
+    constructor() {
+        this.x = 0; //x_start;
+        this.y = 0; //y_start;
+        this.speedX = 0;
+        this.speedY = 0.5;
+        this.gravity = 0.05;
+        this.frames = 10;
+    }
+
+    update() {
+        $('.branch_left').css("top",this.y+'px');
+    }
+
+    hitBottom() {
+        var rockbottom = 600; // Change this value
+        if (this.y > rockbottom) {
+          this.y = 0;
+        }
+    }
+
+    newPos() {
+        this.x += this.speedX;
+        this.y += this.speedY + this.gravity;
+        this.hitBottom();
+        this.update();
+    }
 }
 
