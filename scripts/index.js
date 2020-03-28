@@ -27,9 +27,6 @@ function onLoad() {
                 asquirrel.moveRight();
             }
         }
-        if(!achickfila.inMotion){
-            achickfila.moveDown();
-        }
     });
 
     gameTimer();
