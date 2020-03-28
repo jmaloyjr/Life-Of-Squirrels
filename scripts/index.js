@@ -17,7 +17,8 @@ function onLoad() {
 
     restartTimer();
     asquirrel = new squirrel(squirrelRightTree, squirrelLeftTree, squirrelRightTree, squirrelImg);
-    achickfila = new chickfila(squirrelRightTree, 0, 1000, squirrelImg);
+    var spawnRate = 3000; //spawn every 3000ms
+    
     $('body').keydown(function(event){
         if(!asquirrel.inMotion){
             if(event.which == leftKey){
@@ -28,9 +29,53 @@ function onLoad() {
             }
         }
     });
-
+    
     gameTimer();
+    while(!$("#heart3").hasClass("removed")){
+        setInterval(spawnObject, spawnRate);
+        animate();
+    }
 }
+
+function spawnObject() {
+    /*
+    Types of objects that can be spawned:
+     - chick fil a 
+    */
+    var t; //what type of object it is
+    var goodOrBad;
+    if(Math.random() < 1) {
+        goodOrBad = "good";
+    } else {
+        goodOrBad = "bad";
+    }
+
+    if(goodOrBad == "good"){
+        t = "chickfila";
+    } else{
+        //something bad
+    }
+
+    var object = {
+        type: t,
+        xPos: squirrelLeftTree,
+        yPos: spawnYLoc,
+    }
+
+    obstacles.push(object);
+}
+
+function animate() {
+    for (var obj in obstacles){
+        if(obj.yPos > 1000){
+            //remove obj
+        }
+        else{
+            obj.yPos-=20;
+        }
+    }
+}
+
 function add() {
     seconds++;
     if (seconds >= 60) {
@@ -126,44 +171,7 @@ function endGame() {
     flag = 1;
     seconds = 0; minutes = 0; hours = 0;
 }
-var chickfila = function(xPos, yPos, top, bottom, chickfilaImg) {
-    var self = this;
-    this.XPosition = xPos;
-    this.YPosition = yPos;
-    this.topY = top;
-    this.bottomY = bottom;
-    this.doneMovement = false;
-    this.chickfilaImg = chickfilaImg;
-    this.frames = 10;
-    this.movePixels = 10;
-    this.changePosInterval;
-    this.checkEndMovementInterval;
-    
-    this.initialize=function()
-    {
-        //generate random number, 1 or 2. 1 = left tree, 2 = right tree
-        var rand = Math.floor((Math.random()*2) + 1);
-        if(rand==1){
-            $('#chickfila').css("left",squirrelLeftTree+'px');
-        }
-        else{
-            $('#chickfila').css("left", squirrelRightTree+'px');
-        }
-    }
 
-    this.moveDown = function(){
-        self.doneMovement=false;
-        self.changePosInterval = setInterval(function() { self.changePosition(-1*self.movePixels); }, self.frames);
-        self.checkEndMovementInterval=setInterval(function () { self.atEndLoc(self.bottomY); }, self.frames);
-    }
-
-    this.atEndLoc = function (endPos) {
-        if (endPos == self.Position) {
-            self.doneMovement = true;
-            self.addClass('hidden');
-        }
-    };
-}
 var squirrel = function (xPos, leftX, rightX, squirrelImg) {
     var self = this;
     this.Position = xPos;
