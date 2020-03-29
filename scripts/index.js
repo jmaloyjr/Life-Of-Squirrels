@@ -96,10 +96,11 @@ function animate() {
             $("#"+obstacles[i]).addClass("hidden");
             document.getElementById(obstacles[i]).style.marginTop = "-1400px";
             chickfilaNotOnScreen = true;
+            obstacles.splice(0,1);
         }
         else{
             console.log("moving chickfila down");
-            currYPos+=10;
+            currYPos+=30;
             document.getElementById(obstacles[i]).style.marginTop= currYPos + "px";
             console.log("chickfila should have moved");
         }
