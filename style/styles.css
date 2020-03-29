@@ -4,6 +4,7 @@ html, body{
 
 #infoBar{
     height: 15vh;
+    background-color: rgb(150, 97, 0);
     
 }
 
@@ -14,19 +15,10 @@ html, body{
 
 #game 
 {
-    height:85vh
+    height:85vh;
+    overflow: hidden;
 }
 
-#bg
-{
-    position: relative;
-    background: #00fdff url(images/clouds.jpg);
-    height: 85vh;
-    background-size: cover;
-    background-position: 0 0;
-    background-repeat: repeat-y;
-    animation: animate 15s linear infinite;
-}
 #squirrel {
     position: absolute;
     width: auto;
@@ -42,34 +34,53 @@ html, body{
     position: relative;
 }
 @keyframes animate
+
+#bg
 {
-    from{
-        background-position: 0 100%;
-    }
-    to{
-        background-position: 0 0;
-    }
+    position: relative;
+    background: #00fdff url(images/clouds.jpg);
+    background-repeat: repeat-y;
+    height: 500%;
+    background-position: center center;
+    animation: animate-sky 15s linear infinite;
+    z-index: -1;
+    background-size: 800px;
+    margin-top:-100%;
 }
 
 #tree {
-    background-color: brown;
     position: relative;
-    background: #00fdff url(images/bark.png);
-    height: 85vh;
-    background-size: cover;
+    background: brown url(images/bark.png);
+    height: 600%;
     background-position: 0 0;
     background-repeat: repeat-y;
-    animation: animate 4s linear infinite;
+    animation: animate-tree 4s linear infinite;
+    z-index: -1;
+    margin-top:-200%;
 }
-@keyframes animate
+
+@keyframes animate-sky
 {
-    from{
-        background-position: 0 100%;
-    }
-    to{
-        background-position: 0 0;
+    0% {
+        transform: translate3d(0,0,0);
+      }
+    100% {
+        transform: translate3d(0,1421px,0);
     }
 }
+@keyframes animate-tree
+{
+    0% {
+        transform: translate3d(0,0,0);
+      }
+    100% {
+        transform: translate3d(0,2033px,0);
+    }
+}
+
+
+
+
 
 #scoreContainer{
 }
