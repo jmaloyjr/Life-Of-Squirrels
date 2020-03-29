@@ -30,15 +30,23 @@ html, body{
 #playerScoreTitle{
     font-family: 'Luckiest Guy', sans-serif;
     font-size: 25px;
+    color: darkslategray;
     position: absolute;
-    left: 150px;
-    top: 20px;
+    left: 90px;
+    top: 50px;
 }
 #playerScore {
     font-family: 'Luckiest Guy', sans-serif;
     font-size: 25px;
+    color: darkslategray;
     position: relative;
-    
+}
+#customize{
+    font-family: 'Luckiest Guy', sans-serif;
+    font-size: 25px;
+    position: absolute;
+    left: 100px;
+    top: 40px;
 }
 #bg
 {
@@ -93,13 +101,14 @@ background-color: lightblue;
 
 #playerScore {
     position: absolute;
-    left: 270px;
-    top: 40px;
+    left: 200px;
+    top: 67px;
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
 }
 
 #timer{
+    font-family: 'Luckiest Guy', sans-serif;
     position: absolute;
     left: 50%;
     top: 50%;
@@ -132,9 +141,10 @@ background-color: lightblue;
 
 }
 #gameTimer {
+    font-family: 'Luckiest Guy', sans-serif;
     background-color: green;
     text-align: center;
-    padding: 15px 0;
+    padding: 10px 0;
 }
 .jumbotron{
     background-color:#e9ecef8c !important;
@@ -156,10 +166,9 @@ background-color: lightblue;
     padding: 15px 0;
     position: absolute;
 }
-
-.back-button{
+.custom-button{
     font-family: 'Luckiest Guy', sans-serif;
-    padding: 15px 0;
+    padding: 15px 130px;
     position: absolute;
 }
 
