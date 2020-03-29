@@ -32,17 +32,18 @@ function onLoad() {
     });
     
     gameTimer();
-    setInterval(spawnObject, spawnRate);
-    loopWhileAlive();
+    spawning = setInterval(spawnObject, spawnRate);
+    //loopWhileAlive();
+    animating = setInterval(animate,100);
 }
 
-function loopWhileAlive() {
+/*function loopWhileAlive() {
     //setInterval(spawnObject, spawnRate);
     setInterval(animate,50);
     if($('#gameScreen').hasClass("hidden")){
         setTimeout(loopWhileAlive, 100);
     }
-}
+}*/
 
 function spawnObject() {
     /*
@@ -164,6 +165,8 @@ function addHeart() {
 }
 
 function titleScreen() {
+    clearInterval(spawning);
+    clearInterval(animating);
     $('#gameScreen').addClass('hidden');
     $('#directions-page').addClass('hidden');
     $('#endGameScreen').addClass('hidden');
@@ -191,6 +194,8 @@ function restartTimer() {
 // Function used to end the game and change screen
 function endGame() {
     // Close down game screen, also set hearts back and open endgame
+    clearInterval(spawning);
+    clearInterval(animating);
     $('#gameScreen').addClass('hidden');
     $('#heart1').removeClass('removed');
     $('#heart2').removeClass('removed');
