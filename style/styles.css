@@ -27,14 +27,19 @@ html, body{
     left: 1200px;
     top: 600px;
 }
+#playerScoreTitle{
+    font-family: 'Luckiest Guy', sans-serif;
+    font-size: 25px;
+    position: absolute;
+    left: 150px;
+    top: 20px;
+}
 #playerScore {
     font-family: 'Luckiest Guy', sans-serif;
-    padding: 15px 0;
     font-size: 25px;
     position: relative;
+    
 }
-@keyframes animate
-
 #bg
 {
     position: relative;
@@ -83,12 +88,13 @@ html, body{
 
 
 #scoreContainer{
+background-color: lightblue;
 }
 
 #playerScore {
     position: absolute;
-    left: 50%;
-    top: 50%;
+    left: 270px;
+    top: 40px;
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
 }
