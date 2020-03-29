@@ -6,6 +6,9 @@ var leftKey = 37, rightKey = 39;
 var squirrelLeftTree = 200;
 var squirrelRightTree = 1200;
 var loading = 1;
+var spawnRate = 5000;
+var obstacles = [];
+var chickfilaNotOnScreen = true;
 
 function onLoad() {
     h2 = document.getElementsByTagName('h2')[0];
@@ -13,11 +16,9 @@ function onLoad() {
     stop = document.getElementById('stop');
     clear = document.getElementById('clear');
     squirrelImg = document.getElementById('squirrelImg');
-    chickfilaImg = document.getElementById('chickfilaImg');
 
     restartTimer();
     asquirrel = new squirrel(squirrelRightTree, squirrelLeftTree, squirrelRightTree, squirrelImg);
-    var spawnRate = 3000; //spawn every 3000ms
     
     $('body').keydown(function(event){
         if(!asquirrel.inMotion){
@@ -31,9 +32,15 @@ function onLoad() {
     });
     
     gameTimer();
-    while(!$("#heart3").hasClass("removed")){
-        setInterval(spawnObject, spawnRate);
-        animate();
+    setInterval(spawnObject, spawnRate);
+    loopWhileAlive();
+}
+
+function loopWhileAlive() {
+    //setInterval(spawnObject, spawnRate);
+    setInterval(animate,50);
+    if($('#gameScreen').hasClass("hidden")){
+        setTimeout(loopWhileAlive, 100);
     }
 }
 
@@ -42,36 +49,58 @@ function spawnObject() {
     Types of objects that can be spawned:
      - chick fil a 
     */
+   console.log("in spawnObject");
     var t; //what type of object it is
     var goodOrBad;
     if(Math.random() < 1) {
+        console.log("good object");
         goodOrBad = "good";
     } else {
+        console.log("bad object");
         goodOrBad = "bad";
     }
 
     if(goodOrBad == "good"){
-        t = "chickfila";
+        if(chickfilaNotOnScreen){
+            t = "chickfila";
+            $("#"+t).removeClass("hidden");
+            console.log("chickfila should be showing");
+            chickfilaNotOnScreen=false;
+        }
+        else{
+            spawnObject();
+        }
     } else{
         //something bad
     }
 
-    var object = {
+   /* var object = {
         type: t,
         xPos: squirrelLeftTree,
         yPos: spawnYLoc,
-    }
+    }*/
 
-    obstacles.push(object);
+    obstacles.push(t);
 }
 
 function animate() {
-    for (var obj in obstacles){
-        if(obj.yPos > 1000){
-            //remove obj
+    console.log("in animate function");
+    //for (var obj in obstacles){
+    for(var i = 0; i < obstacles.length; i++){
+        console.log("in for loop of animate function");
+        console.log(obstacles[i]);
+        var currYPos = parseInt(document.getElementById(obstacles[i]).style.marginTop, 10);
+        if(currYPos > -100){
+            console.log("removing chickfila");
+            $("#"+obstacles[i]).addClass("hidden");
+            document.getElementById(obstacles[i]).style.marginTop = "-1400px";
+            chickfilaNotOnScreen = true;
         }
         else{
-            obj.yPos-=20;
+            console.log("moving chickfila down");
+            currYPos+=10;
+            document.getElementById(obstacles[i]).style.marginTop= currYPos + "px";
+            console.log("chickfila should have moved");
         }
     }
 }
