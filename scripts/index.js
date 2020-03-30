@@ -91,10 +91,10 @@ function spawnObstacle() {
         console.log("inside if of spawnObstacles");
         var r = Math.random();
         //good obstacle
-        if(r<1){
+        if(r<0){
             var i = Math.random();
             //chickfila
-            if(i < 0){
+            if(i < 0.40){
                 var leftOrRight = Math.random();
                 //left chickfila
                 if(leftOrRight < 0.50){
@@ -108,7 +108,7 @@ function spawnObstacle() {
                 }
             }
             //regular acorn
-            else if(i < 1){
+            else if(i < 0.80){
                 var leftOrRight = Math.random();
                 //left reg acorn
                 if(leftOrRight < 0.50){
@@ -123,14 +123,24 @@ function spawnObstacle() {
             }
             //golden acorn
             else {
-
+                var leftOrRight = Math.random();
+                //left golden acorn
+                if(leftOrRight < 0.50){
+                    $("#gold_acorn_left").removeClass('hidden');
+                    obstacles.push(new left_obstacles("gold_acorn"));
+                }
+                //right golden acorn
+                else{
+                    $("#gold_acorn_right").removeClass('hidden');
+                    obstacles.push(new right_obstacles("gold_acorn"));
+                }
             }
         }
         //bad obstacle
         else {
             var i = Math.random();
             //branch
-            if(i < 1){
+            if(i > 1){
                 var leftOrRight = Math.random();
                 //left branch
                 if(leftOrRight < 0.50){
@@ -140,14 +150,26 @@ function spawnObstacle() {
                 }
                 //right branch
                 else {
-                    console.log("spawning right branch");
+                    //console.log("spawning right branch");
                     $("#branch_right").removeClass('hidden');
                     obstacles.push(new right_obstacles("branch"));
                 }
             }
-            //hawk
+            //construction cone
             else{
-
+                var leftOrRight = Math.random();
+                //left cone
+                if(leftOrRight < 0.50){
+                    //console.log("spawning left branch");
+                    $("#cone_left").removeClass('hidden');
+                    obstacles.push(new left_obstacles("cone"));
+                }
+                //right cone
+                else {
+                    //console.log("spawning right branch");
+                    $("#cone_right").removeClass('hidden');
+                    obstacles.push(new right_obstacles("cone"));
+                }
             }
         }
     }
@@ -358,6 +380,12 @@ class right_obstacles {
         else if(this.type === "acorn"){
             $('#acorn_right').css("top",this.y+'px');
         }
+        else if(this.type === "gold_acorn"){
+            $('#gold_acorn_right').css("top",this.y+'px');
+        }
+        else if(this.type === "cone"){
+            $('#cone_right').css("top",this.y+'px');
+        }
     }
 
     hitBottom() {
@@ -400,6 +428,12 @@ class left_obstacles {
         }
         else if(this.type==="acorn"){
             $('#acorn_left').css("top",this.y+'px');
+        }
+        else if(this.type==="gold_acorn"){
+            $('#gold_acorn_left').css("top",this.y+'px');
+        }
+        else if(this.type === "cone"){
+            $('#cone_left').css("top",this.y+'px');
         }
         console.log("SHOULD: " + this.shouldCollide.toString());
         if(this.shouldCollide == 0 && is_colliding($('#squirrel'), $('.branch_left'))){
