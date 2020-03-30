@@ -7,18 +7,22 @@ var squirrelLeftTree = 200;
 var squirrelRightTree = 1200;
 var loading = 1;
 var obstacles = [];
+var spawnInc = 0;
+var playerAlive = false;
 
 function onLoad() {
+    console.log("reached onLoad");
     h2 = document.getElementsByTagName('h2')[0];
     start = document.getElementById('start');
     stop = document.getElementById('stop');
     clear = document.getElementById('clear');
     squirrelImg = document.getElementById('squirrelImg');
     restartTimer();
+    playerAlive = true;
     asquirrel = new squirrel(squirrelRightTree, squirrelLeftTree, squirrelRightTree, squirrelImg);
 
-    obstacles.push(new right_branches());
-    obstacles.push(new left_branches());
+    //obstacles.push(new right_branches());
+    //obstacles.push(new left_branches());
     this.on_tick = setInterval(on_tick, 1);
 
     $('body').keydown(function(event){
@@ -56,21 +60,80 @@ function gameTimer() {
 }
 
 function on_tick() {
-    r = Math.floor((Math.random() * 500) + 1);
+    //console.log("reached ontick");
+    if(loading == 2){
+        console.log("first ontick");
+        setTimeout(spawnObstacle, 5000);
+        loading++;
+    }
+    else if(playerAlive){
+        //console.log("all other onticks")
+        spawnObstacle();
+    }
+    
+    /*r = Math.floor((Math.random() * 500) + 1);
     if(r == 1){
         //obstacles.push(new left_branches());
     } else if(r == 2){
         //obstacles.push(new right_branches());
-    }
+    }*/
     if(obstacles.length > 0)
     {
-        obstacles.forEach(branch => branch.newPos());
+        obstacles.forEach(obj => obj.newPos());
+    }
+}
+
+function spawnObstacle() {
+    //console.log("reached spawnObstacles");
+    if(spawnInc == 2000){//spawn every 5000ms
+        spawnInc = 0;
+        console.log("inside if of spawnObstacles");
+        var r = Math.random();
+        //good obstacle
+        if(r<0){
+            var i = Math.random();
+            //chickfila
+            if(i < 0.50){
+
+            }
+            //acorn
+            else{
+
+            }
+        }
+        //bad obstacle
+        else {
+            var i = Math.random();
+            //branch
+            if(i < 1){
+                var leftOrRight = Math.random();
+                //left branch
+                if(leftOrRight < 0.50){
+                    console.log("spawning left branch");
+                    $("#branch_left").removeClass('hidden');
+                    obstacles.push(new left_branches());
+                }
+                //right branch
+                else {
+                    console.log("spawning right branch");
+                    $("#branch_right").removeClass('hidden');
+                    obstacles.push(new right_branches());
+                }
+            }
+            //hawk
+            else{
+
+            }
+        }
+    }
+    else{
+        spawnInc++;
     }
 }
 
 var is_colliding = function( $div1, $div2 ) {
 	// Div 1 data
-	var d1_offset             = $div1.offset();
+	/*var d1_offset             = $div1.offset();
 	var d1_height             = $div1.outerHeight( true );
 	var d1_width              = $div1.outerWidth( true );
 	var d1_distance_from_top  = d1_offset.top + d1_height;
@@ -86,7 +149,7 @@ var is_colliding = function( $div1, $div2 ) {
 	var not_colliding = ( d1_distance_from_top < d2_offset.top || d1_offset.top > d2_distance_from_top || d1_distance_from_left < d2_offset.left || d1_offset.left > d2_distance_from_left );
 
 	// Return whether it IS colliding
-	return ! not_colliding;
+	return ! not_colliding;*/
 };
 
 
@@ -130,10 +193,14 @@ function addHeart() {
 }
 
 function titleScreen() {
+    while(obstacles.length>0){
+        obstacles.pop();
+    }
     $('#gameScreen').addClass('hidden');
     $('#directions-page').addClass('hidden');
     $('#endGameScreen').addClass('hidden');
     $('#start-page').removeClass('hidden');
+    playerAlive = false;
     flag = 1;
 }
 function startGame() {
@@ -163,6 +230,7 @@ function endGame() {
     $('#heart3').removeClass('removed');
     $('#endGameText').text("Your score was: "  + $('#playerScore').text());
     $('#endGameScreen').removeClass('hidden');
+    playerAlive = false;
     flag = 1;
     seconds = 0; minutes = 0; hours = 0;
 }
@@ -255,13 +323,13 @@ class right_branches {
     }
 
     update() {
-        $('.branch_right').css("top",this.y+'px');
+        $('#branch_right').css("top",this.y+'px');
     }
 
     hitBottom() {
         var rockbottom = 800; // Change this value
         if (this.y > rockbottom) {
-          this.y = 0;
+          obstacles.splice(0,1);
         }
     }
 
@@ -289,7 +357,7 @@ class left_branches {
     }
     
     update() {
-        $('.branch_left').css("top",this.y+'px');
+        $('#branch_left').css("top",this.y+'px');
         console.log("SHOULD: " + this.shouldCollide.toString());
         if(this.shouldCollide == 0 && is_colliding($('#squirrel'), $('.branch_left'))){
             this.shouldCollide = 1;
@@ -301,7 +369,8 @@ class left_branches {
     hitBottom() {
         var rockbottom = 800; // Change this value
         if (this.y > rockbottom) {
-          this.y = 0;
+          //this.y = 0;
+          obstacles.splice(0,1);
         }
     }
 
