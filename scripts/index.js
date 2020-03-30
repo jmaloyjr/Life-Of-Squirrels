@@ -140,7 +140,7 @@ function spawnObstacle() {
         else {
             var i = Math.random();
             //branch
-            if(i > 1){
+            if(i < 0){
                 var leftOrRight = Math.random();
                 //left branch
                 if(leftOrRight < 0.50){
@@ -156,7 +156,7 @@ function spawnObstacle() {
                 }
             }
             //construction cone
-            else{
+            else if(i > 1){
                 var leftOrRight = Math.random();
                 //left cone
                 if(leftOrRight < 0.50){
@@ -169,6 +169,22 @@ function spawnObstacle() {
                     //console.log("spawning right branch");
                     $("#cone_right").removeClass('hidden');
                     obstacles.push(new right_obstacles("cone"));
+                }
+            }
+            //hawk
+            else {
+                var leftOrRight = Math.random();
+                //left hawk
+                if(leftOrRight < 0.50){
+                    //console.log("spawning left branch");
+                    $("#hawk_left").removeClass('hidden');
+                    obstacles.push(new left_obstacles("hawk"));
+                }
+                //right hawk
+                else {
+                    //console.log("spawning right branch");
+                    $("#hawk_right").removeClass('hidden');
+                    obstacles.push(new right_obstacles("hawk"));
                 }
             }
         }
@@ -386,6 +402,9 @@ class right_obstacles {
         else if(this.type === "cone"){
             $('#cone_right').css("top",this.y+'px');
         }
+        else if(this.type === "hawk"){
+            $('#hawk_right').css("top",this.y+'px');
+        }
     }
 
     hitBottom() {
@@ -434,6 +453,9 @@ class left_obstacles {
         }
         else if(this.type === "cone"){
             $('#cone_left').css("top",this.y+'px');
+        }
+        else if(this.type === "hawk"){
+            $('#hawk_left').css("top",this.y+'px');
         }
         console.log("SHOULD: " + this.shouldCollide.toString());
         if(this.shouldCollide == 0 && is_colliding($('#squirrel'), $('.branch_left'))){
