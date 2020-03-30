@@ -7,6 +7,10 @@ var squirrelLeftTree = 200;
 var squirrelRightTree = 1200;
 var loading = 1;
 var customFlag = false;
+var obstacles = [];
+var spawnInc = 0;
+var spawnRate = 1500;
+var playerAlive = false;
 
 function onLoad() {
     h2 = document.getElementsByTagName('h2')[0];
@@ -14,7 +18,13 @@ function onLoad() {
     stop = document.getElementById('stop');
     clear = document.getElementById('clear');
     restartTimer();
+    playerAlive = true;
     asquirrel = new squirrel(squirrelRightTree, squirrelLeftTree, squirrelRightTree, squirrelImg);
+
+    //obstacles.push(new right_branches());
+    //obstacles.push(new left_branches());
+    this.on_tick = setInterval(on_tick, 1);
+
     $('body').keydown(function(event){
         if(!asquirrel.inMotion){
             if(event.which == leftKey){
@@ -51,6 +61,151 @@ function add() {
 function gameTimer() {
     t = setTimeout(add, 1000);
 }
+
+function on_tick() {
+    if(loading == 2){
+        setTimeout(spawnObstacle, 5000);
+        loading++;
+    }
+    else if(playerAlive){
+        spawnObstacle();
+    }
+    
+    /*r = Math.floor((Math.random() * 500) + 1);
+    if(r == 1){
+        //obstacles.push(new left_branches());
+    } else if(r == 2){
+        //obstacles.push(new right_branches());
+    }*/
+    if(obstacles.length > 0)
+    {
+        obstacles.forEach(obj => obj.newPos());
+    }
+}
+
+function spawnObstacle() {
+    if(spawnInc == spawnRate){//spawn every 8 seconds
+        spawnInc = 0;
+        var r = Math.random();
+        //good obstacle
+        if(r<0.50){
+            var i = Math.random();
+            //chickfila
+            if(i < 0.40){
+                var leftOrRight = Math.random();
+                //left chickfila
+                if(leftOrRight < 0.50){
+                    $("#chickfila_left").removeClass('hidden');
+                    obstacles.push(new left_obstacles("chickfila"));
+                }
+                //right chickfila
+                else{
+                    $("#chickfila_right").removeClass('hidden');
+                    obstacles.push(new right_obstacles("chickfila"));
+                }
+            }
+            //regular acorn
+            else if(i < 0.80){
+                var leftOrRight = Math.random();
+                //left reg acorn
+                if(leftOrRight < 0.50){
+                    $("#acorn_left").removeClass('hidden');
+                    obstacles.push(new left_obstacles("acorn"));
+                }
+                //right reg acorn
+                else{
+                    $("#acorn_right").removeClass('hidden');
+                    obstacles.push(new right_obstacles("acorn"));
+                }
+            }
+            //golden acorn
+            else {
+                var leftOrRight = Math.random();
+                //left golden acorn
+                if(leftOrRight < 0.50){
+                    $("#gold_acorn_left").removeClass('hidden');
+                    obstacles.push(new left_obstacles("gold_acorn"));
+                }
+                //right golden acorn
+                else{
+                    $("#gold_acorn_right").removeClass('hidden');
+                    obstacles.push(new right_obstacles("gold_acorn"));
+                }
+            }
+        }
+        //bad obstacle
+        else {
+            var i = Math.random();
+            //branch
+            if(i < 0.33){
+                var leftOrRight = Math.random();
+                //left branch
+                if(leftOrRight < 0.50){
+                    $("#branch_left").removeClass('hidden');
+                    obstacles.push(new left_obstacles("branch"));
+                }
+                //right branch
+                else {
+                    $("#branch_right").removeClass('hidden');
+                    obstacles.push(new right_obstacles("branch"));
+                }
+            }
+            //construction cone
+            else if(i < 0.66){
+                var leftOrRight = Math.random();
+                //left cone
+                if(leftOrRight < 0.50){
+                    $("#cone_left").removeClass('hidden');
+                    obstacles.push(new left_obstacles("cone"));
+                }
+                //right cone
+                else {
+                    $("#cone_right").removeClass('hidden');
+                    obstacles.push(new right_obstacles("cone"));
+                }
+            }
+            //hawk
+            else {
+                var leftOrRight = Math.random();
+                //left hawk
+                if(leftOrRight < 0.50){
+                    $("#hawk_left").removeClass('hidden');
+                    obstacles.push(new left_obstacles("hawk"));
+                }
+                //right hawk
+                else {
+                    $("#hawk_right").removeClass('hidden');
+                    obstacles.push(new right_obstacles("hawk"));
+                }
+            }
+        }
+    }
+    else{
+        spawnInc++;
+    }
+}
+
+var is_colliding = function( $div1, $div2 ) {
+	// Div 1 data
+	/*var d1_offset             = $div1.offset();
+	var d1_height             = $div1.outerHeight( true );
+	var d1_width              = $div1.outerWidth( true );
+	var d1_distance_from_top  = d1_offset.top + d1_height;
+	var d1_distance_from_left = d1_offset.left + d1_width;
+
+	// Div 2 data
+	var d2_offset             = $div2.offset();
+	var d2_height             = $div2.outerHeight( true );
+	var d2_width              = $div2.outerWidth( true );
+	var d2_distance_from_top  = d2_offset.top + d2_height;
+	var d2_distance_from_left = d2_offset.left + d2_width;
+
+	var not_colliding = ( d1_distance_from_top < d2_offset.top || d1_offset.top > d2_distance_from_top || d1_distance_from_left < d2_offset.left || d1_offset.left > d2_distance_from_left );
+
+	// Return whether it IS colliding
+	return ! not_colliding;*/
+};
+
 
 function firstLoad(){
     if(loading == 1){
@@ -96,6 +251,7 @@ function titleScreen() {
     $('#directions-page').addClass('hidden');
     $('#endGameScreen').addClass('hidden');
     $('#start-page').removeClass('hidden');
+    playerAlive = false;
     flag = 1;
 }
 function startGame() {
@@ -125,6 +281,7 @@ function endGame() {
     $('#heart3').removeClass('removed');
     $('#endGameText').text("Your score was: "  + $('#playerScore').text());
     $('#endGameScreen').removeClass('hidden');
+    playerAlive = false;
     flag = 1;
     seconds = 0; minutes = 0; hours = 0;
 }
@@ -230,7 +387,147 @@ var squirrel = function (xPos, leftX, rightX, squirrelImg) {
     }
 
     this.initialize();
+}
 
+class right_obstacles {
+    constructor(type) {
+        this.x = 0; //x_start;
+        this.y = 0; //y_start;
+        this.type = type;
+        this.speedX = 0;
+        this.speedY = 0.5;
+        this.gravity = 0.05;
+        this.frames = 10;
+    }
 
+    update() {
+        if(this.type==="branch"){
+            $('#branch_right').css("top",this.y+'px');
+        }
+        else if(this.type === "chickfila"){
+            $('#chickfila_right').css("top",this.y+'px');
+        }
+        else if(this.type === "acorn"){
+            $('#acorn_right').css("top",this.y+'px');
+        }
+        else if(this.type === "gold_acorn"){
+            $('#gold_acorn_right').css("top",this.y+'px');
+        }
+        else if(this.type === "cone"){
+            $('#cone_right').css("top",this.y+'px');
+        }
+        else if(this.type === "hawk"){
+            $('#hawk_right').css("top",this.y+'px');
+        }
+    }
+
+    hitBottom() {
+        var rockbottom = 700; // Change this value
+        if (this.y > rockbottom) {
+            obstacles.splice(0,1);
+            if(this.type === "branch"){
+                $('#branch_right').addClass('hidden');
+            }
+            else if(this.type==="chickfila"){
+                $('#chickfila_right').addClass('hidden');
+            }
+            else if(this.type==="acorn"){
+                $('#acorn_right').addClass('hidden');
+            }
+            else if(this.type==="gold_acorn"){
+                $('#gold_acorn_right').addClass('hidden');
+            }
+            else if(this.type === "cone"){
+                $('#cone_right').addClass('hidden');
+            }
+            else if(this.type === "hawk"){
+                $('#hawk_right').addClass('hidden');
+            }
+        }
+    }
+
+    newPos() {
+        this.x += this.speedX;
+        this.y += this.speedY + this.gravity;
+        this.hitBottom();
+        this.update();
+    }
+}
+
+class left_obstacles {
+    constructor(type) {
+        this.x = 0; //x_start;
+        this.y = 0; //y_start;
+        this.type = type;
+        this.speedX = 0;
+        this.speedY = 0.5;
+        this.gravity = 0.05;
+        this.frames = 10;
+        this.shouldCollide = 0;
+    }
+
+    setShouldCollide(){
+        this.shouldCollide = 0;
+    }
+    
+    update() {
+        if(this.type === "branch"){
+            $('#branch_left').css("top",this.y+'px');
+        }
+        else if(this.type==="chickfila"){
+            $('#chickfila_left').css("top",this.y+'px');
+        }
+        else if(this.type==="acorn"){
+            $('#acorn_left').css("top",this.y+'px');
+        }
+        else if(this.type==="gold_acorn"){
+            $('#gold_acorn_left').css("top",this.y+'px');
+        }
+        else if(this.type === "cone"){
+            $('#cone_left').css("top",this.y+'px');
+        }
+        else if(this.type === "hawk"){
+            $('#hawk_left').css("top",this.y+'px');
+        }
+        console.log("SHOULD: " + this.shouldCollide.toString());
+        if(this.shouldCollide == 0 && is_colliding($('#squirrel'), $('.branch_left'))){
+            this.shouldCollide = 1;
+             setTimeout(this.setShouldCollide(), 1000);
+            console.log("Collided!");
+        }
+    }
+
+    hitBottom() {
+        var rockbottom = 700; // Change this value
+        if (this.y > rockbottom) {
+            //this.y = 0;
+            obstacles.splice(0,1);
+            if(this.type === "branch"){
+                $('#branch_left').addClass('hidden');
+            }
+            else if(this.type==="chickfila"){
+                $('#chickfila_left').addClass('hidden');
+            }
+            else if(this.type==="acorn"){
+                $('#acorn_left').addClass('hidden');
+            }
+            else if(this.type==="gold_acorn"){
+                $('#gold_acorn_left').addClass('hidden');
+            }
+            else if(this.type === "cone"){
+                $('#cone_left').addClass('hidden');
+            }
+            else if(this.type === "hawk"){
+                $('#hawk_left').addClass('hidden');
+            }
+        }
+    }
+
+    newPos() {
+        this.x += this.speedX;
+        this.y += this.speedY + this.gravity;
+        this.hitBottom();
+        this.update();
+    }
 }
 

@@ -53,14 +53,61 @@ html, body{
     position: relative;
     background: #00fdff url(images/clouds.jpg);
     background-repeat: repeat-y;
-    height: 500%;
+    height: 1000%;
     background-position: center center;
     animation: animate-sky 15s linear infinite;
     z-index: -1;
     background-size: 800px;
     margin-top:-100%;
 }
-
+.left-obj {
+    position: absolute;
+    width: 40%;
+    height: 40%; 
+    left: 335px;
+    top: 0px;
+    z-index: 9;
+}
+.right-obj {
+    position: absolute;
+    width: 40%;
+    height: 40%; 
+    left: 960px;
+    top: 0px;
+    z-index: 9;
+}
+/*#branch_left {
+    position: absolute;
+    width: 40%;
+    height: 40%; 
+    left: 335px;
+    top: 0px;
+    z-index: 9;
+}
+#branch_right {
+    position: absolute;
+    width: 40%;
+    height: 40%; 
+    left: 960px;
+    top: 0px;
+    z-index: 9;
+ }
+#chickfila_left {
+    position: absolute;
+    width: 40%;
+    height: 40%; 
+    left: 335px;
+    top: 0px;
+    z-index: 9;
+}
+#chickfila_right {
+    position: absolute;
+    width: 40%;
+    height: 40%; 
+    left: 960px;
+    top: 0px;
+    z-index: 9;
+}*/
 #tree {
     position: relative;
     background: brown url(images/bark.png);
