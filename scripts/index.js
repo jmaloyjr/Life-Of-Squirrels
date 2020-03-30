@@ -8,6 +8,7 @@ var squirrelRightTree = 1200;
 var loading = 1;
 var obstacles = [];
 var spawnInc = 0;
+var spawnRate = 1500;
 var playerAlive = false;
 
 function onLoad() {
@@ -85,19 +86,43 @@ function on_tick() {
 
 function spawnObstacle() {
     //console.log("reached spawnObstacles");
-    if(spawnInc == 2000){//spawn every 5000ms
+    if(spawnInc == spawnRate){//spawn every 8 seconds
         spawnInc = 0;
         console.log("inside if of spawnObstacles");
         var r = Math.random();
         //good obstacle
-        if(r<0){
+        if(r<1){
             var i = Math.random();
             //chickfila
-            if(i < 0.50){
-
+            if(i < 0){
+                var leftOrRight = Math.random();
+                //left chickfila
+                if(leftOrRight < 0.50){
+                    $("#chickfila_left").removeClass('hidden');
+                    obstacles.push(new left_obstacles("chickfila"));
+                }
+                //right chickfila
+                else{
+                    $("#chickfila_right").removeClass('hidden');
+                    obstacles.push(new right_obstacles("chickfila"));
+                }
             }
-            //acorn
-            else{
+            //regular acorn
+            else if(i < 1){
+                var leftOrRight = Math.random();
+                //left reg acorn
+                if(leftOrRight < 0.50){
+                    $("#acorn_left").removeClass('hidden');
+                    obstacles.push(new left_obstacles("acorn"));
+                }
+                //right reg acorn
+                else{
+                    $("#acorn_right").removeClass('hidden');
+                    obstacles.push(new right_obstacles("acorn"));
+                }
+            }
+            //golden acorn
+            else {
 
             }
         }
@@ -109,15 +134,15 @@ function spawnObstacle() {
                 var leftOrRight = Math.random();
                 //left branch
                 if(leftOrRight < 0.50){
-                    console.log("spawning left branch");
+                    //console.log("spawning left branch");
                     $("#branch_left").removeClass('hidden');
-                    obstacles.push(new left_branches());
+                    obstacles.push(new left_obstacles("branch"));
                 }
                 //right branch
                 else {
                     console.log("spawning right branch");
                     $("#branch_right").removeClass('hidden');
-                    obstacles.push(new right_branches());
+                    obstacles.push(new right_obstacles("branch"));
                 }
             }
             //hawk
@@ -312,10 +337,11 @@ var squirrel = function (xPos, leftX, rightX, squirrelImg) {
     this.initialize();
 }
 
-class right_branches {
-    constructor() {
+class right_obstacles {
+    constructor(type) {
         this.x = 0; //x_start;
         this.y = 0; //y_start;
+        this.type = type;
         this.speedX = 0;
         this.speedY = 0.5;
         this.gravity = 0.05;
@@ -323,7 +349,15 @@ class right_branches {
     }
 
     update() {
-        $('#branch_right').css("top",this.y+'px');
+        if(this.type==="branch"){
+            $('#branch_right').css("top",this.y+'px');
+        }
+        else if(this.type === "chickfila"){
+            $('#chickfila_right').css("top",this.y+'px');
+        }
+        else if(this.type === "acorn"){
+            $('#acorn_right').css("top",this.y+'px');
+        }
     }
 
     hitBottom() {
@@ -341,10 +375,11 @@ class right_branches {
     }
 }
 
-class left_branches {
-    constructor() {
+class left_obstacles {
+    constructor(type) {
         this.x = 0; //x_start;
         this.y = 0; //y_start;
+        this.type = type;
         this.speedX = 0;
         this.speedY = 0.5;
         this.gravity = 0.05;
@@ -357,7 +392,15 @@ class left_branches {
     }
     
     update() {
-        $('#branch_left').css("top",this.y+'px');
+        if(this.type === "branch"){
+            $('#branch_left').css("top",this.y+'px');
+        }
+        else if(this.type==="chickfila"){
+            $('#chickfila_left').css("top",this.y+'px');
+        }
+        else if(this.type==="acorn"){
+            $('#acorn_left').css("top",this.y+'px');
+        }
         console.log("SHOULD: " + this.shouldCollide.toString());
         if(this.shouldCollide == 0 && is_colliding($('#squirrel'), $('.branch_left'))){
             this.shouldCollide = 1;

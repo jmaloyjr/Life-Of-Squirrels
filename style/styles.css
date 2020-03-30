@@ -39,7 +39,23 @@ html, body{
     background-size: 800px;
     margin-top:-100%;
 }
-#branch_left {
+.left-obj {
+    position: absolute;
+    width: 40%;
+    height: 40%; 
+    left: 335px;
+    top: 0px;
+    z-index: 9;
+}
+.right-obj {
+    position: absolute;
+    width: 40%;
+    height: 40%; 
+    left: 960px;
+    top: 0px;
+    z-index: 9;
+}
+/*#branch_left {
     position: absolute;
     width: 40%;
     height: 40%; 
@@ -55,7 +71,22 @@ html, body{
     top: 0px;
     z-index: 9;
  }
-
+#chickfila_left {
+    position: absolute;
+    width: 40%;
+    height: 40%; 
+    left: 335px;
+    top: 0px;
+    z-index: 9;
+}
+#chickfila_right {
+    position: absolute;
+    width: 40%;
+    height: 40%; 
+    left: 960px;
+    top: 0px;
+    z-index: 9;
+}*/
 #tree {
     position: relative;
     background: brown url(images/bark.png);
