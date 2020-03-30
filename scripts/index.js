@@ -9,6 +9,7 @@ var loading = 1;
 var obstacles = [];
 var spawnInc = 0;
 var playerAlive = false;
+var shouldCollide = true;
 
 function onLoad() {
     console.log("reached onLoad");
@@ -312,6 +313,10 @@ var squirrel = function (xPos, leftX, rightX, squirrelImg) {
     this.initialize();
 }
 
+function setShouldCollide(){
+    shouldCollide = true;
+}
+
 class right_branches {
     constructor() {
         this.x = 0; //x_start;
@@ -320,20 +325,18 @@ class right_branches {
         this.speedY = 0.5;
         this.gravity = 0.05;
         this.frames = 10;
-        this.shouldCollide = 0;
+       // this.shouldCollide = true;
+        this.tick = 0;
     }
 
     update() {
         $('#branch_right').css("top",this.y+'px');
-        if(this.shouldCollide == 0 && is_colliding($('#squirrel'), $("#branch_right"))){
-            this.shouldCollide = 1;
-             setTimeout(this.setShouldCollide(), 1000);
+
+        if(shouldCollide && is_colliding($('#squirrel'), $("#branch_right"))){
+            shouldCollide = false;
+            setTimeout(setShouldCollide(), 1000);
             console.log("Collided!");
         }
-    }
-
-    setShouldCollide(){
-        this.shouldCollide = 0;
     }
 
     hitBottom() {
@@ -359,19 +362,15 @@ class left_branches {
         this.speedY = 0.5;
         this.gravity = 0.05;
         this.frames = 10;
-        this.shouldCollide = 0;
     }
 
-    setShouldCollide(){
-        this.shouldCollide = 0;
-    }
     
     update() {
         $('#branch_left').css("top",this.y+'px');
-        console.log("SHOULD: " + this.shouldCollide.toString());
-        if(this.shouldCollide == 0 && is_colliding($('#squirrel'), $("#branch_left"))){
-            this.shouldCollide = 1;
-            setTimeout(this.setShouldCollide(), 1000);
+
+        if(shouldCollide && is_colliding($('#squirrel'), $("#branch_left"))){
+            shouldCollide = false;
+            setTimeout(setShouldCollide(), 1000);
             console.log("Collided!");
         }
     }
