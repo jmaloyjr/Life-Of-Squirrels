@@ -4,6 +4,7 @@ html, body{
 
 #infoBar{
     height: 15vh;
+    background-color: rgb(150, 97, 0);
     
 }
 
@@ -14,19 +15,10 @@ html, body{
 
 #game 
 {
-    height:85vh
+    height:85vh;
+    overflow: hidden;
 }
 
-#bg
-{
-    position: relative;
-    background: #00fdff url(images/clouds.jpg);
-    height: 85vh;
-    background-size: cover;
-    background-position: 0 0;
-    background-repeat: repeat-y;
-    animation: animate 15s linear infinite;
-}
 #squirrel {
     position: absolute;
     width: auto;
@@ -35,49 +27,89 @@ html, body{
     left: 1200px;
     top: 600px;
 }
-@keyframes animate
+#playerScoreTitle{
+    font-family: 'Luckiest Guy', sans-serif;
+    font-size: 25px;
+    color: darkslategray;
+    position: absolute;
+    left: 90px;
+    top: 50px;
+}
+#playerScore {
+    font-family: 'Luckiest Guy', sans-serif;
+    font-size: 25px;
+    color: darkslategray;
+    position: relative;
+}
+#customize{
+    font-family: 'Luckiest Guy', sans-serif;
+    font-size: 25px;
+    position: absolute;
+    left: 100px;
+    top: 40px;
+}
+#bg
 {
-    from{
-        background-position: 0 100%;
-    }
-    to{
-        background-position: 0 0;
-    }
+    position: relative;
+    background: #00fdff url(images/clouds.jpg);
+    background-repeat: repeat-y;
+    height: 500%;
+    background-position: center center;
+    animation: animate-sky 15s linear infinite;
+    z-index: -1;
+    background-size: 800px;
+    margin-top:-100%;
 }
 
 #tree {
-    background-color: brown;
     position: relative;
-    background: #00fdff url(images/bark.png);
-    height: 85vh;
-    background-size: cover;
+    background: brown url(images/bark.png);
+    height: 600%;
     background-position: 0 0;
     background-repeat: repeat-y;
-    animation: animate 4s linear infinite;
+    animation: animate-tree 4s linear infinite;
+    z-index: -1;
+    margin-top:-200%;
 }
-@keyframes animate
+
+@keyframes animate-sky
 {
-    from{
-        background-position: 0 100%;
+    0% {
+        transform: translate3d(0,0,0);
+      }
+    100% {
+        transform: translate3d(0,1421px,0);
     }
-    to{
-        background-position: 0 0;
+}
+@keyframes animate-tree
+{
+    0% {
+        transform: translate3d(0,0,0);
+      }
+    100% {
+        transform: translate3d(0,2033px,0);
     }
 }
 
+
+
+
+
 #scoreContainer{
+background-color: lightblue;
 }
 
 #playerScore {
     position: absolute;
-    left: 50%;
-    top: 50%;
+    left: 200px;
+    top: 67px;
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     font-family: 'Luckiest Guy', sans-serif;
 }
 
 #timer{
+    font-family: 'Luckiest Guy', sans-serif;
     position: absolute;
     left: 50%;
     top: 50%;
@@ -111,9 +143,10 @@ html, body{
 
 }
 #gameTimer {
+    font-family: 'Luckiest Guy', sans-serif;
     background-color: green;
     text-align: center;
-    padding: 15px 0;
+    padding: 10px 0;
 }
 .jumbotron{
     background-color:#e9ecef8c !important;
@@ -135,10 +168,9 @@ html, body{
     padding: 15px 0;
     position: absolute;
 }
-
-.back-button{
+.custom-button{
     font-family: 'Luckiest Guy', sans-serif;
-    padding: 15px 0;
+    padding: 15px 130px;
     position: absolute;
 }
 
