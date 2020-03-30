@@ -74,6 +74,7 @@ html, body{
     top: 50%;
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
+    font-family: 'Luckiest Guy', sans-serif;
 }
 
 #timer{
@@ -82,6 +83,7 @@ html, body{
     top: 50%;
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
+    font-family: 'Luckiest Guy', sans-serif;
 }
 
 .hidden{
@@ -180,4 +182,8 @@ html, body{
 
 #restartButton {
     display: inline-block;
+}
+
+#endGameScreen {
+    font-family: 'Luckiest Guy', sans-serif;
 }

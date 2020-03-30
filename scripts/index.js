@@ -100,7 +100,6 @@ function startGame() {
     $('#gameScreen').removeClass('hidden');
     $('#playerScore').text(0);
 
-    onLoad();
     firstLoad();
     restartTimer();
 }
