@@ -133,7 +133,7 @@ function spawnObstacle() {
 
 var is_colliding = function( $div1, $div2 ) {
 	// Div 1 data
-	/*var d1_offset             = $div1.offset();
+	var d1_offset             = $div1.offset();
 	var d1_height             = $div1.outerHeight( true );
 	var d1_width              = $div1.outerWidth( true );
 	var d1_distance_from_top  = d1_offset.top + d1_height;
@@ -149,7 +149,7 @@ var is_colliding = function( $div1, $div2 ) {
 	var not_colliding = ( d1_distance_from_top < d2_offset.top || d1_offset.top > d2_distance_from_top || d1_distance_from_left < d2_offset.left || d1_offset.left > d2_distance_from_left );
 
 	// Return whether it IS colliding
-	return ! not_colliding;*/
+	return ! not_colliding;
 };
 
 
@@ -320,10 +320,20 @@ class right_branches {
         this.speedY = 0.5;
         this.gravity = 0.05;
         this.frames = 10;
+        this.shouldCollide = 0;
     }
 
     update() {
         $('#branch_right').css("top",this.y+'px');
+        if(this.shouldCollide == 0 && is_colliding($('#squirrel'), $("#branch_right"))){
+            this.shouldCollide = 1;
+             setTimeout(this.setShouldCollide(), 1000);
+            console.log("Collided!");
+        }
+    }
+
+    setShouldCollide(){
+        this.shouldCollide = 0;
     }
 
     hitBottom() {
@@ -359,9 +369,9 @@ class left_branches {
     update() {
         $('#branch_left').css("top",this.y+'px');
         console.log("SHOULD: " + this.shouldCollide.toString());
-        if(this.shouldCollide == 0 && is_colliding($('#squirrel'), $('.branch_left'))){
+        if(this.shouldCollide == 0 && is_colliding($('#squirrel'), $("#branch_left"))){
             this.shouldCollide = 1;
-             setTimeout(this.setShouldCollide(), 1000);
+            setTimeout(this.setShouldCollide(), 1000);
             console.log("Collided!");
         }
     }

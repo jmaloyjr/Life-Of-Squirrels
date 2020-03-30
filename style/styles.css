@@ -41,16 +41,20 @@ html, body{
 }
 #branch_left {
     position: absolute;
-    width: 40%;
-    height: 40%; 
+    background: url(images/branch_left.png);
+    width: 120px;
+    height: 60px; 
+    background-size: 100% 100%;
     left: 335px;
     top: 0px;
     z-index: 9;
 }
 #branch_right {
     position: absolute;
-    width: 40%;
-    height: 40%; 
+    background: url(images/branch_right.png);
+    width: 120px;
+    height: 60px; 
+    background-size: 100% 100%;
     left: 960px;
     top: 0px;
     z-index: 9;
