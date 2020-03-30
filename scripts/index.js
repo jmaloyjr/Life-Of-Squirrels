@@ -317,6 +317,7 @@ function setShouldCollide(){
     shouldCollide = true;
 }
 
+// Class to create right branches
 class right_branches {
     constructor() {
         this.x = 0; //x_start;
@@ -325,13 +326,14 @@ class right_branches {
         this.speedY = 0.5;
         this.gravity = 0.05;
         this.frames = 10;
-       // this.shouldCollide = true;
         this.tick = 0;
     }
 
+    // Called every tick to update the position of the branch
     update() {
         $('#branch_right').css("top",this.y+'px');
 
+        // Checks if the player has collided with the branch
         if(shouldCollide && is_colliding($('#squirrel'), $("#branch_right"))){
             shouldCollide = false;
             setTimeout(setShouldCollide(), 1000);
@@ -339,6 +341,7 @@ class right_branches {
         }
     }
 
+    // Removes the branch if the player hits the bottom
     hitBottom() {
         var rockbottom = 800; // Change this value
         if (this.y > rockbottom) {
@@ -346,6 +349,8 @@ class right_branches {
         }
     }
 
+    
+    // Creates the new position
     newPos() {
         this.x += this.speedX;
         this.y += this.speedY + this.gravity;
@@ -354,6 +359,7 @@ class right_branches {
     }
 }
 
+// Class to create left_branches
 class left_branches {
     constructor() {
         this.x = 0; //x_start;
@@ -364,10 +370,11 @@ class left_branches {
         this.frames = 10;
     }
 
-    
+    // Called every tick to update position of branch
     update() {
         $('#branch_left').css("top",this.y+'px');
 
+        // Checks if the player has collided with the branch
         if(shouldCollide && is_colliding($('#squirrel'), $("#branch_left"))){
             shouldCollide = false;
             setTimeout(setShouldCollide(), 1000);
@@ -375,6 +382,7 @@ class left_branches {
         }
     }
 
+    // Remove the branch if it hits the bottom
     hitBottom() {
         var rockbottom = 800; // Change this value
         if (this.y > rockbottom) {
@@ -383,6 +391,7 @@ class left_branches {
         }
     }
 
+    // Creates the new position
     newPos() {
         this.x += this.speedX;
         this.y += this.speedY + this.gravity;
