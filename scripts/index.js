@@ -110,7 +110,7 @@ function increaseDifficulty(){
     }
 }
 function spawnObstacle() {
-    if(spawnInc >= spawnRate){//spawn every 8 seconds
+    if(spawnInc >= spawnRate){
         spawnInc = 0;
         var r = Math.random();
         //good obstacle
