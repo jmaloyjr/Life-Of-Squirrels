@@ -58,9 +58,9 @@ function gameTimer() {
 function on_tick() {
     r = Math.floor((Math.random() * 500) + 1);
     if(r == 1){
-        //obstacles.push(new left_branches());
+        obstacles.push(new left_branches());
     } else if(r == 2){
-        //obstacles.push(new right_branches());
+        obstacles.push(new right_branches());
     }
     if(obstacles.length > 0)
     {
