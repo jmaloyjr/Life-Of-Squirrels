@@ -11,6 +11,7 @@ html, body{
 #infoBar > div {
     margin: 5px;
     border: solid black 3px;
+    z-index:9;
 }
 
 #game 
@@ -25,7 +26,28 @@ html, body{
     height: auto; 
     z-index: 10;
     left: 1200px;
-    top: 600px;
+    top: 500px;
+}
+#playerScoreTitle{
+    font-family: 'Luckiest Guy', sans-serif;
+    font-size: 25px;
+    color: darkslategray;
+    position: absolute;
+    left: 90px;
+    top: 50px;
+}
+#playerScore {
+    font-family: 'Luckiest Guy', sans-serif;
+    font-size: 25px;
+    color: darkslategray;
+    position: relative;
+}
+#customize{
+    font-family: 'Luckiest Guy', sans-serif;
+    font-size: 25px;
+    position: absolute;
+    left: 100px;
+    top: 40px;
 }
 #bg
 {
@@ -39,7 +61,21 @@ html, body{
     background-size: 800px;
     margin-top:-100%;
 }
-#branch_left {
+.left-obj {
+    position: absolute;
+    /*width: 40%;
+    height: 40%; */
+    left: 370px;
+    top: 0px;
+    z-index: 8;
+}
+.right-obj {
+    position: absolute;
+    right: 370px;
+    top: 0px;
+    z-index: 8;
+}
+/*#branch_left {
     position: absolute;
     background: url(images/branch_left.png);
     width: 120px;
@@ -59,7 +95,22 @@ html, body{
     top: 0px;
     z-index: 9;
  }
-
+#chickfila_left {
+    position: absolute;
+    width: 40%;
+    height: 40%; 
+    left: 335px;
+    top: 0px;
+    z-index: 9;
+}
+#chickfila_right {
+    position: absolute;
+    width: 40%;
+    height: 40%; 
+    left: 960px;
+    top: 0px;
+    z-index: 9;
+}*/
 #tree {
     position: relative;
     background: brown url(images/bark.png);
@@ -95,17 +146,19 @@ html, body{
 
 
 #scoreContainer{
+background-color: lightblue;
 }
 
 #playerScore {
     position: absolute;
-    left: 50%;
-    top: 50%;
+    left: 200px;
+    top: 67px;
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
 }
 
 #timer{
+    font-family: 'Luckiest Guy', sans-serif;
     position: absolute;
     left: 50%;
     top: 50%;
@@ -138,9 +191,10 @@ html, body{
 
 }
 #gameTimer {
+    font-family: 'Luckiest Guy', sans-serif;
     background-color: green;
     text-align: center;
-    padding: 15px 0;
+    padding: 10px 0;
 }
 .jumbotron{
     background-color:#e9ecef8c !important;
@@ -162,10 +216,9 @@ html, body{
     padding: 15px 0;
     position: absolute;
 }
-
-.back-button{
+.custom-button{
     font-family: 'Luckiest Guy', sans-serif;
-    padding: 15px 0;
+    padding: 15px 130px;
     position: absolute;
 }
 

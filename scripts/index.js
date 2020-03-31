@@ -3,27 +3,41 @@ var seconds = 0;
 var minutes = 0;
 var hours = 0;
 var leftKey = 37, rightKey = 39;
-var squirrelLeftTree = 200;
-var squirrelRightTree = 1200;
+var squirrelLeftTree = 375;
+var squirrelRightTree = 1110;
 var loading = 1;
+var customFlag = 0;
 var obstacles = [];
 var spawnInc = 0;
+var spawnRate = 1500;
+var branchLeftOnScreen = false;
+var branchRightOnScreen = false;
+var chickfilaLeftOnScreen = false;
+var chickfilaRightOnScreen = false;
+var acornLeftOnScreen = false;
+var acornRightOnScreen = false;
+var goldAcornLeftOnScreen = false;
+var goldAcornRightOnScreen = false;
+var coneLeftOnScreen = false;
+var coneRightOnScreen = false;
+var hawkLeftOnScreen = false;
+var hawkRightOnScreen = false;
 var playerAlive = false;
 var shouldCollide = true;
+var obstacleSpeed = 0.5;
 
 function onLoad() {
-    console.log("reached onLoad");
     h2 = document.getElementsByTagName('h2')[0];
     start = document.getElementById('start');
     stop = document.getElementById('stop');
     clear = document.getElementById('clear');
-    squirrelImg = document.getElementById('squirrelImg');
     restartTimer();
     playerAlive = true;
     asquirrel = new squirrel(squirrelRightTree, squirrelLeftTree, squirrelRightTree, squirrelImg);
 
     //obstacles.push(new right_branches());
     //obstacles.push(new left_branches());
+    this.difficulty = setInterval(increaseDifficulty, 5000);
     this.on_tick = setInterval(on_tick, 1);
 
     $('body').keydown(function(event){
@@ -39,8 +53,15 @@ function onLoad() {
 
     gameTimer();
 }
-
-
+//This changes the squirrel image to blue
+//Must change so this happens to people whos scores are >100
+function customChar() {
+    window.alert("You can customize your squirrel once you reach 100 points!");
+    customFlag++;
+    if (customFlag == 3){
+        customFlag = 0;
+    }
+}
 function add() {
     seconds++;
     if (seconds >= 60) {
@@ -61,69 +82,195 @@ function gameTimer() {
 }
 
 function on_tick() {
-    //console.log("reached ontick");
     if(loading == 2){
-        console.log("first ontick");
         setTimeout(spawnObstacle, 5000);
         loading++;
     }
     else if(playerAlive){
-        //console.log("all other onticks")
         spawnObstacle();
     }
-    
-    /*r = Math.floor((Math.random() * 500) + 1);
-    if(r == 1){
-        //obstacles.push(new left_branches());
-    } else if(r == 2){
-        //obstacles.push(new right_branches());
-    }*/
     if(obstacles.length > 0)
     {
         obstacles.forEach(obj => obj.newPos());
     }
 }
 
+function increaseDifficulty(){
+    if(spawnRate>500){
+        spawnRate-=200;
+        spawnInc = spawnRate;
+        spawnObstacle();
+    }
+    if(obstacleSpeed<1.3){
+        obstacleSpeed+=0.2;
+    }
+}
 function spawnObstacle() {
-    //console.log("reached spawnObstacles");
-    if(spawnInc == 2000){//spawn every 5000ms
+    if(spawnInc >= spawnRate){//spawn every 8 seconds
         spawnInc = 0;
-        console.log("inside if of spawnObstacles");
         var r = Math.random();
         //good obstacle
-        if(r<0){
+        if(r<0.50){
             var i = Math.random();
             //chickfila
-            if(i < 0.50){
-
+            if(i < 0.40){
+                var leftOrRight = Math.random();
+                //left chickfila
+                if(leftOrRight < 0.50){
+                    if(chickfilaLeftOnScreen){
+                        spawnObstacle();
+                    }
+                    else {
+                        $("#chickfila_left").removeClass('hidden');
+                        chickfilaLeftOnScreen = true;
+                        obstacles.push(new left_obstacles("chickfila"));
+                    }
+                }
+                //right chickfila
+                else{
+                    if(chickfilaRightOnScreen){
+                        spawnObstacle();
+                    }
+                    else {
+                        $("#chickfila_right").removeClass('hidden');
+                        chickfilaRightOnScreen = true;
+                        obstacles.push(new right_obstacles("chickfila"));
+                    }
+                }
             }
-            //acorn
-            else{
-
+            //regular acorn
+            else if(i < 0.80){
+                var leftOrRight = Math.random();
+                //left reg acorn
+                if(leftOrRight < 0.50){
+                    if(acornLeftOnScreen){
+                        spawnObstacle();
+                    }
+                    else {
+                        $("#acorn_left").removeClass('hidden');
+                        acornLeftOnScreen = true;
+                        obstacles.push(new left_obstacles("acorn"));
+                    }
+                }
+                //right reg acorn
+                else{
+                    if(acornRightOnScreen){
+                        spawnObstacle();
+                    }
+                    else {
+                        $("#acorn_right").removeClass('hidden');
+                        acornRightOnScreen = true;
+                        obstacles.push(new right_obstacles("acorn"));
+                    }
+                }
+            }
+            //golden acorn
+            else {
+                var leftOrRight = Math.random();
+                //left golden acorn
+                if(leftOrRight < 0.50){
+                    if(goldAcornLeftOnScreen){
+                        spawnObstacle();
+                    }
+                    else {
+                        $("#gold_acorn_left").removeClass('hidden');
+                        goldAcornLeftOnScreen = true;
+                        obstacles.push(new left_obstacles("gold_acorn"));
+                    }
+                }
+                //right golden acorn
+                else{
+                    if(goldAcornRightOnScreen){
+                        spawnObstacle();
+                    }
+                    else {
+                        $("#gold_acorn_right").removeClass('hidden');
+                        goldAcornRightOnScreen = true;
+                        obstacles.push(new right_obstacles("gold_acorn"));
+                    }
+                }
             }
         }
         //bad obstacle
         else {
             var i = Math.random();
             //branch
-            if(i < 1){
+            if(i < 0.40){
                 var leftOrRight = Math.random();
                 //left branch
                 if(leftOrRight < 0.50){
-                    console.log("spawning left branch");
-                    $("#branch_left").removeClass('hidden');
-                    obstacles.push(new left_branches());
+                    if(branchLeftOnScreen){
+                        spawnObstacle();
+                    }
+                    else{
+                        $("#branch_left").removeClass('hidden');
+                        branchLeftOnScreen = true;
+                        obstacles.push(new left_obstacles("branch"));
+                    }
                 }
                 //right branch
                 else {
-                    console.log("spawning right branch");
-                    $("#branch_right").removeClass('hidden');
-                    obstacles.push(new right_branches());
+                    if(branchRightOnScreen){
+                        spawnObstacle();
+                    }
+                    else{
+                        $("#branch_right").removeClass('hidden');
+                        branchRightOnScreen = true;
+                        obstacles.push(new right_obstacles("branch"));
+                    }
+                }
+            }
+            //construction cone
+            else if(i < 0.80){
+                var leftOrRight = Math.random();
+                //left cone
+                if(leftOrRight < 0.50){
+                    if(coneLeftOnScreen){
+                        spawnObstacle();
+                    }
+                    else {
+                        $("#cone_left").removeClass('hidden');
+                        coneLeftOnScreen = true;
+                        obstacles.push(new left_obstacles("cone"));
+                    }
+                }
+                //right cone
+                else {
+                    if(coneRightOnScreen){
+                        spawnObstacle();
+                    }
+                    else{
+                        $("#cone_right").removeClass('hidden');
+                        coneRightOnScreen = true;
+                        obstacles.push(new right_obstacles("cone"));
+                    }
                 }
             }
             //hawk
-            else{
-
+            else {
+                var leftOrRight = Math.random();
+                //left hawk
+                if(leftOrRight < 0.50){
+                    if(hawkLeftOnScreen){
+                        spawnObstacle();
+                    }
+                    else {
+                        $("#hawk_left").removeClass('hidden');
+                        hawkLeftOnScreen = true;
+                        obstacles.push(new left_obstacles("hawk"));
+                    }
+                }
+                //right hawk
+                else {
+                    if(hawkRightOnScreen){
+                        spawnObstacle();
+                    }
+                    else{
+                        $("#hawk_right").removeClass('hidden');
+                        hawkRightOnScreen = true;
+                        obstacles.push(new right_obstacles("hawk"));
+                    }
+                }
             }
         }
     }
@@ -194,13 +341,12 @@ function addHeart() {
 }
 
 function titleScreen() {
-    while(obstacles.length>0){
-        obstacles.pop();
-    }
     $('#gameScreen').addClass('hidden');
     $('#directions-page').addClass('hidden');
     $('#endGameScreen').addClass('hidden');
     $('#start-page').removeClass('hidden');
+    obstacleSpeed = 0.5;
+    spawnRate = 1500;
     playerAlive = false;
     flag = 1;
 }
@@ -231,6 +377,8 @@ function endGame() {
     $('#heart3').removeClass('removed');
     $('#endGameText').text("Your score was: "  + $('#playerScore').text());
     $('#endGameScreen').removeClass('hidden');
+    obstacleSpeed = 0.5;
+    spawnRate = 1500;
     playerAlive = false;
     flag = 1;
     seconds = 0; minutes = 0; hours = 0;
@@ -252,7 +400,15 @@ var squirrel = function (xPos, leftX, rightX, squirrelImg) {
     this.initialize=function()
     {
         $('#squirrel').css("left",self.Position+'px');
-        self.squirrelImg.src="../style/images/squirrel-right.gif";
+        if(customFlag == 1){
+        self.squirrelImg.src="../style/images/blue-squirrel-right.gif";
+        }
+        else if (customFlag == 2){
+            self.squirrelImg.src="../style/images/lime-squirrel-right.gif";
+        }
+        else{
+            self.squirrelImg.src="../style/images/squirrel-right.gif";
+        }
     };
     this.setPosition = function (xPos) {
         if (xPos < self.leftX) {
@@ -271,7 +427,16 @@ var squirrel = function (xPos, leftX, rightX, squirrelImg) {
         self.doneMovement = false;
         self.changePosInterval = setInterval(function () { self.changePosition(-1 * self.movePixels); }, self.frames);
         self.checkEndMovementInterval = setInterval(function () { self.atEndLoc(self.leftX); }, self.frames);
-        self.squirrelImg.src = "../style/images/squirrel-left-jump.gif";
+        if(customFlag == 1){
+            self.squirrelImg.src="../style/images/blue-squirrel-left-jump.gif";
+            }
+            else if (customFlag == 2){
+                self.squirrelImg.src="../style/images/lime-squirrel-left-jump.gif";
+            }
+            else{
+                self.squirrelImg.src="../style/images/squirrel-left-jump.gif";
+            }
+
     };
 
     this.moveRight = function () {
@@ -279,17 +444,41 @@ var squirrel = function (xPos, leftX, rightX, squirrelImg) {
         self.doneMovement = false;
         self.changePosInterval = setInterval(function () { self.changePosition(self.movePixels); }, self.frames);
         self.checkEndMovementInterval = setInterval(function () { self.atEndLoc(self.rightX); }, self.frames);
-        self.squirrelImg.src = "../style/images/squirrel-right-jump.gif";
+        if(customFlag == 1){
+            self.squirrelImg.src="../style/images/blue-squirrel-right-jump.gif";
+            }
+            else if (customFlag == 2){
+                self.squirrelImg.src="../style/images/lime-squirrel-right-jump.gif";
+            }
+            else{
+                self.squirrelImg.src="../style/images/squirrel-right-jump.gif";
+            }
     };
 
     this.atEndLoc = function (endPos) {
         if (endPos == self.Position) {
             self.doneMovement = true;
             if (endPos == rightX) {
-                self.squirrelImg.src = "../style/images/squirrel-right.gif";
+                if(customFlag == 1){
+                    self.squirrelImg.src="../style/images/blue-squirrel-right.gif";
+                    }
+                    else if (customFlag == 2){
+                        self.squirrelImg.src="../style/images/lime-squirrel-right.gif";
+                    }
+                    else{
+                        self.squirrelImg.src="../style/images/squirrel-right.gif";
+                    }
             }
             else {
-                self.squirrelImg.src = "../style/images/squirrel-left.gif";
+                if(customFlag == 1){
+                    self.squirrelImg.src="../style/images/blue-squirrel-left.gif";
+                    }
+                    else if (customFlag == 2){
+                        self.squirrelImg.src="../style/images/lime-squirrel-left.gif";
+                    }
+                    else{
+                        self.squirrelImg.src="../style/images/squirrel-left.gif";
+                    }
             }
         }
     };
@@ -318,12 +507,31 @@ function setShouldCollide(){
 }
 
 // Class to create right branches
-class right_branches {
-    constructor() {
+class right_obstacles {
+    constructor(type) {
         this.x = 0; //x_start;
         this.y = 0; //y_start;
+        this.type = type;
+        if(this.type==="branch"){
+            this.height = document.getElementById("branch_right").height
+        }
+        else if(this.type === "chickfila"){
+            this.height = document.getElementById("chickfila_right").height
+        }
+        else if(this.type === "acorn"){
+            this.height = document.getElementById("acorn_right").height
+        }
+        else if(this.type === "gold_acorn"){
+            this.height = document.getElementById("gold_acorn_right").height
+        }
+        else if(this.type === "cone"){
+            this.height = document.getElementById("cone_right").height
+        }
+        else{
+            this.height = document.getElementById("hawk_right").height
+        }
         this.speedX = 0;
-        this.speedY = 0.5;
+        this.speedY = obstacleSpeed;
         this.gravity = 0.05;
         this.frames = 10;
         this.tick = 0;
@@ -334,18 +542,60 @@ class right_branches {
         $('#branch_right').css("top",this.y+'px');
 
         // Checks if the player has collided with the branch
-        if(shouldCollide && is_colliding($('#squirrel'), $("#branch_right"))){
+        if(shouldCollide && is_colliding($('#squirrel'), $('#' + this.type + "_right"))){
             shouldCollide = false;
             setTimeout(setShouldCollide(), 1000);
             console.log("Collided!");
+        }
+        if(this.type==="branch"){
+            $('#branch_right').css("top",this.y+'px');
+        }
+        else if(this.type === "chickfila"){
+            $('#chickfila_right').css("top",this.y+'px');
+        }
+        else if(this.type === "acorn"){
+            $('#acorn_right').css("top",this.y+'px');
+        }
+        else if(this.type === "gold_acorn"){
+            $('#gold_acorn_right').css("top",this.y+'px');
+        }
+        else if(this.type === "cone"){
+            $('#cone_right').css("top",this.y+'px');
+        }
+        else if(this.type === "hawk"){
+            $('#hawk_right').css("top",this.y+'px');
         }
     }
 
     // Removes the branch if the player hits the bottom
     hitBottom() {
-        var rockbottom = 800; // Change this value
-        if (this.y > rockbottom) {
-          obstacles.splice(0,1);
+        var rockbottom = 750; // Change this value
+        if (this.y + this.height > rockbottom) {
+            obstacles.splice(0,1);
+            if(this.type === "branch"){
+                $('#branch_right').addClass('hidden');
+                branchRightOnScreen = false;
+            }
+            else if(this.type==="chickfila"){
+                $('#chickfila_right').addClass('hidden');
+                chickfilaRightOnScreen = false;
+            }
+            else if(this.type==="acorn"){
+                $('#acorn_right').addClass('hidden');
+                acornRightOnScreen = false;
+            }
+            else if(this.type==="gold_acorn"){
+                $('#gold_acorn_right').addClass('hidden');
+                goldAcornRightOnScreen = false;
+            }
+            else if(this.type === "cone"){
+                $('#cone_right').addClass('hidden');
+                coneRightOnScreen = false;
+            }
+            else if(this.type === "hawk"){
+                $('#hawk_right').addClass('hidden');
+                hawkRightOnScreen = false;
+            }
         }
     }
 
@@ -360,34 +610,96 @@ class right_branches {
 }
 
 // Class to create left_branches
-class left_branches {
-    constructor() {
+class left_obstacles {
+    constructor(type) {
         this.x = 0; //x_start;
         this.y = 0; //y_start;
+        this.type = type;
+        if(this.type==="branch"){
+            this.height = document.getElementById("branch_left").height
+        }
+        else if(this.type === "chickfila"){
+            this.height = document.getElementById("chickfila_left").height
+        }
+        else if(this.type === "acorn"){
+            this.height = document.getElementById("acorn_left").height
+        }
+        else if(this.type === "gold_acorn"){
+            this.height = document.getElementById("gold_acorn_left").height
+        }
+        else if(this.type === "cone"){
+            this.height = document.getElementById("cone_left").height
+        }
+        else{
+            this.height = document.getElementById("hawk_left").height
+        }
         this.speedX = 0;
-        this.speedY = 0.5;
+        this.speedY = obstacleSpeed;
         this.gravity = 0.05;
         this.frames = 10;
     }
 
     // Called every tick to update position of branch
     update() {
-        $('#branch_left').css("top",this.y+'px');
+      //  $('#branch_left').css("top",this.y+'px');
 
-        // Checks if the player has collided with the branch
-        if(shouldCollide && is_colliding($('#squirrel'), $("#branch_left"))){
+        // Checks if the player has collided with an object
+        if(shouldCollide && is_colliding($('#squirrel'), $('#' + this.type + "_left"))){
             shouldCollide = false;
             setTimeout(setShouldCollide(), 1000);
             console.log("Collided!");
+        }
+        
+        if(this.type === "branch"){
+            $('#branch_left').css("top",this.y+'px');
+        }
+        else if(this.type==="chickfila"){
+            $('#chickfila_left').css("top",this.y+'px');
+        }
+        else if(this.type==="acorn"){
+            $('#acorn_left').css("top",this.y+'px');
+        }
+        else if(this.type==="gold_acorn"){
+            $('#gold_acorn_left').css("top",this.y+'px');
+        }
+        else if(this.type === "cone"){
+            $('#cone_left').css("top",this.y+'px');
+        }
+        else if(this.type === "hawk"){
+            $('#hawk_left').css("top",this.y+'px');
         }
     }
 
     // Remove the branch if it hits the bottom
     hitBottom() {
-        var rockbottom = 800; // Change this value
-        if (this.y > rockbottom) {
-          //this.y = 0;
-          obstacles.splice(0,1);
+        var rockbottom = 750; // Change this value
+        if (this.y + this.height > rockbottom) {
+            //this.y = 0;
+            obstacles.splice(0,1);
+            if(this.type === "branch"){
+                $('#branch_left').addClass('hidden');
+                branchLeftOnScreen = false;
+            }
+            else if(this.type==="chickfila"){
+                $('#chickfila_left').addClass('hidden');
+                chickfilaLeftOnScreen = false;
+            }
+            else if(this.type==="acorn"){
+                $('#acorn_left').addClass('hidden');
+                acornLeftOnScreen = false;
+            }
+            else if(this.type==="gold_acorn"){
+                $('#gold_acorn_left').addClass('hidden');
+                goldAcornLeftOnScreen = false;
+            }
+            else if(this.type === "cone"){
+                $('#cone_left').addClass('hidden');
+                coneLeftOnScreen = false;
+            }
+            else if(this.type === "hawk"){
+                $('#hawk_left').addClass('hidden');
+                hawkLeftOnScreen = false;
+            }
         }
     }
 

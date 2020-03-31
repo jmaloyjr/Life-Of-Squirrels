@@ -63,7 +63,10 @@
             <!-- Info bar that will hold health, score and a timer -->
             <div class="row" id="infoBar">
                 <div class="col" id="scoreContainer">
-                    <div id="playerScore">1000</div>
+                    
+                    <div class="text-center custom-button">
+                        <button onclick="customChar()" type="button" class="btn btn-dark btn-lg">Customize</button>
+                    </div>
                     <div class="text-center back-button">
                         <button onclick="titleScreen()" type="button" class="btn btn-info btn-lg">Home</button>
                     </div>
@@ -83,6 +86,8 @@
                 </div>
                 <div class="col" id="gameTimer">
                     <h2><time>00:00:00</time></h2>
+                    <div id="playerScoreTitle">Score:</div>
+                    <div id="playerScore">1000</div>
                 </div>
             </div>
 
@@ -93,14 +98,33 @@
                 </div>
                 <div class="col" id="tree">
                 </div>
-                <!--<div class='branch_left'>
-                    <img src="style/images/branch_left.png" style="height:20%;">
-                </div>-->
+                <div id = "obstacles">
+                    <img class="hidden left-obj" id = "branch_left" src="style/images/branch_left.png" style="height:10%;">
+                    
+                    <img class="hidden right-obj" id = "branch_right" src="style/images/branch_right.png" style="height:10%;">
+                    
+                    <img class="hidden left-obj" id = "chickfila_left" src="style/images/chickfila.png" style = "height:10%;">
+                    
+                    <img class="hidden right-obj" id = "chickfila_right" src="style/images/chickfila.png" style = "height:10%;">
+                    
+                    <img class="hidden left-obj" id = "acorn_left" src="style/images/acorn.png" style = "height:10%;">
+                    
+                    <img class="hidden right-obj" id = "acorn_right" src="style/images/acorn.png" style = "height:10%;">
+                    
+                    <img class="hidden left-obj" id = "gold_acorn_left" src="style/images/golden_acorn.png" style = "height:10%;">
+                    
+                    <img class="hidden right-obj" id = "gold_acorn_right" src="style/images/golden_acorn.png" style = "height:10%;">
+                    
+                    <img class="hidden left-obj" id = "cone_left" src="style/images/construction_cone_left.png" style = "height:15%;">
+                    
+                    <img class = "hidden right-obj" id = "cone_right" src="style/images/construction_cone_right.png" style = "height:15%;">
+                    
+                    <img class="hidden left-obj" id = "hawk_left" src="style/images/hawk.gif" style = "height:30%;">
+                    
+                    <img class="hidden right-obj" id = "hawk_right" src="style/images/hawk.gif" style = "height:30%;">
+                </div>
                 <div class="col-6" id="bg">
                 </div>
-                <!--<div class='branch_right'>
-                    <img src="style/images/branch_right.png" style="height:20%;">
-                </div>-->
                 <div class="col" id="tree">
                 </div>
             </div>
