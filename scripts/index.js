@@ -9,7 +9,7 @@ var loading = 1;
 var customFlag = 0;
 var obstacles = [];
 var spawnInc = 0;
-var spawnRate = 500;
+var spawnRate = 1500;
 var branchLeftOnScreen = false;
 var branchRightOnScreen = false;
 var chickfilaLeftOnScreen = false;
@@ -328,7 +328,6 @@ function removeHeart() {
     } else {
         heart1.addClass('removed');
     }
-    console.log('removed');
 }
 
 // Used to add heart when the squirrel picks up a heart
@@ -350,8 +349,6 @@ function titleScreen() {
     $('#directions-page').addClass('hidden');
     $('#endGameScreen').addClass('hidden');
     $('#start-page').removeClass('hidden');
-    addHeart();
-    addHeart();
     obstacleSpeed = 0.5;
     spawnRate = 1500;
     playerAlive = false;
@@ -363,7 +360,6 @@ function startGame() {
     $('#endGameScreen').addClass('hidden');
     $('#gameScreen').removeClass('hidden');
     $('#playerScore').text(0);
-    playerAlive = true;
 
     firstLoad();
     restartTimer();
@@ -388,6 +384,8 @@ function endGame() {
     obstacleSpeed = 0.5;
     spawnRate = 1500;
     playerAlive = false;
+    playerScore = 0;
+    customFlag = 0;
     flag = 1;
     seconds = 0; minutes = 0; hours = 0;
 }
