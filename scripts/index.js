@@ -102,7 +102,7 @@ function on_tick() {
 function increaseDifficulty(){
     if(spawnRate>500){
         spawnRate-=200;
-        spawnInc = spawnRate;
+        spawnInc = spawnRate/2;
         spawnObstacle();
     }
     if(obstacleSpeed<1.3){
