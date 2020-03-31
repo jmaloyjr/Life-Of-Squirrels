@@ -23,6 +23,7 @@ var coneRightOnScreen = false;
 var hawkLeftOnScreen = false;
 var hawkRightOnScreen = false;
 var playerAlive = false;
+var shouldCollide = true;
 var obstacleSpeed = 0.5;
 
 function onLoad() {
@@ -280,7 +281,7 @@ function spawnObstacle() {
 
 var is_colliding = function( $div1, $div2 ) {
 	// Div 1 data
-	/*var d1_offset             = $div1.offset();
+	var d1_offset             = $div1.offset();
 	var d1_height             = $div1.outerHeight( true );
 	var d1_width              = $div1.outerWidth( true );
 	var d1_distance_from_top  = d1_offset.top + d1_height;
@@ -296,7 +297,7 @@ var is_colliding = function( $div1, $div2 ) {
 	var not_colliding = ( d1_distance_from_top < d2_offset.top || d1_offset.top > d2_distance_from_top || d1_distance_from_left < d2_offset.left || d1_offset.left > d2_distance_from_left );
 
 	// Return whether it IS colliding
-	return ! not_colliding;*/
+	return ! not_colliding;
 };
 
 
@@ -501,6 +502,12 @@ var squirrel = function (xPos, leftX, rightX, squirrelImg) {
     this.initialize();
 }
 
+function setShouldCollide(){
+    console.log(is_colliding($('#squirrel'), $("#branch_right")));
+    //shouldCollide = true;
+}
+
+// Class to create right branches
 class right_obstacles {
     constructor(type) {
         this.x = 0; //x_start;
@@ -528,9 +535,21 @@ class right_obstacles {
         this.speedY = obstacleSpeed;
         this.gravity = 0.05;
         this.frames = 10;
+        this.tick = 0;
     }
 
+    // Called every tick to update the position of the branch
     update() {
+        if(shouldCollide && is_colliding($('#squirrel'), $('#' + this.type + "_right"))){
+            shouldCollide = false;
+            //setTimeout(setShouldCollide(), 1000);
+            console.log("Collided!");
+        }
+        if(!shouldCollide && !is_colliding($('#squirrel'), $('#' +  this.type + "_right"))){
+            console.log("Done Collision");
+            shouldCollide = true;
+        }
+
         if(this.type==="branch"){
             $('#branch_right').css("top",this.y+'px');
         }
@@ -551,6 +570,7 @@ class right_obstacles {
         }
     }
 
+    // Removes the branch if the player hits the bottom
     hitBottom() {
         var rockbottom = 750; // Change this value
         if (this.y + this.height > rockbottom) {
@@ -582,6 +602,8 @@ class right_obstacles {
         }
     }
 
+    
+    // Creates the new position
     newPos() {
         this.x += this.speedX;
         this.y += this.speedY + this.gravity;
@@ -590,6 +612,7 @@ class right_obstacles {
     }
 }
 
+// Class to create left_branches
 class left_obstacles {
     constructor(type) {
         this.x = 0; //x_start;
@@ -617,14 +640,19 @@ class left_obstacles {
         this.speedY = obstacleSpeed;
         this.gravity = 0.05;
         this.frames = 10;
-        this.shouldCollide = 0;
     }
 
-    setShouldCollide(){
-        this.shouldCollide = 0;
-    }
-    
+    // Called every tick to update position of branch
     update() {
+        if(shouldCollide && is_colliding($('#squirrel'), $('#' + this.type + "_left"))){
+            shouldCollide = false;
+            console.log("Collided!");
+        }
+        if(!shouldCollide && !is_colliding($('#squirrel'), $('#' + this.type + "_left"))){
+            console.log("Done Collision");
+            shouldCollide = true;
+        }
+
         if(this.type === "branch"){
             $('#branch_left').css("top",this.y+'px');
         }
@@ -643,14 +671,9 @@ class left_obstacles {
         else if(this.type === "hawk"){
             $('#hawk_left').css("top",this.y+'px');
         }
-        console.log("SHOULD: " + this.shouldCollide.toString());
-        if(this.shouldCollide == 0 && is_colliding($('#squirrel'), $('.branch_left'))){
-            this.shouldCollide = 1;
-             setTimeout(this.setShouldCollide(), 1000);
-            console.log("Collided!");
-        }
     }
 
+    // Remove the branch if it hits the bottom
     hitBottom() {
         var rockbottom = 750; // Change this value
         if (this.y + this.height > rockbottom) {
@@ -683,6 +706,7 @@ class left_obstacles {
         }
     }
 
+    // Creates the new position
     newPos() {
         this.x += this.speedX;
         this.y += this.speedY + this.gravity;
