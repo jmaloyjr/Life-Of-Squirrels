@@ -62,17 +62,15 @@ html, body{
 }
 .left-obj {
     position: absolute;
-    width: 40%;
-    height: 40%; 
-    left: 335px;
+    /*width: 40%;
+    height: 40%; */
+    left: 370px;
     top: 0px;
     z-index: 9;
 }
 .right-obj {
     position: absolute;
-    width: 40%;
-    height: 40%; 
-    left: 960px;
+    right: 370px;
     top: 0px;
     z-index: 9;
 }

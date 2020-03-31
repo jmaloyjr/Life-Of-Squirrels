@@ -3,8 +3,8 @@ var seconds = 0;
 var minutes = 0;
 var hours = 0;
 var leftKey = 37, rightKey = 39;
-var squirrelLeftTree = 200;
-var squirrelRightTree = 1200;
+var squirrelLeftTree = 375;
+var squirrelRightTree = 1110;
 var loading = 1;
 var customFlag = false;
 var obstacles = [];
@@ -137,7 +137,7 @@ function spawnObstacle() {
         else {
             var i = Math.random();
             //branch
-            if(i < 0.33){
+            if(i < 0.40){
                 var leftOrRight = Math.random();
                 //left branch
                 if(leftOrRight < 0.50){
@@ -151,7 +151,7 @@ function spawnObstacle() {
                 }
             }
             //construction cone
-            else if(i < 0.66){
+            else if(i < 0.80){
                 var leftOrRight = Math.random();
                 //left cone
                 if(leftOrRight < 0.50){
@@ -303,10 +303,10 @@ var squirrel = function (xPos, leftX, rightX, squirrelImg) {
     {
         $('#squirrel').css("left",self.Position+'px');
         if(customFlag){
-        self.squirrelImg.src="../style/images/blue-squirrel-left.gif";
+        self.squirrelImg.src="../style/images/blue-squirrel-right.gif";
         }
         else{
-            self.squirrelImg.src="../style/images/squirrel-left.gif";
+            self.squirrelImg.src="../style/images/squirrel-right.gif";
         }
     };
     this.setPosition = function (xPos) {
