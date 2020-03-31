@@ -542,14 +542,17 @@ class right_obstacles {
         if(shouldCollide && is_colliding($('#squirrel'), $('#' + this.type + "_right"))){
             shouldCollide = false;
             if(this.type == "chickfila"){
+                $('#chickfila_right').addClass('hidden');
                 playerScore = playerScore + 50;
                 $('#playerScore').text(playerScore);
             }
             else if(this.type == "acorn"){
+                $('#acorn_right').addClass('hidden');
                 playerScore = playerScore + 20;
                 $('#playerScore').text(playerScore);
             }
             else if(this.type == "gold_acorn"){
+                $('#gold_acorn_right').addClass('hidden');
                 playerScore = playerScore + 100;
                 $('#playerScore').text(playerScore);
             }
@@ -661,14 +664,17 @@ class left_obstacles {
         if(shouldCollide && is_colliding($('#squirrel'), $('#' + this.type + "_left"))){
             shouldCollide = false;
             if(this.type == "chickfila"){
+                $('#chickfila_left').addClass('hidden');
                 playerScore = playerScore + 50;
                 $('#playerScore').text(playerScore);
             }
             else if(this.type == "acorn"){
+                $('#acorn_left').addClass('hidden');
                 playerScore = playerScore + 20;
                 $('#playerScore').text(playerScore);
             }
             else if(this.type == "gold_acorn"){
+                $('#gold_acorn_left').addClass('hidden');
                 playerScore = playerScore + 100;
                 $('#playerScore').text(playerScore);
             }
