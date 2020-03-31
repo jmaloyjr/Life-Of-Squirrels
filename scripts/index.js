@@ -25,6 +25,7 @@ var hawkRightOnScreen = false;
 var playerAlive = false;
 var shouldCollide = true;
 var obstacleSpeed = 0.5;
+var playerScore = 0;
 
 function onLoad() {
     h2 = document.getElementsByTagName('h2')[0];
@@ -540,7 +541,22 @@ class right_obstacles {
         // Checks for collision with obstacles
         if(shouldCollide && is_colliding($('#squirrel'), $('#' + this.type + "_right"))){
             shouldCollide = false;
-            removeHeart();
+            if(this.type == "chickfila"){
+                playerScore = playerScore + 50;
+                $('#playerScore').text(playerScore);
+            }
+            else if(this.type == "acorn"){
+                playerScore = playerScore + 20;
+                $('#playerScore').text(playerScore);
+            }
+            else if(this.type == "gold_acorn"){
+                playerScore = playerScore + 100;
+                $('#playerScore').text(playerScore);
+            }
+            else{
+                removeHeart();
+            }
+            $('#playerScore').text(playerScore);
         }
         if(!shouldCollide && !is_colliding($('#squirrel'), $('#' +  this.type + "_right"))){
             shouldCollide = true;
@@ -644,7 +660,22 @@ class left_obstacles {
         // Checks for collision with obstacles
         if(shouldCollide && is_colliding($('#squirrel'), $('#' + this.type + "_left"))){
             shouldCollide = false;
-            removeHeart();
+            if(this.type == "chickfila"){
+                playerScore = playerScore + 50;
+                $('#playerScore').text(playerScore);
+            }
+            else if(this.type == "acorn"){
+                playerScore = playerScore + 20;
+                $('#playerScore').text(playerScore);
+            }
+            else if(this.type == "gold_acorn"){
+                playerScore = playerScore + 100;
+                $('#playerScore').text(playerScore);
+            }
+            else{
+                removeHeart();
+            }
+            
         }
         if(!shouldCollide && !is_colliding($('#squirrel'), $('#' + this.type + "_left"))){
             shouldCollide = true;
