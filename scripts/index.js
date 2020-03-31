@@ -98,7 +98,7 @@ function spawnObstacle() {
             if(i < 0.40){
                 var leftOrRight = Math.random();
                 //left chickfila
-                if(leftOrRight < 1){
+                if(leftOrRight < 0.50){
                     $("#chickfila_left").removeClass('hidden');
                     obstacles.push(new left_obstacles("chickfila"));
                 }
@@ -112,7 +112,7 @@ function spawnObstacle() {
             else if(i < 0.80){
                 var leftOrRight = Math.random();
                 //left reg acorn
-                if(leftOrRight < 1){
+                if(leftOrRight < 0.50){
                     $("#acorn_left").removeClass('hidden');
                     obstacles.push(new left_obstacles("acorn"));
                 }
@@ -126,7 +126,7 @@ function spawnObstacle() {
             else {
                 var leftOrRight = Math.random();
                 //left golden acorn
-                if(leftOrRight < 1){
+                if(leftOrRight < 0.50){
                     $("#gold_acorn_left").removeClass('hidden');
                     obstacles.push(new left_obstacles("gold_acorn"));
                 }
@@ -144,7 +144,7 @@ function spawnObstacle() {
             if(i < 0.40){
                 var leftOrRight = Math.random();
                 //left branch
-                if(leftOrRight < 1){
+                if(leftOrRight < 0.50){
                     $("#branch_left").removeClass('hidden');
                     obstacles.push(new left_obstacles("branch"));
                 }
@@ -158,7 +158,7 @@ function spawnObstacle() {
             else if(i < 0.80){
                 var leftOrRight = Math.random();
                 //left cone
-                if(leftOrRight < 1){
+                if(leftOrRight < 0.50){
                     $("#cone_left").removeClass('hidden');
                     obstacles.push(new left_obstacles("cone"));
                 }
@@ -172,7 +172,7 @@ function spawnObstacle() {
             else {
                 var leftOrRight = Math.random();
                 //left hawk
-                if(leftOrRight < 1){
+                if(leftOrRight < 0.50){
                     $("#hawk_left").removeClass('hidden');
                     obstacles.push(new left_obstacles("hawk"));
                 }
