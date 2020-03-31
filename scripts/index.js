@@ -9,7 +9,7 @@ var loading = 1;
 var customFlag = 0;
 var obstacles = [];
 var spawnInc = 0;
-var spawnRate = 1500;
+var spawnRate = 500;
 var branchLeftOnScreen = false;
 var branchRightOnScreen = false;
 var chickfilaLeftOnScreen = false;
@@ -100,11 +100,11 @@ function on_tick() {
 }
 
 function increaseDifficulty(){
-    if(spawnRate>500){
+    /*if(spawnRate>500){
         spawnRate-=200;
         spawnInc = spawnRate/2;
         spawnObstacle();
-    }
+    }*/
     if(obstacleSpeed<1.3){
         obstacleSpeed+=0.2;
     }
