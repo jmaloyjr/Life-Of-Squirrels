@@ -6,7 +6,7 @@ var leftKey = 37, rightKey = 39;
 var squirrelLeftTree = 375;
 var squirrelRightTree = 1110;
 var loading = 1;
-var customFlag = false;
+var customFlag = 0;
 var obstacles = [];
 var spawnInc = 0;
 var spawnRate = 1500;
@@ -41,7 +41,11 @@ function onLoad() {
 //This changes the squirrel image to blue
 //Must change so this happens to people whos scores are >100
 function customChar() {
-    customFlag = !customFlag;
+    window.alert("You can customize your squirrel once you reach 100 points!");
+    customFlag++;
+    if (customFlag == 3){
+        customFlag = 0;
+    }
 }
 function add() {
     seconds++;
@@ -302,8 +306,11 @@ var squirrel = function (xPos, leftX, rightX, squirrelImg) {
     this.initialize=function()
     {
         $('#squirrel').css("left",self.Position+'px');
-        if(customFlag){
+        if(customFlag == 1){
         self.squirrelImg.src="../style/images/blue-squirrel-right.gif";
+        }
+        else if (customFlag == 2){
+            self.squirrelImg.src="../style/images/lime-squirrel-right.gif";
         }
         else{
             self.squirrelImg.src="../style/images/squirrel-right.gif";
@@ -326,12 +333,15 @@ var squirrel = function (xPos, leftX, rightX, squirrelImg) {
         self.doneMovement = false;
         self.changePosInterval = setInterval(function () { self.changePosition(-1 * self.movePixels); }, self.frames);
         self.checkEndMovementInterval = setInterval(function () { self.atEndLoc(self.leftX); }, self.frames);
-        if(customFlag){
-        self.squirrelImg.src = "../style/images/blue-squirrel-left-jump.gif";
-        }
-        else{
-            self.squirrelImg.src = "../style/images/squirrel-left-jump.gif";
-        }
+        if(customFlag == 1){
+            self.squirrelImg.src="../style/images/blue-squirrel-left-jump.gif";
+            }
+            else if (customFlag == 2){
+                self.squirrelImg.src="../style/images/lime-squirrel-left-jump.gif";
+            }
+            else{
+                self.squirrelImg.src="../style/images/squirrel-left-jump.gif";
+            }
 
     };
 
@@ -340,28 +350,37 @@ var squirrel = function (xPos, leftX, rightX, squirrelImg) {
         self.doneMovement = false;
         self.changePosInterval = setInterval(function () { self.changePosition(self.movePixels); }, self.frames);
         self.checkEndMovementInterval = setInterval(function () { self.atEndLoc(self.rightX); }, self.frames);
-        if(customFlag){
-        self.squirrelImg.src = "../style/images/blue-squirrel-right-jump.gif";
-        }
-        else{
-            self.squirrelImg.src = "../style/images/squirrel-right-jump.gif";
-        }
+        if(customFlag == 1){
+            self.squirrelImg.src="../style/images/blue-squirrel-right-jump.gif";
+            }
+            else if (customFlag == 2){
+                self.squirrelImg.src="../style/images/lime-squirrel-right-jump.gif";
+            }
+            else{
+                self.squirrelImg.src="../style/images/squirrel-right-jump.gif";
+            }
     };
 
     this.atEndLoc = function (endPos) {
         if (endPos == self.Position) {
             self.doneMovement = true;
             if (endPos == rightX) {
-                if(customFlag){
-                    self.squirrelImg.src = "../style/images/blue-squirrel-right.gif";
-                }
-                else{
-                self.squirrelImg.src = "../style/images/squirrel-right.gif";
-                }
+                if(customFlag == 1){
+                    self.squirrelImg.src="../style/images/blue-squirrel-right.gif";
+                    }
+                    else if (customFlag == 2){
+                        self.squirrelImg.src="../style/images/lime-squirrel-right.gif";
+                    }
+                    else{
+                        self.squirrelImg.src="../style/images/squirrel-right.gif";
+                    }
             }
             else {
-                if(customFlag){
+                if(customFlag == 1){
                     self.squirrelImg.src="../style/images/blue-squirrel-left.gif";
+                    }
+                    else if (customFlag == 2){
+                        self.squirrelImg.src="../style/images/lime-squirrel-left.gif";
                     }
                     else{
                         self.squirrelImg.src="../style/images/squirrel-left.gif";
