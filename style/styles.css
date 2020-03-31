@@ -25,16 +25,20 @@ html, body{
     width: auto;
     height: auto; 
     z-index: 10;
-    left: 1200px;
-    top: 500px;
+    /*left: 1200px;*/
+    left: 78vw;
+    /*top: 500px;*/
+    top:66vh;
 }
 #playerScoreTitle{
     font-family: 'Luckiest Guy', sans-serif;
     font-size: 25px;
     color: darkslategray;
     position: absolute;
-    left: 90px;
-    top: 50px;
+    /*left: 90px;
+    top: 50px;*/
+    left:5.859375vw;
+    top: 6.63129973474801vh;
 }
 #playerScore {
     font-family: 'Luckiest Guy', sans-serif;
@@ -46,8 +50,10 @@ html, body{
     font-family: 'Luckiest Guy', sans-serif;
     font-size: 25px;
     position: absolute;
-    left: 100px;
-    top: 40px;
+    /*left: 100px;
+    top: 40px;*/
+    left: 6.510416666666667vw;
+    top: 5.305039787798409vh;
 }
 #bg
 {
@@ -63,54 +69,19 @@ html, body{
 }
 .left-obj {
     position: absolute;
-    /*width: 40%;
-    height: 40%; */
-    left: 370px;
+    /*left: 370px;*/
+    left: 24.088541666666668vw;
     top: 0px;
     z-index: 8;
 }
 .right-obj {
     position: absolute;
-    right: 370px;
+    /*right: 370px;*/
+    right: 24.088541666666668vw;
     top: 0px;
     z-index: 8;
 }
-/*#branch_left {
-    position: absolute;
-    background: url(images/branch_left.png);
-    width: 120px;
-    height: 60px; 
-    background-size: 100% 100%;
-    left: 335px;
-    top: 0px;
-    z-index: 9;
-}
-#branch_right {
-    position: absolute;
-    background: url(images/branch_right.png);
-    width: 120px;
-    height: 60px; 
-    background-size: 100% 100%;
-    left: 960px;
-    top: 0px;
-    z-index: 9;
- }
-#chickfila_left {
-    position: absolute;
-    width: 40%;
-    height: 40%; 
-    left: 335px;
-    top: 0px;
-    z-index: 9;
-}
-#chickfila_right {
-    position: absolute;
-    width: 40%;
-    height: 40%; 
-    left: 960px;
-    top: 0px;
-    z-index: 9;
-}*/
+
 #tree {
     position: relative;
     background: brown url(images/bark.png);
@@ -151,8 +122,10 @@ background-color: lightblue;
 
 #playerScore {
     position: absolute;
-    left: 200px;
-    top: 67px;
+    /*left: 200px;*/
+    left: 13.020833333333334vw;
+    /*top: 67px;*/
+    top: 8.885941644562335vh;
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
 }
@@ -204,8 +177,10 @@ background-color: lightblue;
     font-size:3.5rem;
 }
 .start-game{
-    margin-bottom: 50px;
-    margin-top: 350px;
+    /*margin-bottom: 50px;
+    margin-top: 350px;*/
+    margin-bottom: 6.63129973474801vh;
+    margin-top: 46.41909814323608vh;
     font-family: 'Luckiest Guy', sans-serif;
 }
 .how-to-play{

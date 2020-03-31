@@ -102,7 +102,7 @@ function on_tick() {
 function increaseDifficulty(){
     if(spawnRate>500){
         spawnRate-=200;
-        spawnInc = spawnRate;
+        spawnInc = spawnRate/2;
         spawnObstacle();
     }
     if(obstacleSpeed<1.3){
@@ -110,7 +110,7 @@ function increaseDifficulty(){
     }
 }
 function spawnObstacle() {
-    if(spawnInc >= spawnRate){//spawn every 8 seconds
+    if(spawnInc >= spawnRate){
         spawnInc = 0;
         var r = Math.random();
         //good obstacle
@@ -328,6 +328,7 @@ function removeHeart() {
     } else {
         heart1.addClass('removed');
     }
+    console.log('removed');
 }
 
 // Used to add heart when the squirrel picks up a heart
@@ -349,6 +350,8 @@ function titleScreen() {
     $('#directions-page').addClass('hidden');
     $('#endGameScreen').addClass('hidden');
     $('#start-page').removeClass('hidden');
+    addHeart();
+    addHeart();
     obstacleSpeed = 0.5;
     spawnRate = 1500;
     playerAlive = false;
@@ -360,6 +363,7 @@ function startGame() {
     $('#endGameScreen').addClass('hidden');
     $('#gameScreen').removeClass('hidden');
     $('#playerScore').text(0);
+    playerAlive = true;
 
     firstLoad();
     restartTimer();
@@ -384,8 +388,6 @@ function endGame() {
     obstacleSpeed = 0.5;
     spawnRate = 1500;
     playerAlive = false;
-    playerScore = 0;
-    customFlag = 0;
     flag = 1;
     seconds = 0; minutes = 0; hours = 0;
 }
