@@ -503,7 +503,8 @@ var squirrel = function (xPos, leftX, rightX, squirrelImg) {
 }
 
 function setShouldCollide(){
-    shouldCollide = true;
+    console.log(is_colliding($('#squirrel'), $("#branch_right")));
+    //shouldCollide = true;
 }
 
 // Class to create right branches
@@ -539,14 +540,16 @@ class right_obstacles {
 
     // Called every tick to update the position of the branch
     update() {
-        $('#branch_right').css("top",this.y+'px');
-
-        // Checks if the player has collided with the branch
         if(shouldCollide && is_colliding($('#squirrel'), $('#' + this.type + "_right"))){
             shouldCollide = false;
-            setTimeout(setShouldCollide(), 1000);
+            //setTimeout(setShouldCollide(), 1000);
             console.log("Collided!");
         }
+        if(!shouldCollide && !is_colliding($('#squirrel'), $('#' +  this.type + "_right"))){
+            console.log("Done Collision");
+            shouldCollide = true;
+        }
+
         if(this.type==="branch"){
             $('#branch_right').css("top",this.y+'px');
         }
@@ -641,15 +644,15 @@ class left_obstacles {
 
     // Called every tick to update position of branch
     update() {
-      //  $('#branch_left').css("top",this.y+'px');
-
-        // Checks if the player has collided with an object
         if(shouldCollide && is_colliding($('#squirrel'), $('#' + this.type + "_left"))){
             shouldCollide = false;
-            setTimeout(setShouldCollide(), 1000);
             console.log("Collided!");
         }
-        
+        if(!shouldCollide && !is_colliding($('#squirrel'), $('#' + this.type + "_left"))){
+            console.log("Done Collision");
+            shouldCollide = true;
+        }
+
         if(this.type === "branch"){
             $('#branch_left').css("top",this.y+'px');
         }
