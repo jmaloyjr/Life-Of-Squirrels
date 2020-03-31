@@ -10,7 +10,20 @@ var customFlag = false;
 var obstacles = [];
 var spawnInc = 0;
 var spawnRate = 1500;
+var branchLeftOnScreen = false;
+var branchRightOnScreen = false;
+var chickfilaLeftOnScreen = false;
+var chickfilaRightOnScreen = false;
+var acornLeftOnScreen = false;
+var acornRightOnScreen = false;
+var goldAcornLeftOnScreen = false;
+var goldAcornRightOnScreen = false;
+var coneLeftOnScreen = false;
+var coneRightOnScreen = false;
+var hawkLeftOnScreen = false;
+var hawkRightOnScreen = false;
 var playerAlive = false;
+var obstacleSpeed = 0.5;
 
 function onLoad() {
     h2 = document.getElementsByTagName('h2')[0];
@@ -23,6 +36,7 @@ function onLoad() {
 
     //obstacles.push(new right_branches());
     //obstacles.push(new left_branches());
+    this.difficulty = setInterval(increaseDifficulty, 5000);
     this.on_tick = setInterval(on_tick, 1);
 
     $('body').keydown(function(event){
@@ -70,21 +84,20 @@ function on_tick() {
     else if(playerAlive){
         spawnObstacle();
     }
-    
-    /*r = Math.floor((Math.random() * 500) + 1);
-    if(r == 1){
-        //obstacles.push(new left_branches());
-    } else if(r == 2){
-        //obstacles.push(new right_branches());
-    }*/
     if(obstacles.length > 0)
     {
         obstacles.forEach(obj => obj.newPos());
     }
 }
 
+function increaseDifficulty(){
+    /*if(spawnRate>500){
+        spawnRate-=200;
+    }*/
+    obstacleSpeed +=0.2;
+}
 function spawnObstacle() {
-    if(spawnInc == spawnRate){//spawn every 8 seconds
+    if(spawnInc >= spawnRate){//spawn every 8 seconds
         spawnInc = 0;
         var r = Math.random();
         //good obstacle
@@ -94,42 +107,78 @@ function spawnObstacle() {
             if(i < 0.40){
                 var leftOrRight = Math.random();
                 //left chickfila
-                if(leftOrRight < 1){
-                    $("#chickfila_left").removeClass('hidden');
-                    obstacles.push(new left_obstacles("chickfila"));
+                if(leftOrRight < 0.50){
+                    if(chickfilaLeftOnScreen){
+                        spawnObstacle();
+                    }
+                    else {
+                        $("#chickfila_left").removeClass('hidden');
+                        chickfilaLeftOnScreen = true;
+                        obstacles.push(new left_obstacles("chickfila"));
+                    }
                 }
                 //right chickfila
                 else{
-                    $("#chickfila_right").removeClass('hidden');
-                    obstacles.push(new right_obstacles("chickfila"));
+                    if(chickfilaRightOnScreen){
+                        spawnObstacle();
+                    }
+                    else {
+                        $("#chickfila_right").removeClass('hidden');
+                        chickfilaRightOnScreen = true;
+                        obstacles.push(new right_obstacles("chickfila"));
+                    }
                 }
             }
             //regular acorn
             else if(i < 0.80){
                 var leftOrRight = Math.random();
                 //left reg acorn
-                if(leftOrRight < 1){
-                    $("#acorn_left").removeClass('hidden');
-                    obstacles.push(new left_obstacles("acorn"));
+                if(leftOrRight < 0.50){
+                    if(acornLeftOnScreen){
+                        spawnObstacle();
+                    }
+                    else {
+                        $("#acorn_left").removeClass('hidden');
+                        acornLeftOnScreen = true;
+                        obstacles.push(new left_obstacles("acorn"));
+                    }
                 }
                 //right reg acorn
                 else{
-                    $("#acorn_right").removeClass('hidden');
-                    obstacles.push(new right_obstacles("acorn"));
+                    if(acornRightOnScreen){
+                        spawnObstacle();
+                    }
+                    else {
+                        $("#acorn_right").removeClass('hidden');
+                        acornRightOnScreen = true;
+                        obstacles.push(new right_obstacles("acorn"));
+                    }
                 }
             }
             //golden acorn
             else {
                 var leftOrRight = Math.random();
                 //left golden acorn
-                if(leftOrRight < 1){
-                    $("#gold_acorn_left").removeClass('hidden');
-                    obstacles.push(new left_obstacles("gold_acorn"));
+                if(leftOrRight < 0.50){
+                    if(goldAcornLeftOnScreen){
+                        spawnObstacle();
+                    }
+                    else {
+                        $("#gold_acorn_left").removeClass('hidden');
+                        goldAcornLeftOnScreen = true;
+                        obstacles.push(new left_obstacles("gold_acorn"));
+                    }
                 }
                 //right golden acorn
                 else{
-                    $("#gold_acorn_right").removeClass('hidden');
-                    obstacles.push(new right_obstacles("gold_acorn"));
+                    if(goldAcornRightOnScreen){
+                        spawnObstacle();
+                    }
+                    else {
+                        $("#gold_acorn_right").removeClass('hidden');
+                        goldAcornRightOnScreen = true;
+                        obstacles.push(new right_obstacles("gold_acorn"));
+                    }
                 }
             }
         }
@@ -140,42 +189,78 @@ function spawnObstacle() {
             if(i < 0.40){
                 var leftOrRight = Math.random();
                 //left branch
-                if(leftOrRight < 1){
-                    $("#branch_left").removeClass('hidden');
-                    obstacles.push(new left_obstacles("branch"));
+                if(leftOrRight < 0.50){
+                    if(branchLeftOnScreen){
+                        spawnObstacle();
+                    }
+                    else{
+                        $("#branch_left").removeClass('hidden');
+                        branchLeftOnScreen = true;
+                        obstacles.push(new left_obstacles("branch"));
+                    }
                 }
                 //right branch
                 else {
-                    $("#branch_right").removeClass('hidden');
-                    obstacles.push(new right_obstacles("branch"));
+                    if(branchRightOnScreen){
+                        spawnObstacle();
+                    }
+                    else{
+                        $("#branch_right").removeClass('hidden');
+                        branchRightOnScreen = true;
+                        obstacles.push(new right_obstacles("branch"));
+                    }
                 }
             }
             //construction cone
             else if(i < 0.80){
                 var leftOrRight = Math.random();
                 //left cone
-                if(leftOrRight < 1){
-                    $("#cone_left").removeClass('hidden');
-                    obstacles.push(new left_obstacles("cone"));
+                if(leftOrRight < 0.50){
+                    if(coneLeftOnScreen){
+                        spawnObstacle();
+                    }
+                    else {
+                        $("#cone_left").removeClass('hidden');
+                        coneLeftOnScreen = true;
+                        obstacles.push(new left_obstacles("cone"));
+                    }
                 }
                 //right cone
                 else {
-                    $("#cone_right").removeClass('hidden');
-                    obstacles.push(new right_obstacles("cone"));
+                    if(coneRightOnScreen){
+                        spawnObstacle();
+                    }
+                    else{
+                        $("#cone_right").removeClass('hidden');
+                        coneRightOnScreen = true;
+                        obstacles.push(new right_obstacles("cone"));
+                    }
                 }
             }
             //hawk
             else {
                 var leftOrRight = Math.random();
                 //left hawk
-                if(leftOrRight < 1){
-                    $("#hawk_left").removeClass('hidden');
-                    obstacles.push(new left_obstacles("hawk"));
+                if(leftOrRight < 0.50){
+                    if(hawkLeftOnScreen){
+                        spawnObstacle();
+                    }
+                    else {
+                        $("#hawk_left").removeClass('hidden');
+                        hawkLeftOnScreen = true;
+                        obstacles.push(new left_obstacles("hawk"));
+                    }
                 }
                 //right hawk
                 else {
-                    $("#hawk_right").removeClass('hidden');
-                    obstacles.push(new right_obstacles("hawk"));
+                    if(hawkRightOnScreen){
+                        spawnObstacle();
+                    }
+                    else{
+                        $("#hawk_right").removeClass('hidden');
+                        hawkRightOnScreen = true;
+                        obstacles.push(new right_obstacles("hawk"));
+                    }
                 }
             }
         }
@@ -413,7 +498,7 @@ class right_obstacles {
             this.height = document.getElementById("hawk_right").height
         }
         this.speedX = 0;
-        this.speedY = 0.5;
+        this.speedY = obstacleSpeed;
         this.gravity = 0.05;
         this.frames = 10;
     }
@@ -445,21 +530,27 @@ class right_obstacles {
             obstacles.splice(0,1);
             if(this.type === "branch"){
                 $('#branch_right').addClass('hidden');
+                branchRightOnScreen = false;
             }
             else if(this.type==="chickfila"){
                 $('#chickfila_right').addClass('hidden');
+                chickfilaRightOnScreen = false;
             }
             else if(this.type==="acorn"){
                 $('#acorn_right').addClass('hidden');
+                acornRightOnScreen = false;
             }
             else if(this.type==="gold_acorn"){
                 $('#gold_acorn_right').addClass('hidden');
+                goldAcornRightOnScreen = false;
             }
             else if(this.type === "cone"){
                 $('#cone_right').addClass('hidden');
+                coneRightOnScreen = false;
             }
             else if(this.type === "hawk"){
                 $('#hawk_right').addClass('hidden');
+                hawkRightOnScreen = false;
             }
         }
     }
@@ -496,7 +587,7 @@ class left_obstacles {
             this.height = document.getElementById("hawk_left").height
         }
         this.speedX = 0;
-        this.speedY = 0.5;
+        this.speedY = obstacleSpeed;
         this.gravity = 0.05;
         this.frames = 10;
         this.shouldCollide = 0;
@@ -540,21 +631,27 @@ class left_obstacles {
             obstacles.splice(0,1);
             if(this.type === "branch"){
                 $('#branch_left').addClass('hidden');
+                branchLeftOnScreen = false;
             }
             else if(this.type==="chickfila"){
                 $('#chickfila_left').addClass('hidden');
+                chickfilaLeftOnScreen = false;
             }
             else if(this.type==="acorn"){
                 $('#acorn_left').addClass('hidden');
+                acornLeftOnScreen = false;
             }
             else if(this.type==="gold_acorn"){
                 $('#gold_acorn_left').addClass('hidden');
+                goldAcornLeftOnScreen = false;
             }
             else if(this.type === "cone"){
                 $('#cone_left').addClass('hidden');
+                coneLeftOnScreen = false;
             }
             else if(this.type === "hawk"){
                 $('#hawk_left').addClass('hidden');
+                hawkLeftOnScreen = false;
             }
         }
     }
