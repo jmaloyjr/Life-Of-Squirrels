@@ -54,13 +54,16 @@ function onLoad() {
 
     gameTimer();
 }
-//This changes the squirrel image to blue
-//Must change so this happens to people whos scores are >100
+//This changes the squirrel image if the players score is over 100
 function customChar() {
-    window.alert("You can customize your squirrel once you reach 100 points!");
+    if (playerScore>=100){
     customFlag++;
-    if (customFlag == 3){
+        if (customFlag == 3){
         customFlag = 0;
+        }
+    }
+    else{
+        window.alert("You can customize your squirrel once you reach 100 points!");
     }
 }
 function add() {
