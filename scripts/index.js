@@ -340,6 +340,8 @@ function titleScreen() {
     $('#directions-page').addClass('hidden');
     $('#endGameScreen').addClass('hidden');
     $('#start-page').removeClass('hidden');
+    obstacleSpeed = 0.5;
+    spawnRate = 1500;
     playerAlive = false;
     flag = 1;
 }
@@ -370,6 +372,8 @@ function endGame() {
     $('#heart3').removeClass('removed');
     $('#endGameText').text("Your score was: "  + $('#playerScore').text());
     $('#endGameScreen').removeClass('hidden');
+    obstacleSpeed = 0.5;
+    spawnRate = 1500;
     playerAlive = false;
     flag = 1;
     seconds = 0; minutes = 0; hours = 0;
