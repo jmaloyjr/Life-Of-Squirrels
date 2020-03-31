@@ -25,7 +25,7 @@ html, body{
     height: auto; 
     z-index: 10;
     left: 1200px;
-    top: 600px;
+    top: 500px;
 }
 #playerScoreTitle{
     font-family: 'Luckiest Guy', sans-serif;

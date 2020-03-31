@@ -94,7 +94,7 @@ function spawnObstacle() {
             if(i < 0.40){
                 var leftOrRight = Math.random();
                 //left chickfila
-                if(leftOrRight < 0.50){
+                if(leftOrRight < 1){
                     $("#chickfila_left").removeClass('hidden');
                     obstacles.push(new left_obstacles("chickfila"));
                 }
@@ -108,7 +108,7 @@ function spawnObstacle() {
             else if(i < 0.80){
                 var leftOrRight = Math.random();
                 //left reg acorn
-                if(leftOrRight < 0.50){
+                if(leftOrRight < 1){
                     $("#acorn_left").removeClass('hidden');
                     obstacles.push(new left_obstacles("acorn"));
                 }
@@ -122,7 +122,7 @@ function spawnObstacle() {
             else {
                 var leftOrRight = Math.random();
                 //left golden acorn
-                if(leftOrRight < 0.50){
+                if(leftOrRight < 1){
                     $("#gold_acorn_left").removeClass('hidden');
                     obstacles.push(new left_obstacles("gold_acorn"));
                 }
@@ -140,7 +140,7 @@ function spawnObstacle() {
             if(i < 0.40){
                 var leftOrRight = Math.random();
                 //left branch
-                if(leftOrRight < 0.50){
+                if(leftOrRight < 1){
                     $("#branch_left").removeClass('hidden');
                     obstacles.push(new left_obstacles("branch"));
                 }
@@ -154,7 +154,7 @@ function spawnObstacle() {
             else if(i < 0.80){
                 var leftOrRight = Math.random();
                 //left cone
-                if(leftOrRight < 0.50){
+                if(leftOrRight < 1){
                     $("#cone_left").removeClass('hidden');
                     obstacles.push(new left_obstacles("cone"));
                 }
@@ -168,7 +168,7 @@ function spawnObstacle() {
             else {
                 var leftOrRight = Math.random();
                 //left hawk
-                if(leftOrRight < 0.50){
+                if(leftOrRight < 1){
                     $("#hawk_left").removeClass('hidden');
                     obstacles.push(new left_obstacles("hawk"));
                 }
@@ -394,6 +394,24 @@ class right_obstacles {
         this.x = 0; //x_start;
         this.y = 0; //y_start;
         this.type = type;
+        if(this.type==="branch"){
+            this.height = document.getElementById("branch_right").height
+        }
+        else if(this.type === "chickfila"){
+            this.height = document.getElementById("chickfila_right").height
+        }
+        else if(this.type === "acorn"){
+            this.height = document.getElementById("acorn_right").height
+        }
+        else if(this.type === "gold_acorn"){
+            this.height = document.getElementById("gold_acorn_right").height
+        }
+        else if(this.type === "cone"){
+            this.height = document.getElementById("cone_right").height
+        }
+        else{
+            this.height = document.getElementById("hawk_right").height
+        }
         this.speedX = 0;
         this.speedY = 0.5;
         this.gravity = 0.05;
@@ -422,8 +440,8 @@ class right_obstacles {
     }
 
     hitBottom() {
-        var rockbottom = 700; // Change this value
-        if (this.y > rockbottom) {
+        var rockbottom = 750; // Change this value
+        if (this.y + this.height > rockbottom) {
             obstacles.splice(0,1);
             if(this.type === "branch"){
                 $('#branch_right').addClass('hidden');
@@ -459,6 +477,24 @@ class left_obstacles {
         this.x = 0; //x_start;
         this.y = 0; //y_start;
         this.type = type;
+        if(this.type==="branch"){
+            this.height = document.getElementById("branch_left").height
+        }
+        else if(this.type === "chickfila"){
+            this.height = document.getElementById("chickfila_left").height
+        }
+        else if(this.type === "acorn"){
+            this.height = document.getElementById("acorn_left").height
+        }
+        else if(this.type === "gold_acorn"){
+            this.height = document.getElementById("gold_acorn_left").height
+        }
+        else if(this.type === "cone"){
+            this.height = document.getElementById("cone_left").height
+        }
+        else{
+            this.height = document.getElementById("hawk_left").height
+        }
         this.speedX = 0;
         this.speedY = 0.5;
         this.gravity = 0.05;
@@ -498,8 +534,8 @@ class left_obstacles {
     }
 
     hitBottom() {
-        var rockbottom = 700; // Change this value
-        if (this.y > rockbottom) {
+        var rockbottom = 750; // Change this value
+        if (this.y + this.height > rockbottom) {
             //this.y = 0;
             obstacles.splice(0,1);
             if(this.type === "branch"){
