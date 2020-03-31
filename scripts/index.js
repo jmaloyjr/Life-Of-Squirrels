@@ -384,6 +384,8 @@ function endGame() {
     obstacleSpeed = 0.5;
     spawnRate = 1500;
     playerAlive = false;
+    playerScore = 0;
+    customFlag = 0;
     flag = 1;
     seconds = 0; minutes = 0; hours = 0;
 }
