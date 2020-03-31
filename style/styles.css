@@ -11,6 +11,7 @@ html, body{
 #infoBar > div {
     margin: 5px;
     border: solid black 3px;
+    z-index:9;
 }
 
 #game 
@@ -66,13 +67,13 @@ html, body{
     height: 40%; */
     left: 370px;
     top: 0px;
-    z-index: 9;
+    z-index: 8;
 }
 .right-obj {
     position: absolute;
     right: 370px;
     top: 0px;
-    z-index: 9;
+    z-index: 8;
 }
 /*#branch_left {
     position: absolute;
