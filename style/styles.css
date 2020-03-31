@@ -63,8 +63,6 @@ html, body{
 }
 .left-obj {
     position: absolute;
-    /*width: 40%;
-    height: 40%; */
     left: 370px;
     top: 0px;
     z-index: 8;
@@ -75,42 +73,7 @@ html, body{
     top: 0px;
     z-index: 8;
 }
-/*#branch_left {
-    position: absolute;
-    background: url(images/branch_left.png);
-    width: 120px;
-    height: 60px; 
-    background-size: 100% 100%;
-    left: 335px;
-    top: 0px;
-    z-index: 9;
-}
-#branch_right {
-    position: absolute;
-    background: url(images/branch_right.png);
-    width: 120px;
-    height: 60px; 
-    background-size: 100% 100%;
-    left: 960px;
-    top: 0px;
-    z-index: 9;
- }
-#chickfila_left {
-    position: absolute;
-    width: 40%;
-    height: 40%; 
-    left: 335px;
-    top: 0px;
-    z-index: 9;
-}
-#chickfila_right {
-    position: absolute;
-    width: 40%;
-    height: 40%; 
-    left: 960px;
-    top: 0px;
-    z-index: 9;
-}*/
+
 #tree {
     position: relative;
     background: brown url(images/bark.png);
