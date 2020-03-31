@@ -100,17 +100,17 @@ function on_tick() {
 }
 
 function increaseDifficulty(){
-    if(spawnRate>500){
+    /*if(spawnRate>500){
         spawnRate-=200;
-        spawnInc = spawnRate;
+        spawnInc = spawnRate/2;
         spawnObstacle();
-    }
+    }*/
     if(obstacleSpeed<1.3){
         obstacleSpeed+=0.2;
     }
 }
 function spawnObstacle() {
-    if(spawnInc >= spawnRate){//spawn every 8 seconds
+    if(spawnInc >= spawnRate){
         spawnInc = 0;
         var r = Math.random();
         //good obstacle
