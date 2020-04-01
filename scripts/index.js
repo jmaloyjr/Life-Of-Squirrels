@@ -579,6 +579,7 @@ class right_obstacles {
                 removeHeart();
             }
             else{
+                $('#' + this.type + '_right').addClass('hidden');
                 removeHeart();
                 
             }
@@ -709,6 +710,7 @@ class left_obstacles {
                 removeHeart();
             }
             else{
+                $('#' + this.type + '_left').addClass('hidden');
                 removeHeart();
             }
             
