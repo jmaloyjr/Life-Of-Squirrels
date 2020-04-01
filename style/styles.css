@@ -171,6 +171,7 @@ background-color: lightblue;
 }
 .jumbotron{
     background-color:#e9ecef8c !important;
+    background-image: url(UDGreen.jpg);
 }
 .title-text{
     font-family: 'Luckiest Guy', sans-serif;
@@ -221,14 +222,16 @@ background-color: lightblue;
 .removed {
     filter: grayscale();
 }
-
-#endGameJumbo {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    text-align: center;
+#end-page{
+    background-image: url('images/UDGreen.JPG');
+    background-repeat:round;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    min-height: 100%;
+    height:auto !important;
+    height: 100%; 
 }
 
 #endGameText {
