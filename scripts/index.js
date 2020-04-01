@@ -354,6 +354,8 @@ function titleScreen() {
     addHeart();
     obstacleSpeed = 0.5;
     spawnRate = 500;
+    playerScore = 0;
+    customFlag = 0;
     playerAlive = false;
     flag = 1;
 }
@@ -368,6 +370,8 @@ function startGame() {
     shouldCollide = true;
     firstLoad();
     restartTimer();
+    playerScore = 0;
+    customFlag = 0;
 }
 
 function restartTimer() {
@@ -390,6 +394,8 @@ function endGame() {
     spawnRate = 500;
     playerAlive = false;
     flag = 1;
+    playerScore = 0;
+    customFlag = 0;
     seconds = 0; minutes = 0; hours = 0;
 }
 
