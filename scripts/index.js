@@ -571,6 +571,11 @@ class right_obstacles {
                 playerScore = playerScore + 100;
                 $('#playerScore').text(playerScore);
             }
+            else if(this.type == "hawk"){
+                removeHeart();
+                removeHeart();
+                removeHeart();
+            }
             else{
                 removeHeart();
                 
@@ -695,6 +700,11 @@ class left_obstacles {
                 $('#gold_acorn_left').addClass('hidden');
                 playerScore = playerScore + 100;
                 $('#playerScore').text(playerScore);
+            }
+            else if(this.type == "hawk"){
+                removeHeart();
+                removeHeart();
+                removeHeart();
             }
             else{
                 removeHeart();
