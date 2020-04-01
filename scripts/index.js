@@ -353,7 +353,7 @@ function titleScreen() {
     addHeart();
     addHeart();
     obstacleSpeed = 0.5;
-    spawnRate = 1500;
+    spawnRate = 500;
     playerAlive = false;
     flag = 1;
 }
@@ -386,7 +386,7 @@ function endGame() {
     $('#endGameText').text("Your score was: "  + $('#playerScore').text());
     $('#endGameScreen').removeClass('hidden');
     obstacleSpeed = 0.5;
-    spawnRate = 1500;
+    spawnRate = 500;
     playerAlive = false;
     flag = 1;
     seconds = 0; minutes = 0; hours = 0;
