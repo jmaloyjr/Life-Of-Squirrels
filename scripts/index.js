@@ -349,6 +349,8 @@ function titleScreen() {
     $('#directions-page').addClass('hidden');
     $('#end-page').addClass('hidden');
     $('#start-page').removeClass('hidden');
+    addHeart();
+    addHeart();
     obstacleSpeed = 0.5;
     spawnRate = 500;
     playerScore = 0;
