@@ -223,7 +223,7 @@ background-color: lightblue;
     filter: grayscale();
 }
 #end-page{
-    background-image: url('images/UDGreen.JPG');
+    background-image: url('images/UDGreen.jpg');
     background-repeat:round;
     background-size: cover;
     -webkit-background-size: cover;
