@@ -348,7 +348,7 @@ function addHeart() {
 function titleScreen() {
     $('#gameScreen').addClass('hidden');
     $('#directions-page').addClass('hidden');
-    $('#endGameScreen').addClass('hidden');
+    $('#end-page').addClass('hidden');
     $('#start-page').removeClass('hidden');
     addHeart();
     addHeart();
@@ -359,8 +359,8 @@ function titleScreen() {
 }
 function startGame() {
     $('#start-page').addClass('hidden');
+    $('#end-page').addClass('hidden');
     $('#directions-page').addClass('hidden');
-    $('#endGameScreen').addClass('hidden');
     $('#gameScreen').removeClass('hidden');
     $('#playerScore').text(0);
     playerAlive = true;
@@ -385,7 +385,7 @@ function endGame() {
     $('#heart2').removeClass('removed');
     $('#heart3').removeClass('removed');
     $('#endGameText').text("Your score was: "  + $('#playerScore').text());
-    $('#endGameScreen').removeClass('hidden');
+    $('#end-page').removeClass('hidden');
     obstacleSpeed = 0.5;
     spawnRate = 500;
     playerAlive = false;
