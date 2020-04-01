@@ -349,8 +349,6 @@ function titleScreen() {
     $('#directions-page').addClass('hidden');
     $('#end-page').addClass('hidden');
     $('#start-page').removeClass('hidden');
-    addHeart();
-    addHeart();
     obstacleSpeed = 0.5;
     spawnRate = 500;
     playerScore = 0;
@@ -364,6 +362,8 @@ function startGame() {
     $('#directions-page').addClass('hidden');
     $('#gameScreen').removeClass('hidden');
     $('#playerScore').text(0);
+    addHeart();
+    addHeart();
     playerAlive = true;
     collidedObject = null;
     shouldCollide = true;
