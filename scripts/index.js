@@ -364,7 +364,8 @@ function startGame() {
     $('#gameScreen').removeClass('hidden');
     $('#playerScore').text(0);
     playerAlive = true;
-
+    collidedObject = null;
+    shouldCollide = true;
     firstLoad();
     restartTimer();
 }
@@ -549,7 +550,7 @@ class right_obstacles {
         if(shouldCollide && collidedObject == null && is_colliding($('#squirrel'), $('#' + this.type + "_right"))){
             shouldCollide = false;
             collidedObject = this.type + "_right";
-            console.log("collision detected");
+
             if(this.type == "chickfila"){
                 $('#chickfila_right').addClass('hidden');
                 playerScore = playerScore + 50;
@@ -566,7 +567,6 @@ class right_obstacles {
                 $('#playerScore').text(playerScore);
             }
             else{
-                console.log("removing heart");
                 removeHeart();
                 
             }
@@ -692,7 +692,6 @@ class left_obstacles {
                 $('#playerScore').text(playerScore);
             }
             else{
-                console.log("removing heart");
                 removeHeart();
             }
             
