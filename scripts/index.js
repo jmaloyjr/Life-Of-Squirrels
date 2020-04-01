@@ -26,6 +26,7 @@ var playerAlive = false;
 var shouldCollide = true;
 var obstacleSpeed = 0.5;
 var playerScore = 0;
+var collidedObject = null;
 
 function onLoad() {
     h2 = document.getElementsByTagName('h2')[0];
@@ -299,7 +300,6 @@ var is_colliding = function( $div1, $div2 ) {
 	var d2_distance_from_left = d2_offset.left + d2_width;
 
 	var not_colliding = ( d1_distance_from_top < d2_offset.top || d1_offset.top > d2_distance_from_top || d1_distance_from_left < d2_offset.left || d1_offset.left > d2_distance_from_left );
-
 	// Return whether it IS colliding
 	return ! not_colliding;
 };
@@ -546,8 +546,10 @@ class right_obstacles {
     update() {
 
         // Checks for collision with obstacles
-        if(shouldCollide && is_colliding($('#squirrel'), $('#' + this.type + "_right"))){
+        if(shouldCollide && collidedObject == null && is_colliding($('#squirrel'), $('#' + this.type + "_right"))){
             shouldCollide = false;
+            collidedObject = this.type + "_right";
+            console.log("collision detected");
             if(this.type == "chickfila"){
                 $('#chickfila_right').addClass('hidden');
                 playerScore = playerScore + 50;
@@ -564,12 +566,15 @@ class right_obstacles {
                 $('#playerScore').text(playerScore);
             }
             else{
+                console.log("removing heart");
                 removeHeart();
+                
             }
             $('#playerScore').text(playerScore);
         }
-        if(!shouldCollide && !is_colliding($('#squirrel'), $('#' +  this.type + "_right"))){
+        else if(!shouldCollide && this.type + "_right" == collidedObject && !is_colliding($('#squirrel'), $('#' +  this.type + "_right"))){
             shouldCollide = true;
+            collidedObject = null;
         }
 
         if(this.type==="branch"){
@@ -668,8 +673,9 @@ class left_obstacles {
     update() {
 
         // Checks for collision with obstacles
-        if(shouldCollide && is_colliding($('#squirrel'), $('#' + this.type + "_left"))){
+        if(shouldCollide && collidedObject == null && is_colliding($('#squirrel'), $('#' + this.type + "_left"))){
             shouldCollide = false;
+            collidedObject = this.type + "_left";
             if(this.type == "chickfila"){
                 $('#chickfila_left').addClass('hidden');
                 playerScore = playerScore + 50;
@@ -686,12 +692,14 @@ class left_obstacles {
                 $('#playerScore').text(playerScore);
             }
             else{
+                console.log("removing heart");
                 removeHeart();
             }
             
         }
-        if(!shouldCollide && !is_colliding($('#squirrel'), $('#' + this.type + "_left"))){
+        else if(!shouldCollide && this.type + "_left" == collidedObject && !is_colliding($('#squirrel'), $('#' + this.type + "_left"))){
             shouldCollide = true;
+            collidedObject = null;
         }
 
         if(this.type === "branch"){
